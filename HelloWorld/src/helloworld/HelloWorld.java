@@ -7,7 +7,7 @@ package helloworld;
 
 /**
  *
- * @author Shubho
+ * @author Mohammad Saiful Islam
  */
 public class HelloWorld {
 
@@ -16,6 +16,14 @@ public class HelloWorld {
      */
     public static void main(String[] args) {
         System.out.println("Hello World");
+        
+        RandomGenerator rand = new RandomGenerator();
+        
+        int i = rand.NextInt();
+        System.out.println(i);
+        
+        i = rand.NextInt(10);
+        System.out.println(i);
     }
     
 }
