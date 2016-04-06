@@ -17,13 +17,16 @@ public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello World");
         
-        RandomGenerator rand = new RandomGenerator();
+        //RandomGenerator rand = new RandomGenerator();
+        XORShiftRandom rand = new XORShiftRandom();
         
-        int i = rand.NextInt();
-        System.out.println(i);
+        int i;
         
-        i = rand.NextInt(10);
-        System.out.println(i);
+         i = rand.nextInt();
+         System.out.println(i);
+        
+         i = rand.nextInt(100);
+         System.out.println(i); 
     }
     
 }

@@ -43,4 +43,19 @@ public class RandomGenerator {
     {
         return rand.nextInt();
     }
+    
+    /**
+     * 
+     * @param lower The lower bound (inclusive)
+     * @param upper The upper bound (inclusive)
+     * @return A pseudo random number between lower and upper bound (inclusive)
+     * @throws IllegalArgumentException if upperbound is lower than upper bound
+     */
+    public int NextInt(int lower, int upper)
+    {
+        if (upper < lower) {
+            throw new IllegalArgumentException("Upper must be higher than lower");
+        }
+        return rand.nextInt((upper - lower) + 1) + lower;
+    }
 }
