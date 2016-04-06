@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helloworld;
 
 import java.util.Random;
@@ -24,13 +19,14 @@ public class RandomGenerator {
     }
     
     /**
-     * Method that returns a pseudo random number from 0 (inclusive) to upper bound (exclusive) 
+     * Returns a pseudo random number from 0 (inclusive) to upper bound (exclusive) 
      * 
      * @param upperBound The upper bound (exclusive). Must be positive
      * @return A pseudo random number from 0 to upperBound (exclusive) 
      * @throws IllegalArgumentException if upperBound is not positive 
     **/
-    public int NextInt(int upperBound)
+    public int NextInt (int upperBound)
+            throws IllegalArgumentException
     {
         if (upperBound <= 0) {
             throw new IllegalArgumentException("upper bound has to be positive");
@@ -45,6 +41,7 @@ public class RandomGenerator {
     }
     
     /**
+     * Returns a pseudo random number from lower (inclusive) to upper (inclusive)
      * 
      * @param lower The lower bound (inclusive)
      * @param upper The upper bound (inclusive)

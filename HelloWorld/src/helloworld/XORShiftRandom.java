@@ -16,8 +16,10 @@ public class XORShiftRandom extends Random {
     private long seed = System.nanoTime();
     
     public XORShiftRandom(){
+        
     }
     
+    @Override 
     protected int next(int nbits){
         long x = seed;
         x ^= (x<<21);

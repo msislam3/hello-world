@@ -59,6 +59,13 @@ public class RandomGeneratorTest {
         }
     }
     
+    @Test(expected = IllegalArgumentException.class)
+    public void textNextIntShouldThrowException(){
+        RandomGenerator rand = new RandomGenerator();
+        rand.NextInt(-1);
+    }
+            
+    
     @Test
     public void testNextIntUpperBoundRandomNumberShouldLessThanBound()
     {
