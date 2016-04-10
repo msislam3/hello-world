@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Shared/_Layout.cshtml";
+    Page.Title = "Product";
+
+    var db = Database.Open("SmallBakery");
+    var query = "Select * From Product";
+    var data = db.Query(query);
+    var grid = new WebGrid(data);
+}
+
+<h1>Small Bakery Products</h1>
+
+<table>
+<tr>
+    <th>Id</th>
+    <th>Product</th>
+    <th>Description</th>
+    <th>Price</th>
+</tr>
+    @{
+        foreach(var row in db.Query(query))
+        {
+            <tr>
+                <td>@row.Id</td>
+                <td>@row.Name</td>
+                <td>@row.Description</td>
+                <td>@row.Price</td>
+            </tr>
+        }
+    }
+</table>
+
+<h2>Displaying data using WebGrid</h2>
+<div id="grid">
+    @grid.GetHtml()
+</div>

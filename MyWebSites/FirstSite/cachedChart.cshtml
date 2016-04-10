@@ -1,0 +1,20 @@
+﻿@{
+    var chartKey = Request["key"];
+    if (chartKey != null)
+    {
+        var cachedChart = Chart.GetFromCache(chartKey);
+        if (cachedChart == null)
+        {
+            cachedChart = new Chart(600,400).AddTitle(string.Format("Cached chart cached at {0}", DateTime.Now));
+            cachedChart.AddSeries(
+                name: "Employee", 
+                axisLabel: "Name", 
+                xValue : new [] {"A","B","C"},
+                yValues : new [] {"2","4","5"});
+             cachedChart.SaveToCache(key: chartKey,
+               minutesToCache: 2,
+               slidingExpiration: false);                
+        }
+        Chart.WriteFromCache(chartKey);
+    }
+}

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Shared/_Layout.cshtml";
+    Page.Title = "Reading Text";
+
+    var dataFile = Server.MapPath("~/App_Data/Persons.txt");
+    Array userData = File.ReadAllLines(dataFile);
+}
+
+<h1>Reading data from file</h1>
+@{
+    foreach(string line in userData)
+    {
+        foreach(string data in line.Split(','))
+        {
+            @data  <text>&nbsp;</text>
+        }
+        <br/>
+    }    
+
+}
