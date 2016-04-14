@@ -1,42 +1,83 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿body
+{
+font: "Trebuchet MS", Verdana, sans-serif;
+background-color: #5c87b2;
+color: #696969;
 }
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+h1
+{
+border-bottom: 3px solid #cc9900;
+font: Georgia, serif;
+color: #996600;
 }
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+#main
+{
+padding: 20px;
+background-color: #ffffff;
+border-radius: 0 4px 4px 4px;
 }
-
-/* styles for validation helpers */
-.field-validation-error {
-    color: #b94a48;
+a
+{
+color: #034af3; 
 }
-
-.field-validation-valid {
-    display: none;
+/* Menu Styles ------------------------------*/ 
+ul#menu
+{
+padding: 0px;
+position: relative;
+margin: 0;
 }
-
-input.input-validation-error {
-    border: 1px solid #b94a48;
+ul#menu li
+{
+display: inline;
 }
-
-input[type="checkbox"].input-validation-error {
-    border: 0 none;
+ul#menu li a 
+{
+background-color: #e8eef4;
+padding: 10px 20px;
+text-decoration: none;
+line-height: 2.8em;
+/*CSS3 properties*/
+border-radius: 4px 4px 0 0;
 }
-
-.validation-summary-errors {
-    color: #b94a48;
+ul#menu li a:hover
+{
+background-color: #ffffff;
+} 
+/* Forms Styles ------------------------------*/ 
+fieldset
+{
+padding-left: 12px;
+} 
+fieldset label
+{
+display: block;
+padding: 4px;
 }
-
-.validation-summary-valid {
-    display: none;
+input[type="text"], input[type="password"]
+{
+width: 300px;
+}
+input[type="submit"]
+{
+padding: 4px;
+}
+/* Data Styles ------------------------------*/ 
+table.data
+{
+background-color:#ffffff;
+border:1px solid #c3c3c3;
+border-collapse:collapse;
+width:100%;
+}
+table.data th
+{
+background-color:#e8eef4;
+border:1px solid #c3c3c3;
+padding:3px;
+}
+table.data td 
+{
+border:1px solid #c3c3c3;
+padding:3px;
 }
