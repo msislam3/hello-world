@@ -32,7 +32,7 @@
         </style>
     </head>
     <body>
-        <h1>Movies @searchTerm</h1>
+        <h1>Movies</h1>
         <form method="get">
             <div>
                 <label for="searchGenre">Genre to look for</label>
@@ -50,7 +50,14 @@
                 tableStyle: "grid",
                 headerStyle: "head",
                 alternatingRowStyle: "alt",
-                columns: grid.Columns(grid.Column("Title"), grid.Column("Genre"), grid.Column("Year")) 
+                columns: grid.Columns
+                (
+                grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
+                grid.Column("Title"), 
+                grid.Column("Genre"), 
+                grid.Column("Year"),
+                grid.Column(format: @<a href="~/DeleteMovie?id=@item.ID">Delete</a>)
+                ) 
             );
         </div>
         <p>
