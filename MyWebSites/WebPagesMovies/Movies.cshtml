@@ -20,7 +20,15 @@
     var selectData = db.Query(selectCommand, searchTerm);
     var grid = new WebGrid(source: selectData, defaultSort: "Genre", rowsPerPage: 3);
 }
-    <h1>Movies</h1>     
+    <h1>Movies</h1>  
+
+    <div class="fb-like" 
+            data-href="@HttpContext.Current.Request.Url.AbsoluteUri" 
+            data-layout="standard" 
+            data-action="like" 
+            data-show-faces="true" 
+            data-share="true"></div>
+
     <form method="get">
         <div>
             <label for="searchGenre">Genre to look for</label>
