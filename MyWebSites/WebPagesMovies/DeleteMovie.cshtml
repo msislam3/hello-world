@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/_Layout.cshtml";
+    Layout = "~/Shared/_Layout.cshtml";
     Page.Title = "Delete a Movie";
 
     var title = "";
@@ -35,6 +35,7 @@
         Response.Redirect("~/Movies");
     }
 }
+
 <h1>Delete a Movie</h1>
 @Html.ValidationSummary()
 <p><a href="~/Movies">Return to movie listing</a></p>
