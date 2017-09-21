@@ -1,0 +1,406 @@
+﻿@*<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
+        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
+        is an ideal platform for building RESTful applications on the .NET Framework.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+    </div>
+</div>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table {
+            border: 0
+        }
+
+        .commslog-data {
+            font-family: Consolas, Courier New, Courier, monospace;
+        }
+
+        .commslog-server {
+            background-color: red;
+            color: white
+        }
+
+        .commslog-client {
+            background-color: green;
+            color: white
+        }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Sample Application</h1>
+    <p id="stateLabel">Ready to connect...</p>
+    <div>
+        <label for="connectionUrl">WebSocket Server URL:</label>
+        <input id="connectionUrl" />
+        <button id="connectButton" type="submit">Connect</button>
+    </div>
+    <p></p>
+    <div>
+        <label for="sendMessage">Message to send:</label>
+        <input id="sendMessage" disabled />
+        <button id="sendButton" type="submit" disabled>Send</button>
+        <button id="groupSendButton" type="submit" disabled>Send To Group</button>
+        <button id="closeButton" disabled>Close Socket</button>
+    </div>
+    <div>
+        <label for="historicalLast">Request Historical Last:</label>
+        <button id="historicalLastButton" type="submit">Send Request</button>
+    </div>
+    <div>
+        <label for="historicalMessage">Request Historical Messages:</label>
+        <button id="historicalButton" type="submit">Send Request</button>
+    </div>
+    <div>
+        <label for="historicalGroupMessage">Request Historical Group Messages:</label>
+        <button id="historicalGroupButton" type="submit">Send Request</button>
+    </div>
+    <div>
+        <label for="rigConnectionMessage">Request Rig Connection:</label>
+        <button id="rigConnectionButton" type="submit">Send Request</button>
+    </div>
+
+    <h2>Communication Log</h2>
+    <table style="width: 800px">
+        <thead>
+            <tr>
+                <td style="width: 100px">From</td>
+                <td style="width: 100px">To</td>
+                <td>Data</td>
+            </tr>
+        </thead>
+        <tbody id="commsLog"></tbody>
+    </table>
+
+    <script>
+        var connectionForm = document.getElementById("connectionForm");
+        var connectionUrl = document.getElementById("connectionUrl");
+        var connectButton = document.getElementById("connectButton");
+        var stateLabel = document.getElementById("stateLabel");
+        var sendMessage = document.getElementById("sendMessage");
+        var sendButton = document.getElementById("sendButton");
+        var groupSendButton = document.getElementById("groupSendButton");
+        var sendForm = document.getElementById("sendForm");
+        var commsLog = document.getElementById("commsLog");
+        var historicalLastButton = document.getElementById("historicalLastButton");
+        var historicalMessageButton = document.getElementById("historicalButton");
+        var historicalGroupMessageButton = document.getElementById("historicalGroupButton");
+        var rigConnectionButton = document.getElementById("rigConnectionButton");
+        var socket;
+        var scheme = document.location.protocol == "https:" ? "wss" : "ws";
+        var port = document.location.port ? (":" + document.location.port) : "";
+        connectionUrl.value = scheme + "://" + document.location.hostname + port + "/api/Chat/Socket";
+        function updateState() {
+
+            function disable() {
+                sendMessage.disabled = true;
+                sendButton.disabled = true;
+                groupSendButton.disabled = true;
+                closeButton.disabled = true;
+            }
+
+            function enable() {
+                sendMessage.disabled = false;
+                sendButton.disabled = false;
+                groupSendButton.disabled = false;
+                closeButton.disabled = false;
+            }
+
+            connectionUrl.disabled = true;
+            connectButton.disabled = true;
+
+            if (!socket) {
+                disable();
+            } else {
+                switch (socket.readyState) {
+                    case WebSocket.CLOSED:
+                        stateLabel.innerHTML = "Closed";
+                        disable();
+                        connectionUrl.disabled = false;
+                        connectButton.disabled = false;
+                        break;
+                    case WebSocket.CLOSING:
+                        stateLabel.innerHTML = "Closing...";
+                        disable();
+                        break;
+                    case WebSocket.CONNECTING:
+                        stateLabel.innerHTML = "Connecting...";
+                        disable();
+                        break;
+                    case WebSocket.OPEN:
+                        stateLabel.innerHTML = "Open";
+                        enable();
+                        sendMsgRegister();
+                        break;
+                    default:
+                        stateLabel.innerHTML = "Unknown WebSocket State: " + htmlEscape(socket.readyState);
+                        disable();
+                        break;
+                }
+            }
+
+            function sendMsgRegister() {
+
+                var message = {
+                    token: 'dummyToken',
+                    type: 'Register',
+                    senderGuid: "B68E1FE5-B860-4E06-B034-11F511AA4E2B",
+                    senderId: "CLIENT[MDTADMIN]"
+                };
+
+                socket.send(JSON.stringify(message));
+                commsLog.innerHTML += '<tr>' +
+                    '<td class="commslog-client">Client</td>' +
+                    '<td class="commslog-server">Server</td>' +
+                    '<td class="commslog-data">' + htmlEscape("Sent Register Message") + '</td>'
+                '</tr>';
+            }
+        }
+
+        closeButton.onclick = function () {
+            if (!socket || socket.readyState != WebSocket.OPEN) {
+                alert("socket not connected");
+            }
+            socket.close(1000, "Closing from client");
+        }
+
+        historicalLastButton.onclick = function () {
+            if (!socket || socket.readyState != WebSocket.OPEN) {
+                alert("socket not connected");
+            }
+
+            var message = {
+                token: 'dummyToken',
+                type: 'LastMessageList',
+                senderGuid: "B68E1FE5-B860-4E06-B034-11F511AA4E2B",
+                senderId: "CLIENT[MDTADMIN]"
+            };
+
+            socket.send(JSON.stringify(message));
+
+            commsLog.innerHTML += '<tr>' +
+                '<td class="commslog-client">Client</td>' +
+                '<td class="commslog-server">Server</td>' +
+                '<td class="commslog-data">' + htmlEscape("Historical Last Message Request Sent") + '</td>'
+            '</tr>';
+        }
+
+        historicalMessageButton.onclick = function () {
+            if (!socket || socket.readyState != WebSocket.OPEN) {
+                alert("socket not connected");
+            }
+
+            var message = {
+                token: 'dummyToken',
+                type: 'HistoricalMessageList',
+                senderGuid: "B68E1FE5-B860-4E06-B034-11F511AA4E2B",
+                senderId: "CLIENT[MDTADMIN]",
+                receiverId: "CLIENT[CHIMO]",
+                hourLimit: 24
+            };
+
+            socket.send(JSON.stringify(message));
+
+            commsLog.innerHTML += '<tr>' +
+                '<td class="commslog-client">Client</td>' +
+                '<td class="commslog-server">Server</td>' +
+                '<td class="commslog-data">' + htmlEscape("Historical Message Request Sent") + '</td>'
+            '</tr>';
+        }
+
+        historicalGroupMessageButton.onclick = function () {
+            if (!socket || socket.readyState != WebSocket.OPEN) {
+                alert("socket not connected");
+            }
+
+            var message = {
+                type: 'HistoricalGroupMessageList',
+                senderGuid: "B68E1FE5-B860-4E06-B034-11F511AA4E2B",
+                senderId: "CLIENT[MDTADMIN]",
+                hourLimit: 24,
+                groupGuid: "AE1FDF6C-362B-421E-88A3-7DB9C48C1C81"
+            };
+
+            socket.send(JSON.stringify(message));
+
+            commsLog.innerHTML += '<tr>' +
+                '<td class="commslog-client">Client</td>' +
+                '<td class="commslog-server">Server</td>' +
+                '<td class="commslog-data">' + htmlEscape("Historical Message Request Sent") + '</td>'
+            '</tr>';
+        }
+
+        rigConnectionButton.onclick = function () {
+            if (!socket || socket.readyState != WebSocket.OPEN) {
+                alert("socket not connected");
+            }
+
+            var message = {
+                type: 'RigConnection',
+                receiverId: "RIG[1572]"
+            };
+
+            socket.send(JSON.stringify(message));
+
+            commsLog.innerHTML += '<tr>' +
+                '<td class="commslog-client">Client</td>' +
+                '<td class="commslog-server">Server</td>' +
+                '<td class="commslog-data">' + htmlEscape("Rig Connection Request Sent") + '</td>'
+            '</tr>';
+        }
+
+        groupSendButton.onclick = function () {
+            if (!socket || socket.readyState != WebSocket.OPEN) {
+                alert("socket not connected");
+            }
+
+            var data = sendMessage.value;
+            var message = {
+                token: 'dummyToken',
+                type: 'GroupMessage',
+                senderGuid: "B68E1FE5-B860-4E06-B034-11F511AA4E2B",
+                senderId: "CLIENT[MDTADMIN]",
+                messageGuid: guid(),
+                messageText: data,
+                timeStamp: ((new Date().getTime() * 10000) + 621355968000000000),
+                messageStatus: 0,
+                groupGuid: "AE1FDF6C-362B-421E-88A3-7DB9C48C1C81",
+                importantMessage: true,
+                groupMembers: [
+                    "CLIENT[CHIMO]", "CLIENT[MDTADMIN]", "CLIENT[CHIMOTST]"
+                ]
+            };
+
+            socket.send(JSON.stringify(message));
+            commsLog.innerHTML += '<tr>' +
+                '<td class="commslog-client">Client</td>' +
+                '<td class="commslog-server">Server</td>' +
+                '<td class="commslog-data">' + htmlEscape(data) + '</td>'
+            '</tr>';
+        }
+
+        sendButton.onclick = function () {
+            if (!socket || socket.readyState != WebSocket.OPEN) {
+                alert("socket not connected");
+            }
+            var data = sendMessage.value;
+            var message = {
+                token: 'dummyToken',
+                type: 'Message',
+                senderGuid: "B68E1FE5-B860-4E06-B034-11F511AA4E2B",
+                senderId: "CLIENT[MDTADMIN]",
+                receiverGuid: "DE1FDF6C-362B-421E-88A3-7DB9C48C1C81",
+                receiverId: "CLIENT[CHIMO]",
+                messageGuid: guid(),
+                messageText: data,
+                timeStamp: ((new Date().getTime() * 10000) + 621355968000000000),
+                messageStatus: 0
+            };
+
+            //var msgToSend = {
+            //    type: 'Message',
+            //    value: message
+            //}
+
+            socket.send(JSON.stringify(message));
+            commsLog.innerHTML += '<tr>' +
+                '<td class="commslog-client">Client</td>' +
+                '<td class="commslog-server">Server</td>' +
+                '<td class="commslog-data">' + htmlEscape(data) + '</td>'
+            '</tr>';
+        }
+
+        function guid() {
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                s4() + '-' + s4() + s4() + s4();
+        }
+
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+
+        connectButton.onclick = function() {
+            stateLabel.innerHTML = "Connecting";
+            socket = new WebSocket(connectionUrl.value);
+            socket.onopen = function (event) {
+                updateState();
+                commsLog.innerHTML += '<tr>' +
+                    '<td colspan="3" class="commslog-data">Connection opened</td>' +
+                    '</tr>';
+                keepAlive();
+            };
+            socket.onclose = function (event) {
+                updateState();
+                commsLog.innerHTML += '<tr>' +
+                    '<td colspan="3" class="commslog-data">Connection closed. Code: ' + htmlEscape(event.code) + '. Reason: ' + htmlEscape(event.reason) + '</td>' +
+                    '</tr>';
+                cancelKeepAlive();
+            };
+            socket.onerror = updateState;
+            socket.onmessage = function (event) {
+                commsLog.innerHTML += '<tr>' +
+                    '<td class="commslog-server">Server</td>' +
+                    '<td class="commslog-client">Client</td>' +
+                    '<td class="commslog-data">' + htmlEscape(event.data) + '</td>'
+                '</tr>';
+            };
+            
+        };
+
+        var timerID = 0; 
+
+        function keepAlive() {
+            var timeout = 20000;
+            if (socket.readyState == WebSocket.OPEN) {
+                var message = {
+                    token: 'dummyToken',
+                    type: 'KeepAlive',
+                };
+                socket.send(JSON.stringify(message));
+                commsLog.innerHTML += '<tr>' +
+                    '<td colspan="3" class="commslog-data">keep Alive</td>' +
+                    '</tr>';
+            }
+            timerId = setTimeout(keepAlive, timeout);
+        }  
+
+        function cancelKeepAlive() {
+            if (timerId) {
+                clearTimeout(timerId);
+            }
+        }
+
+        function htmlEscape(str) {
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+    </script>
+</body>
+</html>

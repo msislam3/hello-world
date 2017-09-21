@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApplication", "ChatApplication\ChatApplication.csproj", "{078232CC-B322-4258-8126-29BFD0CFCEA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient", "ChatClient\ChatClient.csproj", "{D07058FF-0E84-4FB6-BB60-2B18234A6F69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{D2C32CA7-463A-432F-992D-608FEE0FE6EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {330CE386-8DC8-4354-9F1B-9A6706A98205}
+	EndGlobalSection
+EndGlobal

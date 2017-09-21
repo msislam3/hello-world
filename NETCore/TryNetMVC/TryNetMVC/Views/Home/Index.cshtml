@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Character>
+<h2>Active Charecters</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_CharacterSheet",item);
+    }
+</div>
+

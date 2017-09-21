@@ -1,0 +1,9 @@
+﻿@model Character
+<h2>
+    Confirm Delete Character
+</h2>
+
+<form asp-action="Remove" asp-controller="Character" method="post">
+    @Html.HiddenFor(Model => Model.ID)
+    <input type="submit" value="Delete" class="btn btn-default" />
+</form>

@@ -1,0 +1,32 @@
+﻿@model Character
+
+<div class="col-md-5 bordered-div">
+    <h4>
+        @Model.Name
+    </h4>
+    <hr />
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="IsActive" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.IsActive</p>
+            </div>
+            <label asp-for="Level" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Level</p>
+            </div>
+            <label asp-for="Strength" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Strength</p>
+            </div>
+            <label asp-for="Dexterity" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Dexterity</p>
+            </div>
+            <label asp-for="Intelligence" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Intelligence</p>
+            </div>
+        </div>
+    </div>
+</div>

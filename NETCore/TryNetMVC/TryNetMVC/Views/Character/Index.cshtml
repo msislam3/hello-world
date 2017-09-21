@@ -1,0 +1,24 @@
+﻿@model List<Character>
+
+@section header{
+    <meta name="description" content="Lists all characters" />
+    @* We’ll set metadata that search engines will display when listing our page in our header section*@
+}
+<h1>
+    Characters
+</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Character">Create new character</a>
+</p>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a asp-action="Details" asp-controller="Character" asp-route-name="@item.Name">@item.Name</a>
+            <a asp-action="Edit" asp-controller="Character" asp-route-name="@item.Name">Edit</a>
+            <a asp-action="Delete" asp-controller="Character" asp-route-name="@item.Name">Delete</a>
+        </li>
+    }
+</ul>

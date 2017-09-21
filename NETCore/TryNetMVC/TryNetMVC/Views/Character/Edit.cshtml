@@ -1,0 +1,12 @@
+﻿@model Character
+<h2>
+    Edit Character
+</h2>
+
+<form asp-action="Update" asp-controller="Character">
+    @*As ScaffoldColumn is set to false for ID when this form is submitted ID will be set to 0 and
+        EntityFramewrok will throw error. The HiddenFor will set the ID correctly so that Update works*@
+    @Html.HiddenFor(Model => Model.ID)
+    @Html.EditorForModel()
+    <input type="submit" value="Update" class="btn btn-default" />
+</form>
