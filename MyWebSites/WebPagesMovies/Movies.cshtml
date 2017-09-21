@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Shared/_Layout.cshtml";
+    Page.Title = "List Movies";
+
+    var db = Database.Open("WebPagesMovies");
+    var selectCommand = "Select * From Movies";
+    var searchTerm = "";
+
+    if(!Request.QueryString["searchGenre"].IsEmpty())
+    {
+        selectCommand = "Select * From Movies Where Genre=@0";
+        searchTerm = Request.QueryString["searchGenre"];
+    }
+    else if(!Request.QueryString["searchTitle"].IsEmpty())
+    {
+        selectCommand = "Select * From Movies Where Title Like @0";
+        searchTerm = "%" + Request.QueryString["searchTitle"] + "%";
+    }
+
+    var selectData = db.Query(selectCommand, searchTerm);
+    var grid = new WebGrid(source: selectData, defaultSort: "Genre", rowsPerPage: 3);
+}
+
+@section header {
+    <div id="header"> List of all movies </div>
+}
+    <h1>Movies</h1>  
+    <div class="fb-like" 
+            data-href="@HttpContext.Current.Request.Url.AbsoluteUri" 
+            data-layout="standard" 
+            data-action="like" 
+            data-show-faces="true" 
+            data-share="true">
+    </div>
+    <form method="get">
+        <div>
+            <label for="searchGenre">Genre to look for</label>
+            <input type="text" name="searchGenre" value="@Request.QueryString["searchGenre"]" />
+            <input type="Submit" value="Search Genre" /> <br/>
+        </div>
+        <div>
+            <label for="searchTitle">Movie title contains following</label>
+            <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
+            <input type="Submit" value="Search Title" /> <br/>
+        </div>
+    </form>
+    <div>
+        @grid.GetHtml(
+            tableStyle: "grid",
+            headerStyle: "head",
+            alternatingRowStyle: "alt",
+            columns: grid.Columns
+            (
+            grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
+            grid.Column("Title"), 
+            grid.Column("Genre"), 
+            grid.Column("Year"),
+            grid.Column(format: @<a href="~/DeleteMovie?id=@item.ID">Delete</a>)
+            ) 
+        )
+    </div>
+    <p>
+        <a href="~/AddMovie">Add a movie</a>
+    </p>
