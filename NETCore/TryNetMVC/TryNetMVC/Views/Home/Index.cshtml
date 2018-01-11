@@ -3,12 +3,21 @@
 }
 
 @model List<Character>
-<h2>Active Charecters</h2>
+@*<p><a asp-action="Create" asp-controller="Character">Create new character</a></p>*@
+
+@*Anything put into the header section would go to RenderSection(header) in the _Layout.cshtml file*@
+@section header{
+    <meta name="description" content="Lists all characters in ForgingAhead." />
+}
+
+<h2>Active Characters</h2>
 
 <div class="row">
     @foreach (var item in Model)
     {
-        @Html.Partial("_CharacterSheet",item);
+        @*<li> <a asp-action="Details" asp-controller="Character" asp-route-name="@item.Name">@item.Name</a></li>*@
+
+        @Html.Partial("_CharacterSheet", item);
     }
 </div>
 

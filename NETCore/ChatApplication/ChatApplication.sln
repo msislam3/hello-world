@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApplication", "ChatApplication\ChatApplication.csproj", "{078232CC-B322-4258-8126-29BFD0CFCEA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient", "ChatClient\ChatClient.csproj", "{D07058FF-0E84-4FB6-BB60-2B18234A6F69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{D2C32CA7-463A-432F-992D-608FEE0FE6EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRChat", "SignalRChat\SignalRChat.csproj", "{938BA66D-D312-4F7E-AC89-F36834251838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRChatClient", "SignalRChatClient\SignalRChatClient.csproj", "{B9527CD8-8071-47DC-822A-6CB1ADDB1BE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyRTServer", "DummyRTServer\DummyRTServer.csproj", "{07B1038E-14CC-4F11-B318-497874E4719A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyRTClient", "DummyRTClient\DummyRTClient.csproj", "{F2290714-EA26-4CE0-B12A-611AF20E7713}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,17 +24,30 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{078232CC-B322-4258-8126-29BFD0CFCEA1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D07058FF-0E84-4FB6-BB60-2B18234A6F69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C32CA7-463A-432F-992D-608FEE0FE6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{938BA66D-D312-4F7E-AC89-F36834251838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{938BA66D-D312-4F7E-AC89-F36834251838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{938BA66D-D312-4F7E-AC89-F36834251838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{938BA66D-D312-4F7E-AC89-F36834251838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9527CD8-8071-47DC-822A-6CB1ADDB1BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9527CD8-8071-47DC-822A-6CB1ADDB1BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9527CD8-8071-47DC-822A-6CB1ADDB1BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9527CD8-8071-47DC-822A-6CB1ADDB1BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B1038E-14CC-4F11-B318-497874E4719A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B1038E-14CC-4F11-B318-497874E4719A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B1038E-14CC-4F11-B318-497874E4719A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B1038E-14CC-4F11-B318-497874E4719A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2290714-EA26-4CE0-B12A-611AF20E7713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2290714-EA26-4CE0-B12A-611AF20E7713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2290714-EA26-4CE0-B12A-611AF20E7713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2290714-EA26-4CE0-B12A-611AF20E7713}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

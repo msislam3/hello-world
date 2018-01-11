@@ -23,9 +23,9 @@ namespace TryNetMVC.Models
         public int Strength { get; set; }
         [Required(ErrorMessage = "The Dexterity field is required.")]
         public int Dexterity { get; set; }
-        [Required(ErrorMessage = "The Intelleigence field is required.")]
+        [Required(ErrorMessage = "The Intelligence field is required.")]
         public int Intelligence { get; set; }
 
-        //public List<Equipment> Equipment {get;set;}
+        //public List<Equipment> Equipment { get; set; }
     }
 }
