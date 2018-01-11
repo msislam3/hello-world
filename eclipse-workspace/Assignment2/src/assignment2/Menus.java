@@ -5,7 +5,7 @@
  * Assignment: 2
  * Date: 12 January, 2018
  * Professor: Dave Houtman
- * Purpose:
+ * Purpose: Contains code to create the menu bar for the web browser
  */
 
 package assignment2;
@@ -40,8 +40,38 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 
 /**
+ * Class to create menu bar for the web browser
+ * <p>
+ * This class contains separate methods to create different menu and menu items
  * @author Rifat Shams
  * @version 1.0.0
+ * @see java.io.File
+ * @see java.net.MalformedURLException
+ * @see java.net.URL
+ * @see java.util.ArrayList
+ * @see javafx.application.Platform
+ * @see javafx.event.ActionEvent
+ * @see javafx.event.EventHandler
+ * @see javafx.scene.control.Alert
+ * @see javafx.scene.control.Alert.AlertType
+ * @see javafx.scene.control.Button
+ * @see javafx.scene.control.ContextMenu
+ * @see javafx.scene.control.CustomMenuItem
+ * @see javafx.scene.control.Label
+ * @see javafx.scene.control.Menu
+ * @see javafx.scene.control.MenuBar
+ * @see javafx.scene.control.MenuItem
+ * @see javafx.scene.control.ScrollPane
+ * @see javafx.scene.control.ScrollPane.ScrollBarPolicy
+ * @see javafx.scene.input.KeyCombination
+ * @see javafx.scene.input.MouseButton
+ * @see javafx.scene.layout.BorderPane
+ * @see javafx.scene.layout.HBox
+ * @see javafx.scene.layout.VBox
+ * @see javafx.scene.text.Text
+ * @see javafx.scene.web.WebEngine
+ * @see javafx.scene.web.WebHistory
+ * @see javafx.scene.web.WebView
  * @since 1.0.0
  */
 public class Menus {
@@ -50,34 +80,105 @@ public class Menus {
 
 	//Jenkov, J. (2016). JavaFX MenuButton [WebPage]. Retrieved from
 	//http://tutorials.jenkov.com/javafx/menubutton.html
+
+	/**
+	 * Menu bar for the application
+	 */
 	private static MenuBar menuBar = new MenuBar();
 
+	/**
+	 * File menu
+	 */
 	private static Menu mnuFile;
+	/**
+	 * Settings menu
+	 */
 	private static Menu mnuSettings;
+	/**
+	 * Bookmark menu
+	 */
 	private static Menu mnuBookmarks;
+	/**
+	 * Help menu
+	 */
 	private static Menu mnuHelp;
 
+	/**
+	 * Refresh menu item. Lets the user the reload the web page currently showing
+	 */
 	private static MenuItem mnuItmRefresh;
+	/**
+	 * Exit menu item. Lets the use exit the application
+	 */
 	private static MenuItem mnuItmExit;
+	/**
+	 * Toggle addressbar menu item. Lets the user toggle the visibility of the addressbar pane
+	 */
 	private static MenuItem mnuItmToggleAddressBar;
+	/**
+	 * Change startup menu item. Lets the user to change the start up web page 
+	 */
 	private static MenuItem mnuItmChangeStartup;
+	/**
+	 * Add bookmark menu item. Lets the user to add the current web page as book marks
+	 */
 	private static MenuItem mnuItmAddBookmark;
+	/**
+	 * About menu item. Shows the user the About dialog
+	 */
 	private static MenuItem mnuItmAbout;
+	/**
+	 * Display code menu item. Lets the user to see the HTML/JavaScript code of the web page
+	 */
 	private static MenuItem mnuItmCode;
+	/**
+	 * Display history menu item. Lets the user to see the web page history
+	 */
 	private static MenuItem mnuItmHistory;
 
+	/**
+	 * The context menu for the bookmarks
+	 */
 	private static ContextMenu contextMenu;
+	/**
+	 * Delete bookmark menu item. Lets the user to delete a bookmark
+	 */
 	private static MenuItem mnuItmDeleteBookMark;
 	
+	/**
+	 * List of bookmarks
+	 */
 	private static ArrayList<String> bookmarks = new ArrayList<>();
+	/**
+	 * The bookmark selected to be removed
+	 */
 	private static CustomMenuItem selectedBookMark;
 	
+	/**
+	 * Webengine that loads web pages to the browser
+	 */
 	private static WebEngine webEngine;
+	/**
+	 * Top pane containing menubar and addressbar
+	 */
 	private static VBox topPane;
+	/**
+	 * Addressbar pane containing addressbar text field and go button
+	 */
 	private static HBox addressBarPane;
+	/**
+	 * Main container for the application
+	 */
 	private static BorderPane root;
+	/**
+	 * Scrollpane to show the HTML/JavaScript code
+	 */
 	private static ScrollPane codePane;
 	
+	/**
+	 * Method to load an URL in the webengine
+	 * @param url The URL to load
+	 */
 	public static void loadAddress(String url) {
 		try {
 			new URL(url);
@@ -95,14 +196,31 @@ public class Menus {
 		}		
 	}
 	
+	/**
+	 * Method that returns the current bookmarks
+	 * @return An array list containing the bookmarks
+	 */
 	public static ArrayList<String> getBookMarks() {
 		return bookmarks;
 	}
 
+	/**
+	 * Method to set bookmarks
+	 * @param bookMarks An arraylist containing the bookmarks to set
+	 */
 	public static void setBookMarks(ArrayList<String> bookMarks) {
 		Menus.bookmarks = bookMarks;
 	}
 	
+	/**
+	 * Method that creates an return the menu bar for the application
+	 * @param view The webview object that shows the web pages to the user
+	 * @param topPane The top pane that contains the menubar and addressbar 
+	 * @param addressBarPane The pane that contains the addressbar text field and go button
+	 * @param root The main container for the application
+	 * @param codePane The scrollpane that contains the text area for the code area 
+	 * @return The menu bar of the application
+	 */
 	public static MenuBar getMenuBar(WebView view, VBox topPane, HBox addressBarPane, BorderPane root, ScrollPane codePane) {
 		webEngine = view.getEngine();
 		Menus.topPane = topPane;
@@ -116,6 +234,9 @@ public class Menus {
 		return menuBar;
 	}
 
+	/**
+	 * Method to create the context menu for the bookmark items
+	 */
 	private static void createContextMenu() {
 		mnuItmDeleteBookMark= new MenuItem("Remove Bookmark");
 		mnuItmDeleteBookMark.setOnAction(e->
@@ -130,16 +251,30 @@ public class Menus {
 		contextMenu.getItems().add(mnuItmDeleteBookMark);
 	}
 	
+	/**
+	 * Method to create the file menu
+	 * @return The file menu
+	 */
 	public static Menu getMnuFile() {
 		mnuFile = getMnu("_File", getMnuItmRefresh(), getMnuItmExit());
 		return mnuFile;
 	}
 
+	/**
+	 * Method to create the settings menu
+	 * @return The settings menu
+	 */
 	public static Menu getMnuSettings() {		
 		mnuSettings = getMnu("_Settings", getMnuItmToggleAddressBar(), getMnuItmChangeStartup(), getMnuItemHistory(), getMnuItemCode());
 		return mnuSettings;
 	}
 
+	/**
+	 * Method to create the bookmark menu
+	 * <p>
+	 * The method is responsible to load the saved bookmarks from file in the menu
+	 * @return The bookmark menu
+	 */
 	public static Menu getMnuBookmarks() {	
 		getBookmarksFromFile();
 		
@@ -158,19 +293,32 @@ public class Menus {
 		return mnuBookmarks;
 	}
 
+	/**
+	 * Method to create the help menu
+	 * @return The help menu
+	 */
 	public static Menu getMnuHelp() {
 		mnuHelp = getMnu("_Help", getMnuItmAbout());
 		return mnuHelp;
 	}
 	
+	/**
+	 * Utility method to create menus using supplied name and menu items
+	 * @param name The name of the menu
+	 * @param menuItems List of menu items included in the menu
+	 * @return The menu which contains the menu items
+	 */
 	private static Menu getMnu(String name, MenuItem... menuItems) {
 		Menu menu = new Menu(name);
 		menu.getItems().addAll(menuItems);
 		return menu;
 	} 
 		
-	public static MenuItem getMnuItmRefresh() {	
-		//http://java-buddy.blogspot.ca/2012/02/javafx-20-set-accelerator.html
+	/**
+	 * Method to create Refresh menu item
+	 * @return The refresh menu item
+	 */
+	public static MenuItem getMnuItmRefresh() {			
 		mnuItmRefresh = getMnuItm("Refresh", "R", e->
 			{
 				webEngine.reload();
@@ -178,6 +326,10 @@ public class Menus {
 		return mnuItmRefresh;
 	}
 
+	/**
+	 * Method to create the Exit menu item
+	 * @return The Exit menu item
+	 */
 	public static MenuItem getMnuItmExit() {		
 		mnuItmExit = getMnuItm("Exit", "E", e->
 			{
@@ -186,6 +338,10 @@ public class Menus {
 		return mnuItmExit;
 	}
 
+	/**
+	 * Method to create the Toggle AddressBar menu item
+	 * @return The ToggleAddressBar menu item
+	 */
 	public static MenuItem getMnuItmToggleAddressBar() {
 		mnuItmToggleAddressBar = getMnuItm("Toggle Address Bar", "T", e->
 			{
@@ -201,6 +357,10 @@ public class Menus {
 		return mnuItmToggleAddressBar;
 	}
 
+	/**
+	 * Method to create the Change Startup menu item
+	 * @return The Change Startup menu item
+	 */
 	public static MenuItem getMnuItmChangeStartup() {
 		mnuItmChangeStartup = getMnuItm("Change Start-up Page", "S", e->
 			{
@@ -213,6 +373,10 @@ public class Menus {
 		return mnuItmChangeStartup;
 	}
 	
+	/**
+	 * Method to create the Display Code menu item
+	 * @return The Display Code menu item
+	 */
 	public static MenuItem getMnuItemCode() {
 		mnuItmCode = getMnuItm("Display Code", "C", e->
 			{
@@ -226,6 +390,10 @@ public class Menus {
 		return mnuItmCode;
 	}
 	
+	/**
+	 * Method to create the Show History menu item
+	 * @return The Show History menu item
+	 */
 	public static MenuItem getMnuItemHistory() {
 		mnuItmHistory = getMnuItm("Show History", "H", e->
 			{
@@ -239,6 +407,10 @@ public class Menus {
 		return mnuItmHistory;
 	}
 	
+	/**
+	 * Method to create the Add BookMark menu item
+	 * @return The Add BookMark menu item
+	 */
 	public static MenuItem getMnuItmAddBookmark() {
 		mnuItmAddBookmark = getMnuItm("Add Bookmark", "B", e->
 			{
@@ -250,14 +422,21 @@ public class Menus {
 		return mnuItmAddBookmark;
 	}
 	
-	private static MenuItem getMenuItemForBookMark(String menuName) {
-        Label menuLabel = new Label(menuName); 
+	/**
+	 * Utility method to create Menu item for a bookmark address
+	 * <p>
+	 * The method creates a CustomMenuItem for the bookmark. It also sets up handler to handle right and left click on the menu item
+	 * @param url The bookmark address
+	 * @return The menu item for the bookmark
+	 */
+	private static MenuItem getMenuItemForBookMark(String url) {
+        Label menuLabel = new Label(url); 
         CustomMenuItem menuItem = new CustomMenuItem(menuLabel);
 
         menuLabel.setOnMousePressed(e->
 	        {   	 
 				  if(e.getButton() == MouseButton.PRIMARY) {
-					  loadAddress(menuName);
+					  loadAddress(url);
 				  }
 				  else if (e.getButton() == MouseButton.SECONDARY) {
 					  selectedBookMark = menuItem;
@@ -268,6 +447,10 @@ public class Menus {
         return menuItem;
     }
 
+	/**
+	 * Method to create the About menu item
+	 * @return The About menu item
+	 */
 	public static MenuItem getMnuItmAbout() {
 		mnuItmAbout = getMnuItm("About", "A", 
 				e->{
@@ -283,13 +466,31 @@ public class Menus {
 		return mnuItmAbout;
 	}
 	
+	/**
+	 * Utility method to create menu items
+	 * <p>
+	 * The method creats a menu item with the specified name and sets the accelerator key and action handler for the menu item
+	 * @param name The name of the menu item
+	 * @param accelerator The accelerator key for the menu item
+	 * @param handler The handler for the menu item
+	 * @return The created menu item
+	 */
 	private static MenuItem getMnuItm(String name, String accelerator, EventHandler<ActionEvent> handler) {
 		MenuItem mnuItm = new MenuItem(name);
+		//Java-Buddy. (2012). JavaFX 2.0: Set Accelerator (KeyCombination) for menu items [Blog post]. Retrieved from
+		//Source: http://java-buddy.blogspot.ca/2012/02/javafx-20-set-accelerator.html
 		mnuItm.setAccelerator(KeyCombination.keyCombination("Ctrl+"+accelerator));
 		mnuItm.setOnAction(handler);
 		return mnuItm;
 	}
 	
+	/**
+	 * Method to create a pane to show the web page history in the browser
+	 * <p>
+	 * The method creates a VBox for the history pane. It contains a scrollpane that shows the history and two buttons, back and forward
+	 * which lets user to navigate through the history list
+	 * @return The history pane 
+	 */
 	private static VBox getHistoryPane() {
 		VBox historyPane = new VBox();
 		historyPane.setPrefWidth(200);
@@ -298,7 +499,8 @@ public class Menus {
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-		//https://stackoverflow.com/questions/33414194/fill-width-in-a-pane?rq=1
+		//James_D. (2015). Fill width in a Pane [WebPage]. Retrieved from
+		//https://stackoverflow.com/a/33415353/1841089	
 		scrollPane.prefHeightProperty().bind(historyPane.heightProperty());
 		
 		Text historyText = new Text();
@@ -314,13 +516,13 @@ public class Menus {
 		
 		HBox buttonPane = new HBox();
 		
-		//https://stackoverflow.com/questions/18928333/how-to-program-back-and-forward-buttons-in-javafx-with-webview-and-webengine
+		//Frank. (2013). How to program Back and Forward buttons in JavaFX with WebView and WebEngine? [WebPage]. Retrieved from
+		//https://stackoverflow.com/a/18989127/1841089
 		Button buttonForward = new Button("\u23F5");
 		Button buttonBack = new Button("\u23F4");
 		
-		buttonForward.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
+		buttonForward.setOnAction(e->
+			{				
 				int currentIndex = history.getCurrentIndex();
 				if(currentIndex < history.getEntries().size()-1) {
 					Platform.runLater(
@@ -333,28 +535,26 @@ public class Menus {
 					setButtonForwardState(history.getCurrentIndex() + 1, history.getEntries().size(), buttonForward);
 					setButtonBackState(history.getCurrentIndex() + 1, buttonBack);
 				}
-			}
-		});
+			});
 		
 		setButtonForwardState(history.getCurrentIndex(), history.getEntries().size(), buttonForward);
 					
-		buttonBack.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				int currentIndex = history.getCurrentIndex();
-				if(currentIndex>0) {
-					Platform.runLater(
-							new Runnable() { 
-								public void run() { 
-									history.go(-1); 	
-								} 
-							});
-					
-					setButtonForwardState(history.getCurrentIndex()-1, history.getEntries().size(), buttonForward);
-					setButtonBackState(history.getCurrentIndex()-1, buttonBack);
-				}
-			}
-		});
+		buttonBack.setOnAction(e-> 
+			{
+					int currentIndex = history.getCurrentIndex();
+					if(currentIndex>0) {
+						Platform.runLater(
+								new Runnable() { 
+									public void run() { 
+										history.go(-1); 	
+									} 
+								});
+						
+						setButtonForwardState(history.getCurrentIndex()-1, history.getEntries().size(), buttonForward);
+						setButtonBackState(history.getCurrentIndex()-1, buttonBack);
+					}
+				
+			});
 		
 		setButtonBackState(history.getCurrentIndex(), buttonBack);
 		
@@ -365,8 +565,14 @@ public class Menus {
 		return historyPane;
 	}
 
+	/**
+	 * Method to set the state of the Back button based on current position in the history list
+	 * <p>
+	 * The Back button will be disabled if the first page of the history is currently showing else it will be enabled
+	 * @param currentIndex The current position in the history list 
+	 * @param buttonBack The Back button
+	 */
 	private static void setButtonBackState(int currentIndex, Button buttonBack) {
-		//Set back button disable if at the first page
 		if(currentIndex == 0) {
 			buttonBack.setDisable(true);
 		}
@@ -375,8 +581,15 @@ public class Menus {
 		}
 	}
 
+	/**
+	 * Method to set the state of the Forward button based on current position in the history list
+	 * <p>
+	 * The Forward button will be disabled if the last page of the history is currently showing else it will be enabled
+	 * @param currentIndex The current position in the history list
+	 * @param size The size of the history list
+	 * @param buttonForward The forward button
+	 */
 	private static void setButtonForwardState(int currentIndex, int size, Button buttonForward) {
-		//Set forward button disable if at the last page
 		if(currentIndex == size-1) {
 			buttonForward.setDisable(true);
 		}
@@ -385,6 +598,12 @@ public class Menus {
 		}
 	}
 
+	/**
+	 * Method to return the default web page address
+	 * <p>
+	 * The method reads the "default.web" file to read the default web page. If the file does not exist it returns www.google.ca
+	 * @return The default web page address
+	 */
 	public static String getDefaultWebPage() {
 		String defaultWebPage="";
 		File file = new File("default.web");
@@ -398,11 +617,21 @@ public class Menus {
 		return defaultWebPage;
 	}
 	
+	/**
+	 * Method to save the bookmarks in the file
+	 * <p>
+	 * The method saves the bookmarks in "bookmarks.web" file
+	 */
 	public static void saveBookmarksInFile() {
 		File file = new File("bookmarks.web");
 		FileUtils.saveFileContents(file, getBookMarks());
 	}
 
+	/**
+	 * Method to load the saved book marks from the file
+	 * <p>
+	 * The method reads the bookmarks from "bookmarks.web" file
+	 */
 	private static void getBookmarksFromFile() {
 		File file = new File("bookmarks.web");
 		if(file.exists()) {
