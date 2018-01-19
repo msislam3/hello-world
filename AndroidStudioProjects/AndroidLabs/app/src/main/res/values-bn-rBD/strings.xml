@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidLabs</string>
+    <string name="hello_message">শুভ সকাল!</string>
+    <string name="ButtonText">আমি একটি বাটন</string>
+    <string name="LoginText">লগিং</string>
+    <string name="PasswordText">পাসওয়ার্ড</string>
+    <string name="LoginHint">লগিং নাম</string>
+    <string name="RadioButtonText">রেডিও বাটন</string>
+    <string name="CheckBoxText">চেক বক্স</string>
+    <string name="SwitchText">এটা কি করে?</string>
+</resources>
