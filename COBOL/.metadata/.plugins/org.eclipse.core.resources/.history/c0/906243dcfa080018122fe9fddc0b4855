@@ -1,0 +1,107 @@
+       PROGRAM-ID. InventorRecord as "InventorRecord".
+       AUTHOR. RIFAT SHAMS.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT INVENTORY-FILE-OUT
+               ASSIGN  TO 
+               "INVFILE.DAT"
+               ORGANIZATION IS LINE SEQUENTIAL.
+       CONFIGURATION SECTION.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  INVENTORY-FILE-OUT
+           RECORD CONTAINS 41 CHARACTERS.
+       01  INVENTORY-RECORD-OUT.
+           05  PART-NUMBER-OUT PIC 9(9).
+           05  PART-NAME-OUT   PIC X(20).
+           05  PART-QUANTITY-IN-HAND-OUT   PIC 9(3).
+           05  PART-PRICE-OUT  PIC 9(4).
+           05  PART-SUPPLIER-CODE-OUT  PIC X(5).
+       
+       WORKING-STORAGE SECTION.
+       01  RECORD-CONFIRMATION-PROMPT  PIC X(22) VALUE                  
+       "RECORD TO ENTER (Y/N)?".
+       01  PART-NUMBER-PROMPT  PIC A(17) VALUE "ENTER PART NUMBER".
+       01  PART-NAME-PROMPT    PIC A(15) VALUE "ENTER PART NAME".
+       01  PART-QUANTITY-IN-HAND-PROMPT PIC A(22) VALUE 
+       "ENTER QUANTITY IN HAND".
+       01  PART-PRICE-PROMPT   PIC A(11) VALUE "ENTER PRICE".
+       01  PART-SUPPLIER-CODE-PROMPT   PIC A(19) VALUE 
+       "ENTER SUPPLIER CODE".
+       
+       01  RECORD-CONFIRMATION-IN  PIC X(1).
+
+       PROCEDURE DIVISION.
+       100-PRODUCE-INVENTORY-RECORD.
+           
+           PERFORM 201-INITIATE-INVENTORY-RECORD-JOB
+           
+           PERFORM WITH TEST BEFORE UNTIL RECORD-CONFIRMATION-IN IS 
+           EQUAL TO "N" 
+               
+               PERFORM  202-PRODUCE-ONE-INVENTORY-RECORD
+           
+           END-PERFORM
+
+           CLOSE INVENTORY-FILE-OUT.
+           
+           STOP RUN.
+         
+       201-INITIATE-INVENTORY-RECORD-JOB.
+           OPEN OUTPUT INVENTORY-FILE-OUT.
+           
+           DISPLAY RECORD-CONFIRMATION-PROMPT
+               LINE 2 COLUMN 4.
+           
+           ACCEPT  RECORD-CONFIRMATION-IN
+               LINE 3 COLUMN 15.
+               
+       202-PRODUCE-ONE-INVENTORY-RECORD.
+       
+           PERFORM 307-RECORD-PART-NUMBER
+               
+           PERFORM 308-RECORD-PART-NAME
+                  
+           DISPLAY PART-QUANTITY-IN-HAND-PROMPT
+               LINE 8  COLUMN 5
+           ACCEPT PART-QUANTITY-IN-HAND-OUT
+               LINE 9 COLUMN 10
+                   
+           DISPLAY PART-PRICE-PROMPT
+               LINE 10 COLUMN 5
+           ACCEPT PART-PRICE-OUT
+               LINE 11 COLUMN 10
+                   
+           DISPLAY PART-SUPPLIER-CODE-PROMPT
+               LINE 12 COLUMN 5
+           ACCEPT  PART-SUPPLIER-CODE-OUT
+               LINE 13 COLUMN 10
+                   
+           WRITE INVENTORY-RECORD-OUT
+           
+           DISPLAY RECORD-CONFIRMATION-PROMPT
+               LINE 2 COLUMN 4.
+           
+           ACCEPT  RECORD-CONFIRMATION-IN
+               LINE 3 COLUMN 15.
+           
+           
+       307-RECORD-PART-NUMBER.
+       
+           DISPLAY PART-NUMBER-PROMPT
+               LINE 4 COLUMN 5
+               
+           ACCEPT  PART-NUMBER-OUT
+               LINE 5 COLUMN 10.
+       
+       308-RECORD-PART-NAME.
+           
+           DISPLAY PART-NAME-PROMPT
+               LINE 6 COLUMN 5
+           ACCEPT PART-NAME-OUT
+               LINE 7 COLUMN 10.
+
+       END PROGRAM InventorRecord.

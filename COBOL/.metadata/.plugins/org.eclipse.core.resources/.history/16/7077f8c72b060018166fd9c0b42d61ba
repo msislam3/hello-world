@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. lab3 as "lab3".
+       AUTHOR. RIFAT SHAMS.
+       DATE-WRITTEN. 30 January 2017
+       
+       environment division.
+       configuration section.
+
+       data division.
+       working-storage section.
+
+       procedure division.
+
+
+           goback.
+
+       end program lab3.

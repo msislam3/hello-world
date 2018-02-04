@@ -1,0 +1,2660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taurus:TaurusConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dynamicAWM="http:///com.microfocus.awm.dynamic.ecore" xmlns:taurus="http://www.microfocus.com/AWM">
+  <Application_Options Default_Generic_Symbol="*" MaxRC="4" ModelID="OFFL_Model" RootContainersAction="#OFFL_ACT_ELIST_GetEclipseProjects" Version="3.0" LastEditClientVersion="3.0.0.v201704241145" IndependentAffectedResourceContexts="false" Generic_Symbols="* %">
+    <Application_Action Label="New COBOL Project/COBOL Project" taurus:SeqNo="1">
+      <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLProject</TargetID>
+    </Application_Action>
+    <Application_Action Label="New COBOL Project/COBOL Copybook Project" taurus:SeqNo="2">
+      <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject</TargetID>
+    </Application_Action>
+    <Application_Action Label="New COBOL Project/COBOL Unit Test Project" taurus:SeqNo="3">
+      <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTestProject</TargetID>
+    </Application_Action>
+    <Application_Action Label="New COBOL Project/COBOL JVM Project" Separator_After="false" taurus:SeqNo="4">
+      <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject</TargetID>
+    </Application_Action>
+    <Application_Action Label="New COBOL Project/COBOL JVM Unit Test Project" taurus:SeqNo="5">
+      <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMUnitTestProject</TargetID>
+    </Application_Action>
+    <Application_Action Label="New COBOL Project/Remote COBOL Project" taurus:SeqNo="6">
+      <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject</TargetID>
+    </Application_Action>
+    <Application_Action Label="New COBOL Project/Remote COBOL Copybook Project" Separator_After="false" taurus:SeqNo="7">
+      <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject</TargetID>
+    </Application_Action>
+    <Application_Action Label="New Project from Template" Separator_After="true" taurus:SeqNo="8">
+      <TargetID>#OFFL_ACT_CONT_NewProjectFromTemplate</TargetID>
+    </Application_Action>
+    <Application_Action Label="Show Projects in Table" Separator_After="true" taurus:SeqNo="9">
+      <TargetID>#OFFL_ACT_ELIST_GetEclipseProjects</TargetID>
+    </Application_Action>
+  </Application_Options>
+  <FunctionPackages>
+    <FunctionPackage xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse" taurus:ID="com.microfocus.awm.functionpackage.eclipse" taurus:Label="Eclipse"/>
+    <FunctionPackage xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj" taurus:ID="com.microfocus.eclipse.edt.functionpackage.mfprj" taurus:Label="MFPRJ - Micro Focus Project"/>
+    <FunctionPackage xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.localoscommands" taurus:ID="com.microfocus.awm.functionpackage.localoscommands" taurus:Label="OS - Operating System"/>
+    <FunctionPackage xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.awm" taurus:ID="com.microfocus.awm.functionpackage.awm" taurus:Label="AWM"/>
+    <FunctionPackage xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.edicons" taurus:ID="com.microfocus.awm.functionpackage.edicons" taurus:Label="ED Icons"/>
+  </FunctionPackages>
+  <ID_Definitions>
+    <IDDefinition taurus:ID="OFFL_ID_Categories">
+      <Key_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_Category_ID</Target_ID>
+      </Key_Property>
+    </IDDefinition>
+    <IDDefinition taurus:ID="OFFL_ID_EclipseDepResource">
+      <Key_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Key_Property>
+      <Key_Property taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_MainProgram_ResourceId</Target_ID>
+      </Key_Property>
+    </IDDefinition>
+    <IDDefinition ExtensionID="com.microfocus.awm.functionpackage.eclipse.id.eclipseresource" taurus:ID="OFFL_ID_EclipseResource">
+      <Key_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Key_Property>
+    </IDDefinition>
+    <IDDefinition taurus:ID="OFFL_ID_IMTK_File">
+      <Key_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_IMTK_ServiceId</Target_ID>
+      </Key_Property>
+    </IDDefinition>
+    <IDDefinition taurus:ID="OFFL_ID_IMTK_Operation">
+      <Key_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_IMTK_OperationName</Target_ID>
+      </Key_Property>
+    </IDDefinition>
+  </ID_Definitions>
+  <ActionDescriptors>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CLOSE_Browse_Cleanup" taurus:Label="Browse Cleanup" taurus:TableViewLabel="" ShowProgressMonitor="false">
+      <Has_Tool Affected_Resource_Name="" taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_AWM_EditCleanup</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_Browse_LocalOSFile" Icon="#com.microfocus.awm.functionpackage.awm.icon.browse" taurus:Label="Browse" Related_Close_Action="#OFFL_ACT_CLOSE_Browse_Cleanup" taurus:TableViewLabel="" ShowProgressMonitor="false">
+      <Has_Tool Affected_Resource_Name="" taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_AWM_LocalTempFileCreator</TargetID>
+      </Has_Tool>
+      <Has_Tool taurus:SeqNo="2">
+        <TargetID>#OFFL_TOOL_AWM_BrowseOSFile</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_CloseProject" taurus:Label="Close Project" MassProcessing="true" taurus:TableViewID="" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_CloseProject</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_CompileFile" Icon="#com.microfocus.awm.functionpackage.awm.icon.build" taurus:Label="Compile" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_CompileFile</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_BuildProject" taurus:Label="Build Project" MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_BuildProject</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_CopyResourceToClipboard" Icon="#com.microfocus.awm.functionpackage.awm.icon.copy" KeySequence="Ctrl+C" taurus:Label="Copy" MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_CopyResourceToClipboard</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_CopyResourceUI" Icon="#com.microfocus.awm.functionpackage.awm.icon.copy" KeySequence="" taurus:Label="Copy..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_CopyResourceUI</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_CreateRecordLayoutFile" Icon="#com.microfocus.awm.functionpackage.edicons.createRecordLayoutFile" KeySequence="" taurus:Label="Create Record Layout File" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ExecuteCommand</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.edt.ui.dfed.str" ParmToOverride="#INPARM_ea6f0f57-8a4b-4484-ad55-23aa7d7c82cf"/>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.edt.ui" ParmToOverride="#INPARM_6e9fb47f-255e-43b3-9801-8396da720392"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_CreateSegmentLayoutFile" Icon="#com.microfocus.awm.functionpackage.edicons.createSegmentLayoutFile" taurus:Label="Create Segment Layout File" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ExecuteCommand</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.edt.ui.dfed.slf" ParmToOverride="#INPARM_ea6f0f57-8a4b-4484-ad55-23aa7d7c82cf"/>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.edt.ui" ParmToOverride="#INPARM_6e9fb47f-255e-43b3-9801-8396da720392"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_Delete" Icon="#com.microfocus.awm.functionpackage.awm.icon.remove" KeySequence="Delete" taurus:Label="Delete" MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_DeleteResourceUI</TargetID>
+        <ToolEnabledCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="ECLIPSE_.*">
+            <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+          </SimpleCondition>
+        </ToolEnabledCondition>
+      </Has_Tool>
+      <Has_Tool taurus:SeqNo="2">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_OPERATION</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.delete" ParmToOverride="#INPARM_7c11d515-3a45-4357-a9ff-aea6cd4d7478"/>
+        <ToolEnabledCondition>
+          <SimpleCondition Value="MF_IMTK_OPERATIONS_FILE">
+            <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+          </SimpleCondition>
+        </ToolEnabledCondition>
+      </Has_Tool>
+      <Has_Tool taurus:SeqNo="3">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.delete" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+        <ToolEnabledCondition>
+          <SimpleCondition Value="MF_IMTK_SERVICES_FILE">
+            <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+          </SimpleCondition>
+        </ToolEnabledCondition>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_DetermineDirectives" taurus:Label="Determine Directives..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_Command_DetermineDirectives</TargetID>
+        <ToolEnabledCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?com\.microfocus\.eclipse\.project)((?!com\.microfocus[^\|]*(C|c)opylib).)*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ToolEnabledCondition>
+      </Has_Tool>
+      <Has_Tool taurus:SeqNo="2">
+        <TargetID>#OFFL_TOOL_ECLIPSE_Command_DetermineDirectives</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.pli.determineDirectives" ParmToOverride="#INPARM_930d6e6c-9770-474c-9511-ca0a7ffe9f54"/>
+        <ParmFromOverride NewStaticValue=" " ParmToOverride="#INPARM_c0cf1b62-dc00-4b98-a446-3535cf4e8dff"/>
+        <ToolEnabledCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?com\.microfocus\.eclipse\.pli)((?!com\.microfocus[^\|]*(C|c)opylib).)*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ToolEnabledCondition>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_GenerateCoverageReport" taurus:Label="Generate Coverage Report" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ExecuteCommand</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.generateCoverageReport" ParmToOverride="#INPARM_ea6f0f57-8a4b-4484-ad55-23aa7d7c82cf"/>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project" ParmToOverride="#INPARM_6e9fb47f-255e-43b3-9801-8396da720392"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_GenerateProfilerReport" taurus:Label="Generate Profiler Report" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ExecuteCommand</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.generateProfilerReport" ParmToOverride="#INPARM_ea6f0f57-8a4b-4484-ad55-23aa7d7c82cf"/>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project" ParmToOverride="#INPARM_6e9fb47f-255e-43b3-9801-8396da720392"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_GetIMTKFiles" Has_Elementlist="#OFFL_ELIST_IMTK_Services" taurus:Label="Get IMTK files" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_Get_IMTK_Files</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_NewOperation" taurus:Label="New/Operation" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.NewOperation" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_OPERATION_PROPERTIES" KeySequence="" taurus:Label="Operation Properties" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_OPERATION</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.OperationProperties" ParmToOverride="#INPARM_7c11d515-3a45-4357-a9ff-aea6cd4d7478"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_OpenOperation" taurus:Label="Open" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_OPERATION</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.open" ParmToOverride="#INPARM_7c11d515-3a45-4357-a9ff-aea6cd4d7478"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_OpenService" taurus:Label="Open" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.open" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_Operations" Has_Elementlist="#OFFL_ELIST_IMTK_Operations" taurus:Label="IMTK Operations" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_Operations</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_SERVICE_DEPLOY" KeySequence="" taurus:Label="Deploy" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.deploy" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_SERVICE_GENCLIENT" taurus:Label="Generate Client..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.generateClient" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_SERVICE_JAVAPROPERTIES" KeySequence="" taurus:Label="Java Properties" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.JavaInterfaceProperties" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_SERVICE_VALIDATE" taurus:Label="Validate" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.validate" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_IMTK_SERVICE_WEBSERVICEPROPERTIES" KeySequence="" taurus:Label="Web Service Properties" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.imtk.ui.WebServiceProperties" ParmToOverride="#INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_LocalEdit" Icon="#com.microfocus.awm.functionpackage.awm.icon.edit" taurus:Label="Open" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_EditOpener</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_MoveResourceUI" taurus:Label="Move..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_MoveResourceUI</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_NewOther" KeySequence="Ctrl+N" taurus:Label="New/Other..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_NewOther</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_NewProjectFromTemplate" taurus:Label="New/Project/Project from Template..." MassProcessing="true" RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_UI_NewProjectFromTemplate</TargetID>
+      </Has_Tool>
+      <Has_Tool taurus:SeqNo="2">
+        <TargetID>#OFFL_TOOL_ED_NewProjectFromTemplate</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenInContext" taurus:Label="Open" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_OpenInContext</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenProject" taurus:Label="Open Project" MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenProject</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_ConvertMFLocalProject" Icon="#com.microfocus.awm.functionpackage.edicons.importLocalAsRemote" taurus:Label="Convert/Convert MF Local Projects to Remote Projects" MassProcessing="false" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.remote.wizards.ImportConvertCobolProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_ConvertNetExpressProjects" Icon="#com.microfocus.awm.functionpackage.edicons.importNetExpressProject" taurus:Label="Convert/Convert NetExpress Projects" MassProcessing="false" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.migration.wizards.ImportNetExpressProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_Export" Icon="#com.microfocus.awm.functionpackage.awm.icon.export" taurus:Label="Export..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenExportWizard</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_Import" Icon="#com.microfocus.awm.functionpackage.awm.icon.import" taurus:Label="Import..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenImportWizard</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_ImportRemoteProject" Icon="#com.microfocus.awm.functionpackage.edicons.importRemoteProject" taurus:Label="Import Remote Projects" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.remote.wizards.ImportPureRemoteCobolProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybook" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolCopybook" taurus:Label="New/File/COBOL Copybook..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.ui.NewCopyFileWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolCopybookProject" taurus:Label="New/Project/COBOL Copybook Project..." MassProcessing="true" RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.wizards.new_copylib_project" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMClass" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolJVMClass" taurus:Label="New/File/COBOL JVM Class..." RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.coboljvm.wizards.NewCobolClassWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMInterface" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolJVMInterface" taurus:Label="New/File/COBOL JVM Interface..." RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.coboljvm.wizards.NewInterfaceWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMPackage" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolJVMPackage" taurus:Label="New/Folder/COBOL JVM Package..." RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.coboljvm.wizards.CobolJVMPackageWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolJVMProject" taurus:Label="New/Project/COBOL JVM Project..." MassProcessing="true" RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.coboljvm.wizards.CobolJVMProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMSourceFolder" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolJVMSourceFolder" taurus:Label="New/Folder/COBOL JVM Source Folder..." RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.coboljvm.wizards.CobolJVMSourceFolderWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLProject" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolProject" taurus:Label="New/Project/COBOL Project..." MassProcessing="true" RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.wizards.new_project" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCobolProgram" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolProgram" taurus:Label="New/File/COBOL Program..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.ui.NewCobolFileWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewExample" taurus:Label="New/Example..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_NewExample</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewFile" Icon="#com.microfocus.awm.functionpackage.edicons.new_file" taurus:Label="New/File/Other File..." MassProcessing="true" RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="org.eclipse.ui.wizards.new.file" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewFolder" Icon="#com.microfocus.awm.functionpackage.edicons.new_folder" taurus:Label="New/Folder/Folder..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="org.eclipse.ui.wizards.new.folder" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewJavaInterface" taurus:Label="New/Interface/Java Interface" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.tools.imtk.ui.wizards.newservice.NewJavaInterfaceWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewRESTWebService" taurus:Label="New/Interface/REST Web Service" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.tools.imtk.ui.wizards.newservice.NewRESTWebServiceWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject" Icon="#com.microfocus.awm.functionpackage.edicons.new_remoteCOBOLCopybookProject" taurus:Label="New/Project/Remote COBOL Copybook Project..." MassProcessing="true" RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.remote.wizards.RemoteCopylibProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject" Icon="#com.microfocus.awm.functionpackage.edicons.new_remoteCobolProject" taurus:Label="New/Project/Remote COBOL Project..." MassProcessing="true" RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.remote.wizards.RemoteCobolProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewRemoteLinkedFolder" Icon="#com.microfocus.awm.functionpackage.edicons.new_remoteLinkedFolder" taurus:Label="New/Folder/Remote Linked Folder..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.remote.ui.NewRemoteLinkedFolderWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewSOAPWebService" taurus:Label="New/Interface/SOAP Web Service" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.tools.imtk.ui.wizards.newservice.NewWebServiceWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewSQLFile" Icon="#com.microfocus.awm.functionpackage.edicons.new_sqlfile" taurus:Label="New/File/SQL File..." MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_PasteResourceFromClipboard" KeySequence="Ctrl+V" taurus:Label="Paste" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_PasteResourceFromClipboard</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_RefreshResource" Icon="#com.microfocus.awm.functionpackage.awm.icon.refresh" KeySequence="F5" taurus:Label="Refresh Resource" MassProcessing="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_RefreshResource</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_Rename_ResourceUI" Icon="#com.microfocus.awm.functionpackage.awm.icon.rename" KeySequence="F2" taurus:Label="Rename..." RefreshList="true" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_RenameResourceUI</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_ShowLocalHistory" Icon="#com.microfocus.awm.functionpackage.awm.icon.showhistory" taurus:Label="Show Local History" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ShowLocalHistory</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_ShowPropertiesDialog" KeySequence="Alt+Enter" taurus:Label="Properties" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ShowProperties</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_TransformCopybookToProgram" taurus:Label="Transform/Copybook to Program" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ExecuteCommand</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.transformCopybookToProgram" ParmToOverride="#INPARM_ea6f0f57-8a4b-4484-ad55-23aa7d7c82cf"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_TransformProgramToCopybook" taurus:Label="Transform/Program to Copybook" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ExecuteCommand</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELE_CompileDependentPrograms" KeySequence="Alt+Shift+Z" taurus:Label="Compile Dependent Programs" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_ExecuteCommand</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.editor.compileDependentPrograms" ParmToOverride="#INPARM_ea6f0f57-8a4b-4484-ad55-23aa7d7c82cf"/>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.editor" ParmToOverride="#INPARM_6e9fb47f-255e-43b3-9801-8396da720392"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetCopies" Has_Elementlist="#OFFL_ELIST_Dependencies" taurus:Label="Get Copies" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_Main_GetDependentFiles</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetDependentCopies" Has_Elementlist="#OFFL_ELIST_Dependencies" taurus:Label="Get Dependent Copies" ShowProgressMonitor="false">
+      <Has_Tool Affected_Resource_Name="" taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_Dependent_GetDependentFiles</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetEclipseChildren" Has_Elementlist="#OFFL_ELIST_FolderContent" taurus:Label="Eclipse resource children" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ED_Get_IMTK_Categories</TargetID>
+      </Has_Tool>
+      <Has_Tool taurus:SeqNo="2">
+        <TargetID>#OFFL_TOOL_ECLIPSE_GetChildren</TargetID>
+      </Has_Tool>
+      <Has_Tool taurus:SeqNo="3">
+        <TargetID>#OFFL_TOOL_AWM_MergeResourceChildrenCategories</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetEclipseChildrenFiltered" Has_Elementlist="#OFFL_ELIST_FolderContent" taurus:Label="Eclipse resource children" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_GetChildren</TargetID>
+        <ParmFromOverride NewStaticValue="&amp;OFFL_PROP_PARM_WorkspaceFolder." ParmToOverride="#INPARM_e4a05b6a-dca2-4c2f-a583-45447fde6300"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetEclipseChildrenForTable" Has_Elementlist="#OFFL_ELIST_FolderContent" taurus:Label="Eclipse resource children" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_GetChildren</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetEclipseProjects" Has_Elementlist="#OFFL_ELIST_Projects" taurus:Label="Eclipse projects" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_GetProjects</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetEclipseProjectsFiltered" Has_Elementlist="#OFFL_ELIST_Projects" taurus:Label="Eclipse projects" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_GetProjectsFiltered</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_ELIST_GetFolderChildren" Has_Elementlist="#OFFL_ELIST_FolderContent" taurus:Label="Eclipse resource children" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_GetChildren</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_PROP_SelectFolder" taurus:Label="Select Folder" ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_OS_SelectFolder</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_PROP_SelectWorkspaceFolder" taurus:Label="Select Folder" taurus:TableViewLabel="" ShowProgressMonitor="false">
+      <Has_Tool Affected_Resource_Name="" taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_SelectResource</TargetID>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTestProject" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolMFUnitProject" taurus:Label="New/Project/COBOL Unit Test Project..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.mfunit.ui.wizards.NewCobolUnitProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMUnitTestProject" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolJVMMFUnitProject" taurus:Label="New/Project/JVM Unit Test Project..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.mfunit.coboljvm.wizards.CobolJVMUnitTestProjectWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTest" Icon="#com.microfocus.awm.functionpackage.edicons.new_cobolProgram" taurus:Label="New/File/COBOL Unit Test..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.mfunit.ui.wizards.NewCobolUnitFileWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewProjectlessFile" taurus:Label="New/File/Projectless File..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.project.ui.NewProjectlessFileWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+    <ActionDescriptor taurus:ID="OFFL_ACT_CONT_OpenWizard_NewRemoteProjectlessFile" taurus:Label="New/File/Remote Projectless File..." ShowProgressMonitor="false">
+      <Has_Tool taurus:SeqNo="1">
+        <TargetID>#OFFL_TOOL_ECLIPSE_OpenWizard_FromID</TargetID>
+        <ParmFromOverride NewStaticValue="com.microfocus.eclipse.remote.wizards.NewRemoteProjectlessFileWizard" ParmToOverride="#INPARM_8af3818f-9102-4dca-9d92-ab572497997b"/>
+      </Has_Tool>
+    </ActionDescriptor>
+  </ActionDescriptors>
+  <GlobalActions/>
+  <ElementTypes>
+    <ElementType xsi:type="taurus:LinkedElementType" taurus:ID="OFFL_ELE_Eclipse_DependentFile" ID_Definition="#OFFL_ID_EclipseDepResource" Matchname="MF_DEPENDENT_FILE" linkedElementTypeID="com.microfocus.awm.functionpackage.eclipse.linkedelementtype.iresource" linkedElementTypeLabel="Eclipse Resource">
+      <Has_GetChildrenAction>
+        <TargetID>#OFFL_ACT_ELIST_GetDependentCopies</TargetID>
+        <GetChildrenActionEnabledCondition>
+          <SimpleCondition Operator="TRUE" Value="">
+            <TargetID>#OFFL_PROP_ED_HasChildrenNotLinked</TargetID>
+          </SimpleCondition>
+        </GetChildrenActionEnabledCondition>
+      </Has_GetChildrenAction>
+      <Has_Action Default_Action="true" Separator_after="true" taurus:SeqNo="1">
+        <TargetID>#OFFL_ACT_CONT_OpenInContext</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="TRUE">
+            <TargetID>#OFFL_PROP_ELE_IsWorkspaceFile</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="2">
+        <TargetID>#OFFL_ACT_CONT_Browse_LocalOSFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="FALSE">
+            <TargetID>#OFFL_PROP_ELE_IsWorkspaceFile</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="Show Dependencies in Table" Separator_after="true" taurus:SeqNo="3">
+        <TargetID>#OFFL_ACT_ELIST_GetDependentCopies</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="4">
+        <TargetID>#OFFL_ACT_ELE_CompileDependentPrograms</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="FALSE" Value="">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsAutoBuild</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="5">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Import</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="6">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Export</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="7">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_ConvertNetExpressProjects</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="8">
+        <TargetID>#OFFL_ACT_CONT_TransformProgramToCopybook</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="9">
+        <TargetID>#OFFL_ACT_CONT_TransformCopybookToProgram</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Property Category="General" ElementName="true" taurus:SeqNo="1" SortDirection="Ascending" TreeViewLabel="true">
+        <TargetID>#OFFL_PROP_ELE_DependFile_Name</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="2">
+        <TargetID>#OFFL_PROP_ELE_IsWorkspaceFile</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="3" TreeViewLabel="true">
+        <TargetID>#OFFL_PROP_ELE_ParentPath</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="4">
+        <TargetID>#OFFL_PROP_ELE_MainProgram_ResourceId</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="5">
+        <TargetID>#OFFL_PROP_ELE_CopybookId</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="6">
+        <TargetID>#OFFL_PROP_ELE_EclipseResourceID</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="7">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="8">
+        <TargetID>#OFFL_PROP_ED_HasChildrenNotLinked</TargetID>
+      </Has_Property>
+    </ElementType>
+    <ElementType xsi:type="taurus:LinkedElementType" taurus:ID="OFFL_ELE_Eclipse_File" ID_Definition="#OFFL_ID_EclipseResource" Matchname="ECLIPSE_FILE" linkedElementTypeID="com.microfocus.awm.functionpackage.eclipse.linkedelementtype.iresource" linkedElementTypeLabel="Eclipse Resource">
+      <Has_GetChildrenAction>
+        <TargetID>#OFFL_ACT_ELIST_GetCopies</TargetID>
+        <GetChildrenActionEnabledCondition>
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ED_HasChildren</TargetID>
+          </SimpleCondition>
+        </GetChildrenActionEnabledCondition>
+      </Has_GetChildrenAction>
+      <Has_Action taurus:Label="" Separator_after="false" taurus:SeqNo="1">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="2">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="3">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTestProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="false" taurus:SeqNo="4">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="5">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMUnitTestProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="6">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="7">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="8">
+        <TargetID>#OFFL_ACT_CONT_NewProjectFromTemplate</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="9">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewFolder</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="10">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteLinkedFolder</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition Operator="OR">
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.project\.remoteCobolNature.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.pli\.remote\.remotePliNature.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.project\.remoteCopylibNature.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="" taurus:SeqNo="11">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMPackage</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="12">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMSourceFolder</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="false" taurus:SeqNo="13">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCobolProgram</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="14">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybook</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)(obol|opy).*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="15">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTest</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="16">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMClass</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="17">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMInterface</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="18">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewProjectlessFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="19">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteProjectlessFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="20">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewSQLFile</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="21">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewJavaInterface</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="22">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRESTWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="23">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewSOAPWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="24">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewFile</TargetID>
+      </Has_Action>
+      <Has_Action Default_Action="true" Separator_after="true" taurus:SeqNo="25">
+        <TargetID>#OFFL_ACT_CONT_LocalEdit</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="26">
+        <TargetID>#OFFL_ACT_CONT_CopyResourceToClipboard</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="27">
+        <TargetID>#OFFL_ACT_CONT_CopyResourceUI</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="28">
+        <TargetID>#OFFL_ACT_CONT_PasteResourceFromClipboard</TargetID>
+        <ActionEnabledCondition>
+          <SimpleCondition Operator="TRUE">
+            <TargetID>#OFFL_PROP_ECLIPSE_PasteAllowed</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="29">
+        <TargetID>#OFFL_ACT_CONT_Delete</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="30">
+        <TargetID>#OFFL_ACT_CONT_MoveResourceUI</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="31">
+        <TargetID>#OFFL_ACT_CONT_Rename_ResourceUI</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="32">
+        <TargetID>#OFFL_ACT_CONT_CompileFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="TRUE">
+              <TargetID>#OFFL_PROP_ED_canCompile</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="FALSE" Value="">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsAutoBuild</TargetID>
+            </SimpleCondition>
+            <ComplexCondition Operator="OR">
+              <SimpleCondition Value="COBOL Program">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="Assembler Program">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="PL/I File">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="BMS Source File">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="IMS Message Format Service">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="IMS Database Description Block">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="IMS Program Specification Block">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+            </ComplexCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="33">
+        <TargetID>#OFFL_ACT_CONT_DetermineDirectives</TargetID>
+        <ActionVisibleCondition SelectionCount="*">
+          <ComplexCondition>
+            <SimpleCondition Operator="TRUE" Value="">
+              <TargetID>#OFFL_PROP_ED_canCompile</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="FALSE" Value="">
+              <TargetID>#OFFL_PROP_ECLIPSE_Derived</TargetID>
+            </SimpleCondition>
+            <ComplexCondition Operator="OR">
+              <SimpleCondition Value="COBOL Program">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="PL/I File">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+            </ComplexCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="34">
+        <TargetID>#OFFL_ACT_CONT_TransformProgramToCopybook</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="35">
+        <TargetID>#OFFL_ACT_CONT_TransformCopybookToProgram</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Equals..." Value="COBOL Copybook">
+              <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+            </SimpleCondition>
+            <ComplexCondition Operator="OR">
+              <SimpleCondition Value="cbl">
+                <TargetID>#OFFL_PROP_ECLIPSE_Suffix</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="cob">
+                <TargetID>#OFFL_PROP_ECLIPSE_Suffix</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="pco">
+                <TargetID>#OFFL_PROP_ECLIPSE_Suffix</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="sqb">
+                <TargetID>#OFFL_PROP_ECLIPSE_Suffix</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="eco">
+                <TargetID>#OFFL_PROP_ECLIPSE_Suffix</TargetID>
+              </SimpleCondition>
+            </ComplexCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="36">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Import</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="37">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Export</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="38">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_ConvertNetExpressProjects</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="39">
+        <TargetID>#OFFL_ACT_ELE_CompileDependentPrograms</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="FALSE" Value="">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsAutoBuild</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="COBOL Copybook">
+              <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="40">
+        <TargetID>#OFFL_ACT_CONT_CreateRecordLayoutFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(p|P)liNature)(?=.*edt)((?!(r|R)emote).)*$|^(?=.*(p|P)liNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(r|R)emotePliNature)(?=.*edt).*$">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="COBOL Program">
+              <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="41">
+        <TargetID>#OFFL_ACT_CONT_CreateSegmentLayoutFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(p|P)liNature)(?=.*edt)((?!(r|R)emote).)*$|^(?=.*(p|P)liNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(r|R)emotePliNature)(?=.*edt).*$">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <ComplexCondition Operator="OR">
+              <SimpleCondition Value="IMS Database Description Block">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="IMS Program Specification Block">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Value="IMS Message Format Service">
+                <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+              </SimpleCondition>
+            </ComplexCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="42">
+        <TargetID>#OFFL_ACT_CONT_GenerateCoverageReport</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Equals..." Value="content.type.cobol.coverage.results">
+              <TargetID>#OFFL_PROP_ECLIPSE_ContentTypeID</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="43">
+        <TargetID>#OFFL_ACT_CONT_GenerateProfilerReport</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Equals..." Value="content.type.cobol.profiler.report">
+              <TargetID>#OFFL_PROP_ECLIPSE_ContentTypeID</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="44">
+        <TargetID>#OFFL_ACT_CONT_RefreshResource</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="45">
+        <TargetID>#OFFL_ACT_CONT_ShowLocalHistory</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="46">
+        <TargetID>#OFFL_ACT_CONT_ShowPropertiesDialog</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:Label="Show Dependencies in Table" Separator_after="true" taurus:SeqNo="47">
+        <TargetID>#OFFL_ACT_ELIST_GetCopies</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition Operator="OR">
+            <SimpleCondition Value="COBOL Program">
+              <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="PL/I File">
+              <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Property Category="General" ElementName="true" taurus:SeqNo="1" SortDirection="Ascending" TreeViewLabel="false">
+        <TargetID>#OFFL_PROP_ECLIPSE_Name</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="2">
+        <TargetID>#OFFL_PROP_ECLIPSE_Derived</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="3">
+        <TargetID>#OFFL_PROP_ECLIPSE_LastModified</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="4">
+        <TargetID>#OFFL_PROP_ECLIPSE_Linked</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="5">
+        <TargetID>#OFFL_PROP_ECLIPSE_Location</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="6">
+        <TargetID>#OFFL_PROP_ECLIPSE_Path</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="7">
+        <TargetID>#OFFL_PROP_ECLIPSE_Size</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="8">
+        <TargetID>#OFFL_PROP_ECLIPSE_Suffix</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="9">
+        <TargetID>#OFFL_PROP_ED_canCompile</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="10">
+        <TargetID>#OFFL_PROP_ECLIPSE_PasteAllowed</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="11">
+        <TargetID>#OFFL_PROP_ECLIPSE_ErrorCount</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="12">
+        <TargetID>#OFFL_PROP_ECLIPSE_WarningCount</TargetID>
+      </Has_Property>
+      <Has_Property Category="COBOL" taurus:Label="Dialect" taurus:SeqNo="13">
+        <TargetID>#OFFL_PROP_ED_Cobol_Effective_File_Dialect</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL" taurus:Label="Use SQL Preprocessor" taurus:SeqNo="14">
+        <TargetID>#OFFL_PROP_ED_Cobol_Effective_File_UseSQLPreproc</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL" taurus:Label="Additional Options" taurus:SeqNo="15">
+        <TargetID>#OFFL_PROP_ED_Cobol_Effective_File_Additional</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL" taurus:Label="Actual Dialect" taurus:SeqNo="16">
+        <TargetID>#OFFL_PROP_ED_Cobol_File_Dialect</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL" taurus:Label="Actual Use SQL Preprocessor" taurus:SeqNo="17">
+        <TargetID>#OFFL_PROP_ED_Cobol_File_UseSQLPreproc</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL" taurus:Label="Actual Additional Options" taurus:SeqNo="18">
+        <TargetID>#OFFL_PROP_ED_Cobol_File_Additional</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="COBOL Program">
+            <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="19" SortDirection="Descending">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="20">
+        <TargetID>#OFFL_PROP_ELE_EclipseResourceID</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="21">
+        <TargetID>#OFFL_PROP_ECLIPSE_ContentTypeID</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:Label="" taurus:SeqNo="22">
+        <TargetID>#OFFL_PROP_ED_FileType</TargetID>
+      </Has_Property>
+    </ElementType>
+    <ElementType xsi:type="taurus:LinkedElementType" taurus:ID="OFFL_ELE_Eclipse_Folder" ID_Definition="#OFFL_ID_EclipseResource" Matchname="ECLIPSE_FOLDER" linkedElementTypeID="com.microfocus.awm.functionpackage.eclipse.linkedelementtype.iresource" linkedElementTypeLabel="Eclipse Resource">
+      <Has_GetChildrenAction>
+        <TargetID>#OFFL_ACT_ELIST_GetFolderChildren</TargetID>
+        <GetChildrenActionEnabledCondition>
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_HasChildren</TargetID>
+          </SimpleCondition>
+        </GetChildrenActionEnabledCondition>
+      </Has_GetChildrenAction>
+      <Has_Action taurus:Label="" Separator_after="false" taurus:SeqNo="1">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="2">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="3">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTestProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="4">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="5">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMUnitTestProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="6">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="7">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="8">
+        <TargetID>#OFFL_ACT_CONT_NewProjectFromTemplate</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="9">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewFolder</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="10">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteLinkedFolder</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition Operator="OR">
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.project\.remoteCobolNature.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.pli\.remote\.remotePliNature.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.project\.remoteCopylibNature.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="" taurus:SeqNo="11">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMPackage</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="12">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMSourceFolder</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="false" taurus:SeqNo="13">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCobolProgram</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="14">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybook</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)(obol|opy).*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="15">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTest</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="16">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMClass</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="17">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMInterface</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="18">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewProjectlessFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="19">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteProjectlessFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="20">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewSQLFile</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="21">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewJavaInterface</TargetID>
+        <ActionEnabledCondition>
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="22">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRESTWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="23">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewSOAPWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="24">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewFile</TargetID>
+      </Has_Action>
+      <Has_Action Default_Action="true" taurus:Label="Show Content in Table" Separator_after="true" taurus:SeqNo="25" ShowInElementView="true" ShowInTreeView="true">
+        <TargetID>#OFFL_ACT_ELIST_GetFolderChildren</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="26">
+        <TargetID>#OFFL_ACT_CONT_CopyResourceToClipboard</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="27">
+        <TargetID>#OFFL_ACT_CONT_CopyResourceUI</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="28">
+        <TargetID>#OFFL_ACT_CONT_PasteResourceFromClipboard</TargetID>
+        <ActionEnabledCondition>
+          <SimpleCondition Operator="TRUE">
+            <TargetID>#OFFL_PROP_ECLIPSE_PasteAllowed</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="29">
+        <TargetID>#OFFL_ACT_CONT_Delete</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="30">
+        <TargetID>#OFFL_ACT_CONT_MoveResourceUI</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="31">
+        <TargetID>#OFFL_ACT_CONT_Rename_ResourceUI</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="32">
+        <TargetID>#OFFL_ACT_CONT_DetermineDirectives</TargetID>
+        <ActionVisibleCondition SelectionCount="*">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?com\.microfocus)((?!com\.microfocus[^\|]*(C|c)opylib).)*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="FALSE" Value="">
+              <TargetID>#OFFL_PROP_ECLIPSE_Derived</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="33">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Import</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="34">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Export</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="35">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_ConvertNetExpressProjects</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="36">
+        <TargetID>#OFFL_ACT_CONT_RefreshResource</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="37">
+        <TargetID>#OFFL_ACT_CONT_ShowPropertiesDialog</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Property Category="General" ElementName="true" taurus:SeqNo="1" SortDirection="Ascending" TreeViewLabel="false">
+        <TargetID>#OFFL_PROP_ECLIPSE_Name</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="2">
+        <TargetID>#OFFL_PROP_ECLIPSE_Derived</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="3">
+        <TargetID>#OFFL_PROP_ECLIPSE_LastModified</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="4">
+        <TargetID>#OFFL_PROP_ECLIPSE_Linked</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="5">
+        <TargetID>#OFFL_PROP_ECLIPSE_Location</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="6">
+        <TargetID>#OFFL_PROP_ECLIPSE_Path</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="7">
+        <TargetID>#OFFL_PROP_ECLIPSE_PasteAllowed</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="8">
+        <TargetID>#OFFL_PROP_ECLIPSE_ErrorCount</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="9">
+        <TargetID>#OFFL_PROP_ECLIPSE_WarningCount</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:Label="" taurus:SeqNo="10" SortDirection="Descending">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="11" TreeViewLabel="false">
+        <TargetID>#OFFL_PROP_ELE_EclipseResourceID</TargetID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="12">
+        <TargetID>#OFFL_PROP_ECLIPSE_HasChildren</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="true">
+            <TargetID>#OFFL_PROP_ELE_HideProperty</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+    </ElementType>
+    <ElementType xsi:type="taurus:LinkedElementType" taurus:ID="OFFL_ELE_Eclipse_Project" ID_Definition="#OFFL_ID_EclipseResource" Matchname="ECLIPSE_PROJECT" linkedElementTypeID="com.microfocus.awm.functionpackage.eclipse.linkedelementtype.iresource" linkedElementTypeLabel="Eclipse Resource">
+      <Has_GetChildrenAction>
+        <TargetID>#OFFL_ACT_ELIST_GetEclipseChildren</TargetID>
+        <GetChildrenActionEnabledCondition>
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_HasChildren</TargetID>
+          </SimpleCondition>
+        </GetChildrenActionEnabledCondition>
+      </Has_GetChildrenAction>
+      <Has_Action taurus:Label="" Separator_after="false" taurus:SeqNo="1">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="2">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="3">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTestProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="4">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="5">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMUnitTestProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="6">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="7">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="8">
+        <TargetID>#OFFL_ACT_CONT_NewProjectFromTemplate</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="9">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewFolder</TargetID>
+        <ActionEnabledCondition>
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="10">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteLinkedFolder</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+            <ComplexCondition Operator="OR">
+              <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.project\.remoteCobolNature.*">
+                <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.pli\.remote\.remotePliNature.*">
+                <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+              </SimpleCondition>
+              <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus\.eclipse\.project\.remoteCopylibNature.*">
+                <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+              </SimpleCondition>
+            </ComplexCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="" taurus:SeqNo="11">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMPackage</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="12">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMSourceFolder</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="false" taurus:SeqNo="13">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCobolProgram</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="14">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybook</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)(obol|opy).*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="15">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLUnitTest</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="16">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewProjectlessFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="17">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteProjectlessFile</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="18">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMClass</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="19">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMInterface</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*coboljvm.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="20">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewSQLFile</TargetID>
+        <ActionEnabledCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="21">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewJavaInterface</TargetID>
+        <ActionEnabledCondition>
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="22">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRESTWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="23">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewSOAPWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="24">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewFile</TargetID>
+        <ActionEnabledCondition>
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="25">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewExample</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="26">
+        <TargetID>#OFFL_ACT_CONT_NewOther</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="27">
+        <TargetID>#OFFL_ACT_CONT_CopyResourceToClipboard</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="28">
+        <TargetID>#OFFL_ACT_CONT_PasteResourceFromClipboard</TargetID>
+        <ActionEnabledCondition>
+          <ComplexCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Operator="TRUE" Value="">
+              <TargetID>#OFFL_PROP_ECLIPSE_PasteAllowed</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="29">
+        <TargetID>#OFFL_ACT_CONT_Delete</TargetID>
+        <ActionEnabledCondition SelectionCount="*"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="30">
+        <TargetID>#OFFL_ACT_CONT_Rename_ResourceUI</TargetID>
+        <ActionEnabledCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="31">
+        <TargetID>#OFFL_ACT_CONT_DetermineDirectives</TargetID>
+        <ActionVisibleCondition SelectionCount="*">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?com\.microfocus)((?!com\.microfocus[^\|]*(C|c)opylib).)*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="32">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Import</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="33">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_Export</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="34">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_ConvertMFLocalProject</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(p|P)liNature)(?=.*edt)((?!(r|R)emote).)*$|^(?=.*(p|P)liNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(r|R)emotePliNature)(?=.*edt).*$">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="35">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_ImportRemoteProject</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <ComplexCondition>
+            <SimpleCondition Operator="Regular Expression..." Value="^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$|^(?=.*(r|R)emotePliNature)(?=.*edt).*$|^(?=.*(r|R)emotePliNature)((?!edt).)*">
+              <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="36">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_ConvertNetExpressProjects</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="37">
+        <TargetID>#OFFL_ACT_CONT_BuildProject</TargetID>
+        <ActionVisibleCondition>
+          <ComplexCondition>
+            <SimpleCondition Operator="Equals..." Value="true">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+            </SimpleCondition>
+            <SimpleCondition Value="false">
+              <TargetID>#OFFL_PROP_ECLIPSE_IsAutoBuild</TargetID>
+            </SimpleCondition>
+          </ComplexCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="false" taurus:SeqNo="38">
+        <TargetID>#OFFL_ACT_CONT_RefreshResource</TargetID>
+        <ActionEnabledCondition SelectionCount="*">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="Open Project" Separator_after="false" taurus:SeqNo="39">
+        <TargetID>#OFFL_ACT_CONT_OpenProject</TargetID>
+        <ActionEnabledCondition SelectionCount="*">
+          <SimpleCondition Value="false">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="Close Project" Separator_after="true" taurus:SeqNo="40">
+        <TargetID>#OFFL_ACT_CONT_CloseProject</TargetID>
+        <ActionEnabledCondition SelectionCount="*">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action Default_Action="true" taurus:Label="Show Content in Table" Separator_after="true" taurus:SeqNo="41" ShowInTreeView="true">
+        <TargetID>#OFFL_ACT_ELIST_GetEclipseChildrenForTable</TargetID>
+        <ActionEnabledCondition SelectionCount="1">
+          <SimpleCondition Value="true">
+            <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+          </SimpleCondition>
+        </ActionEnabledCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="42">
+        <TargetID>#OFFL_ACT_CONT_ShowPropertiesDialog</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Property Category="General" ElementName="true" taurus:Label="" taurus:SeqNo="1" TreeViewLabel="false">
+        <TargetID>#OFFL_PROP_ECLIPSE_Name</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="2" TreeViewLabel="false">
+        <TargetID>#OFFL_PROP_ECLIPSE_NamedStyled</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="3">
+        <TargetID>#OFFL_PROP_ECLIPSE_Derived</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="4">
+        <TargetID>#OFFL_PROP_ECLIPSE_LastModified</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="5">
+        <TargetID>#OFFL_PROP_ECLIPSE_Linked</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="6">
+        <TargetID>#OFFL_PROP_ECLIPSE_Location</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="7">
+        <TargetID>#OFFL_PROP_ECLIPSE_PasteAllowed</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="8">
+        <TargetID>#OFFL_PROP_ECLIPSE_Path</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="9">
+        <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="10">
+        <TargetID>#OFFL_PROP_ECLIPSE_ErrorCount</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="" taurus:SeqNo="11">
+        <TargetID>#OFFL_PROP_ECLIPSE_WarningCount</TargetID>
+      </Has_Property>
+      <Has_Property Category="COBOL Project" taurus:Label="Dialect" taurus:SeqNo="12">
+        <TargetID>#OFFL_PROP_ED_Cobol_Project_Dialect</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Project" taurus:Label="Use SQL Preprocessor" taurus:SeqNo="13">
+        <TargetID>#OFFL_PROP_ED_Cobol_Project_UseSQLPreproc</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Project" taurus:Label="Additional Options" taurus:SeqNo="14">
+        <TargetID>#OFFL_PROP_ED_Cobol_Project_Additonal</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Effective Config" taurus:Label="Dialect" taurus:SeqNo="15">
+        <TargetID>#OFFL_PROP_ED_Cobol_Effective_Config_Dialect</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Effective Config" taurus:Label="Use SQL Preprocessor" taurus:SeqNo="16">
+        <TargetID>#OFFL_PROP_ED_Cobol_Effective_Config_UseSQLPreproc</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Effective Config" taurus:Label="Additional Options" taurus:SeqNo="17">
+        <TargetID>#OFFL_PROP_ED_Cobol_Effective_Config_Additional</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Config" taurus:Label="Dialect" taurus:SeqNo="18">
+        <TargetID>#OFFL_PROP_ED_Cobol_Config_Dialect</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Config" taurus:Label="Use SQL Preprocessor" taurus:SeqNo="19">
+        <TargetID>#OFFL_PROP_ED_Cobol_Config_UseSQLPreproc</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="COBOL Config" taurus:Label="Additional Options" taurus:SeqNo="20">
+        <TargetID>#OFFL_PROP_ED_Cobol_Config_Additional</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Regular Expression..." Value="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$|^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$|^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$|^.*\.coboljvm\.coboljvmNature.*$|^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$|^(?=.*(r|R)emoteCobolNature)((?!edt).)*$|^.*(r|R)emoteCopylibNature.*$">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="21">
+        <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:Label="" taurus:SeqNo="22" TreeViewLabel="false">
+        <TargetID>#OFFL_PROP_ELE_EclipseResourceID</TargetID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="23">
+        <TargetID>#OFFL_PROP_ECLIPSE_HasChildren</TargetID>
+        <PropertyVisibleCondition>
+          <SimpleCondition Operator="Equals..." Value="true">
+            <TargetID>#OFFL_PROP_ELE_HideProperty</TargetID>
+          </SimpleCondition>
+        </PropertyVisibleCondition>
+      </Has_Property>
+    </ElementType>
+    <ElementType xsi:type="taurus:LinkedElementType" ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.linkedelementtype.imtk_category" taurus:ID="OFFL_ELE_IMTK_Category" ID_Definition="#OFFL_ID_Categories" Matchname="MF_IMTK_CATEGORIES_FILE" linkedElementTypeID="com.microfocus.eclipse.edt.functionpackage.mfprj.linkedelementtype.imtk_category" linkedElementTypeLabel="IMTK Category">
+      <Has_GetChildrenAction>
+        <TargetID>#OFFL_ACT_CONT_GetIMTKFiles</TargetID>
+      </Has_GetChildrenAction>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="1">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="2">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="3">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="4">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="5">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="6">
+        <TargetID>#OFFL_ACT_CONT_NewProjectFromTemplate</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="7">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewJavaInterface</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="8">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRESTWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="9">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewSOAPWebService</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Regular Expression..." Value=".*com\.microfocus[^\|]*(c|C)obol.*">
+            <TargetID>#OFFL_PROP_ECLIPSE_EclipseProjectNatures</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Default_Action="true" taurus:Label="Show Content in Table" taurus:SeqNo="10" ShowInElementView="true" ShowInTreeView="true">
+        <TargetID>#OFFL_ACT_CONT_GetIMTKFiles</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Property Category="General" ElementName="true" taurus:SeqNo="1">
+        <TargetID>#OFFL_PROP_ELE_Category_Name</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="2">
+        <TargetID>#OFFL_PROP_ELE_Category_ID</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="3">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_Property>
+    </ElementType>
+    <ElementType xsi:type="taurus:LinkedElementType" ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.linkedelementtype.imtk_operation" taurus:ID="OFFL_ELE_IMTK_Operation" ID_Definition="#OFFL_ID_IMTK_Operation" Matchname="MF_IMTK_OPERATIONS_FILE" linkedElementTypeID="com.microfocus.eclipse.edt.functionpackage.mfprj.linkedelementtype.imtk_operation" linkedElementTypeLabel="IMTK Operation">
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="1">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="2">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="3">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="4">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="5">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="6">
+        <TargetID>#OFFL_ACT_CONT_NewProjectFromTemplate</TargetID>
+      </Has_Action>
+      <Has_Action Default_Action="true" taurus:SeqNo="7">
+        <TargetID>#OFFL_ACT_CONT_IMTK_OpenOperation</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="8">
+        <TargetID>#OFFL_ACT_CONT_Delete</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action Default_Action="false" Separator_after="true" taurus:SeqNo="9">
+        <TargetID>#OFFL_ACT_CONT_IMTK_OPERATION_PROPERTIES</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Property Category="General" ElementName="true" taurus:Label="Name" taurus:SeqNo="1">
+        <TargetID>#OFFL_PROP_ELE_IMTK_OperationName</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:Label="Entry Point" taurus:SeqNo="2">
+        <TargetID>#OFFL_PROP_ELE_IMTK_OperationEntryPoint</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="3">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_Property>
+    </ElementType>
+    <ElementType xsi:type="taurus:LinkedElementType" ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.linkedelementtype.imtk_service" taurus:ID="OFFL_ELE_IMTK_Service" ID_Definition="#OFFL_ID_IMTK_File" Matchname="MF_IMTK_SERVICES_FILE" linkedElementTypeID="com.microfocus.eclipse.edt.functionpackage.mfprj.linkedelementtype.imtk_service" linkedElementTypeLabel="IMTK Service">
+      <Has_GetChildrenAction>
+        <TargetID>#OFFL_ACT_CONT_IMTK_Operations</TargetID>
+      </Has_GetChildrenAction>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="1">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="2">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="3">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewCOBOLJVMProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="4">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLProject</TargetID>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="5">
+        <TargetID>#OFFL_ACT_CONT_OpenWizard_NewRemoteCOBOLCopybookProject</TargetID>
+      </Has_Action>
+      <Has_Action taurus:Label="" Separator_after="true" taurus:SeqNo="6">
+        <TargetID>#OFFL_ACT_CONT_NewProjectFromTemplate</TargetID>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="7">
+        <TargetID>#OFFL_ACT_CONT_IMTK_NewOperation</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Equals not..." Value="CicsWebServiceImpl">
+            <TargetID>#OFFL_PROP_ELE_CategorySubtype</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Default_Action="true" Separator_after="true" taurus:SeqNo="8">
+        <TargetID>#OFFL_ACT_CONT_IMTK_OpenService</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="9">
+        <TargetID>#OFFL_ACT_CONT_Delete</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="10">
+        <TargetID>#OFFL_ACT_CONT_IMTK_SERVICE_DEPLOY</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="11">
+        <TargetID>#OFFL_ACT_CONT_IMTK_SERVICE_GENCLIENT</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="12">
+        <TargetID>#OFFL_ACT_CONT_IMTK_SERVICE_JAVAPROPERTIES</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Equals..." Value="JavaInterfaceImpl">
+            <TargetID>#OFFL_PROP_ELE_CategorySubtype</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:SeqNo="13">
+        <TargetID>#OFFL_ACT_CONT_IMTK_SERVICE_VALIDATE</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Equals not..." Value="CicsWebServiceImpl">
+            <TargetID>#OFFL_PROP_ELE_CategorySubtype</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action Separator_after="true" taurus:SeqNo="14">
+        <TargetID>#OFFL_ACT_CONT_IMTK_SERVICE_WEBSERVICEPROPERTIES</TargetID>
+        <ActionVisibleCondition SelectionCount="1">
+          <SimpleCondition Operator="Equals not..." Value="JavaInterfaceImpl">
+            <TargetID>#OFFL_PROP_ELE_CategorySubtype</TargetID>
+          </SimpleCondition>
+        </ActionVisibleCondition>
+      </Has_Action>
+      <Has_Action taurus:Label="Show Content in Table" taurus:SeqNo="15" ShowInElementView="true">
+        <TargetID>#OFFL_ACT_CONT_IMTK_Operations</TargetID>
+        <ActionEnabledCondition SelectionCount="1"/>
+      </Has_Action>
+      <Has_Property Category="General" taurus:SeqNo="1">
+        <TargetID>#OFFL_PROP_ELE_IMTK_ServiceId</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" ElementName="true" taurus:Label="" taurus:SeqNo="2">
+        <TargetID>#OFFL_PROP_ELE_IMTK_FileName</TargetID>
+      </Has_Property>
+      <Has_Property Category="General" taurus:SeqNo="3">
+        <TargetID>#OFFL_PROP_ELE_CategorySubtype</TargetID>
+      </Has_Property>
+      <Has_Property Category="Mapping" taurus:SeqNo="4">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_Property>
+    </ElementType>
+  </ElementTypes>
+  <ElementListStructures>
+    <ElementListStructure taurus:ID="OFFL_ELIST_Dependencies" taurus:Label="Program Dependencies" taurus:TableViewLabel="">
+      <Has_ColumnProperty ColNo="1">
+        <TargetID>#OFFL_PROP_ELE_DependFile_Name</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="2" Width="400">
+        <TargetID>#OFFL_PROP_ELE_ParentPath</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="3" taurus:Label="" Width="150">
+        <TargetID>#OFFL_PROP_ELE_IsWorkspaceFile</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="4" taurus:Label="" Width="300">
+        <TargetID>#OFFL_PROP_ELE_MainProgram_ResourceId</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="5" Visible="false" Width="200">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_ColumnProperty>
+    </ElementListStructure>
+    <ElementListStructure taurus:ID="OFFL_ELIST_FolderContent" taurus:Label="Folder Content">
+      <Has_ColumnProperty ColNo="1" Width="130">
+        <TargetID>#OFFL_PROP_ECLIPSE_Name</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="2" taurus:Label="" Width="165">
+        <TargetID>#OFFL_PROP_ECLIPSE_LastModified</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="3" Width="70">
+        <TargetID>#OFFL_PROP_ECLIPSE_Size</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="4" Width="70">
+        <TargetID>#OFFL_PROP_ECLIPSE_Suffix</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="5" Width="70">
+        <TargetID>#OFFL_PROP_ECLIPSE_Derived</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="6" Width="70">
+        <TargetID>#OFFL_PROP_ECLIPSE_Linked</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="7" Width="200">
+        <TargetID>#OFFL_PROP_ECLIPSE_Path</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="8" Width="30">
+        <TargetID>#OFFL_PROP_ECLIPSE_ErrorCount</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="9" Width="30">
+        <TargetID>#OFFL_PROP_ECLIPSE_WarningCount</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="10" Visible="false" Width="200">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_ColumnProperty>
+    </ElementListStructure>
+    <ElementListStructure taurus:ID="OFFL_ELIST_IMTK_Operations">
+      <Has_ColumnProperty ColNo="1">
+        <TargetID>#OFFL_PROP_ELE_IMTK_OperationName</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="2">
+        <TargetID>#OFFL_PROP_ELE_IMTK_OperationEntryPoint</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="3" Visible="false" Width="200">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_ColumnProperty>
+    </ElementListStructure>
+    <ElementListStructure taurus:ID="OFFL_ELIST_IMTK_Services">
+      <Has_ColumnProperty ColNo="1">
+        <TargetID>#OFFL_PROP_ELE_IMTK_ServiceId</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="2">
+        <TargetID>#OFFL_PROP_ELE_IMTK_FileName</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="3">
+        <TargetID>#OFFL_PROP_ELE_CategorySubtype</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="4" Visible="false" Width="200">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_ColumnProperty>
+    </ElementListStructure>
+    <ElementListStructure taurus:ID="OFFL_ELIST_Projects" taurus:Label="Projects">
+      <Has_ColumnProperty ColNo="1" Width="130">
+        <TargetID>#OFFL_PROP_ECLIPSE_Name</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="2" taurus:Label="Is open" Width="30">
+        <TargetID>#OFFL_PROP_ECLIPSE_IsProjectOpen</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="3" taurus:Label="" Width="165">
+        <TargetID>#OFFL_PROP_ECLIPSE_LastModified</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="4" Width="70">
+        <TargetID>#OFFL_PROP_ECLIPSE_Derived</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="5" Width="70">
+        <TargetID>#OFFL_PROP_ECLIPSE_Linked</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="6" Width="200">
+        <TargetID>#OFFL_PROP_ECLIPSE_Path</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="7" Width="30">
+        <TargetID>#OFFL_PROP_ECLIPSE_ErrorCount</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="8" Width="30">
+        <TargetID>#OFFL_PROP_ECLIPSE_WarningCount</TargetID>
+      </Has_ColumnProperty>
+      <Has_ColumnProperty ColNo="9" Visible="false" Width="200">
+        <TargetID>#OFFL_PROP_ELE_Matchname</TargetID>
+      </Has_ColumnProperty>
+    </ElementListStructure>
+  </ElementListStructures>
+  <FileDescriptors>
+    <FileDescriptor taurus:ID="OFFL_FD_IMTK_Categories" PropDelimiter="&quot;,&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_Category_Name</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_Category_ID</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="3">
+        <Target_ID>#OFFL_PROP_ELE_Matchname</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="4">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_IMTK_Files" PropDelimiter="&quot;,&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_IMTK_ServiceId</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_IMTK_FileName</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="3">
+        <Target_ID>#OFFL_PROP_ELE_CategorySubtype</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="4">
+        <Target_ID>#OFFL_PROP_ELE_Matchname</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_IMTK_Operations" PropDelimiter="&quot;,&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_IMTK_OperationName</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_IMTK_OperationEntryPoint</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="3">
+        <Target_ID>#OFFL_PROP_ELE_Matchname</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_LST_Copybooks" NamePhysical="" PropDelimiter="&quot;&lt;|>&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_DependFile_Name</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:Label="-" taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_ParentPath</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:Label="Is in workspace" taurus:SeqNo="3" Visible="false">
+        <Target_ID>#OFFL_PROP_ELE_IsWorkspaceFile</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:Label="Copybook ID" taurus:SeqNo="4" Visible="false">
+        <Target_ID>#OFFL_PROP_ELE_CopybookId</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="5" Visible="false">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:Label="" taurus:SeqNo="6" Visible="false">
+        <Target_ID>#OFFL_PROP_ELE_MainProgram_ResourceId</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:Label="" taurus:SeqNo="7" Visible="false">
+        <Target_ID>#OFFL_PROP_ELE_Matchname</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="8">
+        <Target_ID>#OFFL_PROP_ED_HasChildrenNotLinked</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_LST_Folder" NamePhysical="" PropDelimiter="&quot;%!%&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:Label="" taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_DIA_TemplatePath</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_LST_ResourceChildren" PropDelimiter="&quot;&lt;!>&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_Matchname</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_LST_ResourceIds" PropDelimiter="&quot;&lt;!>&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_LST_WorkspaceProjects" NamePhysical="" PropDelimiter="&quot;&lt;!>&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_Matchname</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_LocalFile" NamePhysical="" Type="Workspace_File"/>
+    <FileDescriptor taurus:ID="OFFL_FD_LocalOSFile" NamePhysical="&amp;OFFL_PROP_ELE_EclipseResourceID." Type="Local_File"/>
+    <FileDescriptor taurus:ID="OFFL_FD_ResourceChildrenCategoryMerge" PropDelimiter="&quot;&lt;!>&quot;" Structure="Table" Type="InputStream">
+      <Has_Property taurus:SeqNo="1">
+        <Target_ID>#OFFL_PROP_ELE_EclipseResourceID</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="2">
+        <Target_ID>#OFFL_PROP_ELE_Category_Name</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="3">
+        <Target_ID>#OFFL_PROP_ELE_Category_ID</Target_ID>
+      </Has_Property>
+      <Has_Property taurus:SeqNo="4">
+        <Target_ID>#OFFL_PROP_ELE_Matchname</Target_ID>
+      </Has_Property>
+    </FileDescriptor>
+    <FileDescriptor taurus:ID="OFFL_FD_WorkspaceFile" NamePhysical="&amp;OFFL_PROP_ELE_EclipseResourceID."/>
+  </FileDescriptors>
+  <FilterTypes>
+    <FilterType taurus:ID="OFFL_FIL_FilterFolderContent" Label="Micro Focus Projects Folder Content">
+      <Has_Filtercriterion Generic="false" taurus:Label="Select Folder" taurus:SeqNo="1">
+        <TargetID>#OFFL_PROP_PARM_WorkspaceFolder</TargetID>
+      </Has_Filtercriterion>
+      <Has_Filtercriterion Generic="true" taurus:Label="File Filter (regular expression, e.g .* or D.* or .*B.*)" Mandatory="true" taurus:SeqNo="2">
+        <TargetID>#OFFL_PROP_PARM_Filter</TargetID>
+      </Has_Filtercriterion>
+      <Has_Action taurus:Label="Show Filtered Folder Content">
+        <TargetID>#OFFL_ACT_ELIST_GetEclipseChildrenFiltered</TargetID>
+      </Has_Action>
+    </FilterType>
+    <FilterType taurus:ID="OFFL_FIL_FilterProjects" Label="Micro Focus Projects Filter">
+      <Has_Filtercriterion Generic="true" taurus:Label="Select Project" taurus:SeqNo="1">
+        <TargetID>#OFFL_PROP_DIA_MF_ProjectTypes</TargetID>
+      </Has_Filtercriterion>
+      <Has_Action taurus:Label="Show Projects">
+        <TargetID>#OFFL_ACT_ELIST_GetEclipseProjectsFiltered</TargetID>
+      </Has_Action>
+    </FilterType>
+  </FilterTypes>
+  <Properties>
+    <Property taurus:ID="OFFL_PROP_DIA_MF_ProjectTypes" taurus:Type="SelectValue" taurus:Label="Project Type" Label_Keys="Mainframe_COBOL_Projects_(local) COBOL_Projects_(local) COBOL_Copybook_Projects_(local) COBOL_JVM_Projects Mainframe_COBOL_Projects_(remote) COBOL_Projects_(remote) COBOL_Copybook_Projects_(remote) Mainframe_PLI_Projects_(local) PLI_Project_(local) Mainframe_PLI_Projects_(remote) PLI_Projects_(remote)" Value_Keys="^(?=.*?edt)(?=.*project\.cobolNature)((?!remote*)(?!jvm).)*$ ^(?=.*project\.cobolNature)((?!(r|R)emote)(?!edt).)*$ ^(?=.*(project\.c|C)opylibNature)((?!(r|R)emote).)*$ ^.*\.coboljvm\.coboljvmNature.*$ ^(?=.*edt)(?=.*(r|R)emoteCobolNature).*$ ^(?=.*(r|R)emoteCobolNature)((?!edt).)*$ ^.*(r|R)emoteCopylibNature.*$ ^(?=.*(p|P)liNature)(?=.*edt)((?!(r|R)emote).)*$ ^(?=.*(p|P)liNature)((?!(r|R)emote)(?!edt).)*$ ^(?=.*(r|R)emotePliNature)(?=.*edt).*$ ^(?=.*(r|R)emotePliNature)((?!edt).)*$"/>
+    <Property taurus:ID="OFFL_PROP_DIA_TemplatePath" Retrieve_All_Values="#OFFL_ACT_PROP_SelectFolder" Value_max_length="255" taurus:Label="Template Path"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_ContentTypeID" taurus:Label="Content Type ID" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.contentType" linkedPropertyLabel="Content Type ID" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_Derived" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Derived" linkedPropertyCategory="Eclipse Resource" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.derived" linkedPropertyLabel="Derived" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_EclipseProjectNatures" taurus:Label="Project Natures" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.projectNatures" linkedPropertyLabel="Project Natures" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_ErrorCount" taurus:Label="Error Count" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.errorCount" linkedPropertyLabel="Error Count" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_HasChildren" taurus:Label="Has Children" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.hasChildren" linkedPropertyLabel="Has Children" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_IsAutoBuild" False_Value="false" True_Value="true" taurus:Label="Is Auto Build" linkedPropertyCategory="Preferences" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.globalAutoBuild" linkedPropertyLabel="Is Auto Build" requiresResourceIdentifier="false"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_IsProjectOpen" taurus:Label="Is Project Open" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.projectOpen" linkedPropertyLabel="Is Project Open" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_LastModified" taurus:Type="Date" taurus:Label="Last Modified" linkedPropertyCategory="Eclipse Resource" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.lastModified" linkedPropertyLabel="Last Modified" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_Linked" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Linked" linkedPropertyCategory="Eclipse Resource" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.linked" linkedPropertyLabel="Linked" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_Location" taurus:Label="Location" linkedPropertyCategory="Eclipse Resource" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.location" linkedPropertyLabel="Location" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_Name" taurus:Label="Name" linkedPropertyCategory="Eclipse Resource" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.resourceName" linkedPropertyLabel="Name" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_NamedStyled" taurus:Label="Name Styled" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.resourceNameStyled" linkedPropertyLabel="Name Styled" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_PasteAllowed" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Paste Allowed" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.pasteAllowed" linkedPropertyLabel="Paste Allowed" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_Path" taurus:Label="Path" linkedPropertyCategory="Eclipse Resource" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.path" linkedPropertyLabel="Path" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_Size" taurus:Label="Size" linkedPropertyCategory="Eclipse Resource" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.size" linkedPropertyLabel="Size" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_Suffix" SpecialProperty="Element_Suffix" taurus:Label="Suffix" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.suffix" linkedPropertyLabel="Suffix" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ECLIPSE_WarningCount" taurus:Label="Warning Count" linkedPropertyCategory="Resource Properties" linkedPropertyID="com.microfocus.awm.functionpackage.eclipse.provider.eclipse.warningCount" linkedPropertyLabel="Warning Count" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Config_Additional" taurus:Label="Build Config Additional Directives" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_ActBuild_Cob_CompDir_Additional" linkedPropertyLabel="Build Config Additional Directives" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Config_Dialect" Default_Value="" taurus:Label="Build Config Dialect" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_ActBuild_Cob_CompDir_Dialect" linkedPropertyLabel="Build Config Dialect" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Config_UseSQLPreproc" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Build Config Use SQL Preprocessor" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_ActBuild_UseSQLPrep" linkedPropertyLabel="Build Config Use SQL Preprocessor" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Effective_Config_Additional" taurus:Label="Build Config Effective Additional Directives" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_ActBuild_Effective_Cob_CompDir_Additional" linkedPropertyLabel="Build Config Effective Additional Directives" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Effective_Config_Dialect" taurus:Label="Build Config Effective Dialect" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_ActBuild_Effective_Cob_CompDir_Dialect" linkedPropertyLabel="Build Config Effective Dialect" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Effective_Config_UseSQLPreproc" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Build Config Effective Use SQL Preprocessor" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_ActBuild_Effective_UseSQLPrep" linkedPropertyLabel="Build Config Effective Use SQL Preprocessor" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Effective_File_Additional" taurus:Label="File Effective Additional Directives" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_File_Effective_Cob_CompDir_Additional" linkedPropertyLabel="File Effective Additional Directives" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Effective_File_Dialect" taurus:Label="File Effective Dialect" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_File_Effective_Cob_CompDir_Dialect" linkedPropertyLabel="File Effective Dialect" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Effective_File_UseSQLPreproc" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="File Effective Use SQL Preprocessor" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_File_Effective_UseSQLPrep" linkedPropertyLabel="File Effective Use SQL Preprocessor" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_File_Additional" taurus:Label="File Additional Directives" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_File_Cob_CompDir_Additional" linkedPropertyLabel="File Additional Directives" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_File_Dialect" taurus:Label="File Dialect" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_File_Cob_CompDir_Dialect" linkedPropertyLabel="File Dialect" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_File_UseSQLPreproc" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="File Use SQL Preprocessor" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.CobolSqlFilePropertyProvider.MFPropLnk_File_UseSQLPrep" linkedPropertyLabel="File Use SQL Preprocessor" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Project_Additonal" taurus:Label="Project Additional Directives" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_Proj_Cob_CompDir_Additional" linkedPropertyLabel="Project Additional Directives" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Project_Dialect" taurus:Label="Project level COBOL Dialect" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_Proj_Cob_CompDir_Dialect" linkedPropertyLabel="Project level COBOL Dialect" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_Cobol_Project_UseSQLPreproc" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Project level use SQL Preprocessor" linkedPropertyCategory="COBOL Project Properties" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.GeneralPropertyProvider.MFPropLnk_Proj_UseSQLPrep" linkedPropertyLabel="Project level use SQL Preprocessor" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_FileType" taurus:Label="File Type" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.FileTypePropertyProvider.MFPropLnk_File_Type" linkedPropertyLabel="File Type" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_HasChildren" taurus:Label="Has Children" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.HasChildrenPropertyProvider.MFPropLnk_File_HasChildren" linkedPropertyLabel="Has Children" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property taurus:ID="OFFL_PROP_ED_HasChildrenNotLinked" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Has Children"/>
+    <Property xsi:type="taurus:LinkedProperty" taurus:ID="OFFL_PROP_ED_canCompile" Default_Value="" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Can Compile" linkedPropertyID="com.microfocus.eclipse.edt.functionpackage.mfprj.CanCompilePropertyProvider.MFPropLnk_File_CanCompile" linkedPropertyLabel="Can Compile" requiresResourceIdentifier="true" resourceIdentifier="#OFFL_PROP_ELE_EclipseResourceID"/>
+    <Property taurus:ID="OFFL_PROP_ELE_CategorySubtype" taurus:Label="Type"/>
+    <Property taurus:ID="OFFL_PROP_ELE_Category_ID" taurus:Type="String" taurus:Label="Category ID"/>
+    <Property taurus:ID="OFFL_PROP_ELE_Category_Name" SpecialProperty="NONE" taurus:Label="Category Name"/>
+    <Property taurus:ID="OFFL_PROP_ELE_CopybookId" Default_Value="" taurus:Type="String" taurus:Label="Copybook Id"/>
+    <Property taurus:ID="OFFL_PROP_ELE_DependFile_Name" taurus:Label="Dependent File Name"/>
+    <Property taurus:ID="OFFL_PROP_ELE_DependFile_Suffix" taurus:Label="Dependent File Name"/>
+    <Property taurus:ID="OFFL_PROP_ELE_DependentFileId" Default_Value="" taurus:Label="Dependent File Id"/>
+    <Property ExtensionID="com.microfocus.awm.functionpackage.eclipse.property.resourceidentifier" taurus:ID="OFFL_PROP_ELE_EclipseResourceID" Default_Value="" Retrieve_All_Values="#OFFL_ACT_PROP_SelectFolder" taurus:Label="Eclipse Resource ID"/>
+    <Property taurus:ID="OFFL_PROP_ELE_HideProperty" Default_Value="false"/>
+    <Property taurus:ID="OFFL_PROP_ELE_IMTK_FileName" taurus:Label="Name"/>
+    <Property taurus:ID="OFFL_PROP_ELE_IMTK_OperationEntryPoint" taurus:Label="Entry Point"/>
+    <Property taurus:ID="OFFL_PROP_ELE_IMTK_OperationName" taurus:Label="Operation"/>
+    <Property taurus:ID="OFFL_PROP_ELE_IMTK_ServiceId" taurus:Label="Service ID"/>
+    <Property taurus:ID="OFFL_PROP_ELE_IsWorkspaceFile" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Is Workspace File"/>
+    <Property taurus:ID="OFFL_PROP_ELE_MainProgram_ResourceId" taurus:Label="Main Program"/>
+    <Property taurus:ID="OFFL_PROP_ELE_Matchname" SpecialProperty="Element_Type" taurus:Label="Matchname"/>
+    <Property taurus:ID="OFFL_PROP_ELE_ParentPath" taurus:Label="Parent Path"/>
+    <Property taurus:ID="OFFL_PROP_PARM_CommandId" Default_Value="" taurus:Type="String" taurus:Label="Command Identifyer"/>
+    <Property taurus:ID="OFFL_PROP_PARM_DirectoryServer" Default_Value="" taurus:Label="Directory Server"/>
+    <Property taurus:ID="OFFL_PROP_PARM_Filter" Default_Value=".*" taurus:Label="Filter"/>
+    <Property taurus:ID="OFFL_PROP_PARM_HandlerId" Default_Value="" taurus:Type="String" taurus:Label="Command Identifyer"/>
+    <Property taurus:ID="OFFL_PROP_PARM_IMTK_CommandID"/>
+    <Property taurus:ID="OFFL_PROP_PARM_NewName" taurus:Label="New resource name"/>
+    <Property taurus:ID="OFFL_PROP_PARM_ProjectNaturesSearchCriteria" Default_Value=".*" taurus:Type="String" taurus:Label="Project Natures Search Criterion"/>
+    <Property taurus:ID="OFFL_PROP_PARM_Readonly" Default_Value="true" False_Value="false" True_Value="true" taurus:Type="Boolean" taurus:Label="Editable"/>
+    <Property taurus:ID="OFFL_PROP_PARM_ServerName" Default_Value="MSSDEMO" taurus:Label="Server Name"/>
+    <Property taurus:ID="OFFL_PROP_PARM_WizardId" Default_Value="" taurus:Label="Wizard Id"/>
+    <Property taurus:ID="OFFL_PROP_PARM_WorkspaceFolder" Default_Value="" Retrieve_All_Values="#OFFL_ACT_PROP_SelectWorkspaceFolder" taurus:Label="Workspace Folder"/>
+    <Property taurus:ID="OFFL_PROP_PARM_WorkspaceFolderLabel" Default_Value="Select Folder" taurus:Label="Workspace Folder Label"/>
+    <Property taurus:ID="OFFL_PROP_PARM_WorkspacePath" Default_Value="&amp;WSPATH." taurus:Label="Workspace Path"/>
+  </Properties>
+  <ToolDescriptors>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.edit" taurus:ID="OFFL_TOOL_AWM_BrowseOSFile" modelEditorGroup="AWM Tools" Help_Text="" InParmSeparator="&quot; &quot;" IntegratedTool="NONE" OutParmSeparator="&quot; &quot;" Refresh_Resource="false" ResourceProcessing="READ" Run_As_Job="NO" ToolType="com.microfocus.awm.functionpackage.eclipse.edit">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.edit.workspaceFile" taurus:Label="Workspace File" taurus:SeqNo="1" Type="File" Default_Value="" ID="INPARM_aefcffb5-384f-443f-a72c-49ba34d3897e" Parameter_from="Previous_Tool">
+        <TargetID_File>#OFFL_FD_LocalFile</TargetID_File>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.awm.deleteFile" taurus:ID="OFFL_TOOL_AWM_EditCleanup" modelEditorGroup="AWM Tools" InParmSeparator="&quot; &quot;" IntegratedTool="NONE" OutParmSeparator="&quot; &quot;" Refresh_Resource="false" ResourceProcessing="READ" Run_As_Job="NO" ToolType="com.microfocus.awm.functionpackage.awm.deleteFile">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.awm.deleteFile.localFile" taurus:Label="Local File" taurus:SeqNo="1" Type="File" Default_Value="" ID="INPARM_d06526fc-8299-4f2c-9a67-712e9fcc8a02" Parameter_from="Previous_Tool">
+        <TargetID_File>#OFFL_FD_LocalFile</TargetID_File>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.awm.createTemporaryFile" taurus:ID="OFFL_TOOL_AWM_LocalTempFileCreator" modelEditorGroup="AWM Tools" InParmSeparator="&quot; &quot;" IntegratedTool="NONE" OutParmSeparator="&quot; &quot;" Refresh_Resource="false" ResourceProcessing="READ" Run_As_Job="NO" ToolType="com.microfocus.awm.functionpackage.awm.createTemporaryFile" com.microfocus.awm.functionpackage.awm.createTemporaryFile.enableAdvancedProperties="true">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.awm.createTemporaryFile.sourceFileOnTheRemoteSystem" taurus:Label="Source File On The Remote System" taurus:SeqNo="1" Type="File" Default_Value="" ID="INPARM_ae5b93c7-cd16-4ad1-b918-6b33407d249f" Parameter_from="Context" Static_Value="" uiTab="">
+        <TargetID_File>#OFFL_FD_LocalOSFile</TargetID_File>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.awm.createTemporaryFile.fileName" taurus:Label="File Name" taurus:SeqNo="2" Default_Value="" ID="INPARM_4446a0fc-4979-4442-ae7d-96aa07bbefc5" Static_Value="" uiForm="">
+        <TargetID_Parm>#OFFL_PROP_ELE_DependFile_Name</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.awm.createTemporaryFile.suffix" taurus:Label="Suffix" taurus:SeqNo="3" uiCategory="" Default_Value="cpy" ID="INPARM_7a112229-7243-463c-a98c-290f6b78606e" Static_Value="cpy" uiHelpText="">
+        <TargetID_Parm>#OFFL_PROP_ELE_DependFile_Suffix</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.awm.createTemporaryFile.readOnly" taurus:Label="Read Only" taurus:SeqNo="4" Default_Value="true" ID="INPARM_77b0d5de-e952-4678-89e7-8bff0189f5b8" Static_Value="true">
+        <TargetID_Parm>#OFFL_PROP_PARM_Readonly</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.awm.functionpackage.awm.createTemporaryFile.createdTemporaryFile" taurus:Label="Created Temporary File" taurus:SeqNo="1" Type="File" uiCategory="">
+        <TargetID_File>#OFFL_FD_LocalFile</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.awm.Merge Structured Files" taurus:ID="OFFL_TOOL_AWM_MergeResourceChildrenCategories" modelEditorGroup="AWM Tools" ToolType="com.microfocus.awm.functionpackage.awm.Merge Structured Files">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.awm.Merge Structured Files.inputFile2" taurus:Label="File 2" taurus:SeqNo="2" Type="File" ID="INPARM_f8d9c6c0-d967-474c-abe2-a71a268fa73b" Parameter_from="Previous_Tool">
+        <TargetID_File>#OFFL_FD_IMTK_Categories</TargetID_File>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.awm.Merge Structured Files.inputFile1" taurus:Label="File 1" taurus:SeqNo="1" Type="File" ID="INPARM_8fb72641-41f4-49ad-acc8-257b020c4709" Parameter_from="Previous_Tool">
+        <TargetID_File>#OFFL_FD_LST_ResourceChildren</TargetID_File>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.awm.functionpackage.awm.Merge Structured Files.outputFile" taurus:Label="Merged File" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_ResourceChildrenCategoryMerge</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.buildProject" taurus:ID="OFFL_TOOL_ECLIPSE_BuildProject" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.buildProject">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.buildProject.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_f58d629d-b37c-441c-9926-fd81c3366911">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.closeProject" taurus:ID="OFFL_TOOL_ECLIPSE_CloseProject" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.closeProject">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.closeProject.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_c7797821-36fa-4fc0-bdd2-d3802218d952">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.commandHandler" taurus:ID="OFFL_TOOL_ECLIPSE_Command_DetermineDirectives" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.commandHandler" com.microfocus.awm.functionpackage.eclipse.commandHandler.executionMode="Synchronous">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.commandHandler.commandID" taurus:Label="Command ID" taurus:SeqNo="1" Type="String" uiCategory="" Default_Value="" ID="INPARM_930d6e6c-9770-474c-9511-ca0a7ffe9f54" Static_Value="com.microfocus.eclipse.project.determineDirectives">
+        <TargetID_Parm>#OFFL_PROP_PARM_CommandId</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.commandHandler.handlerID" taurus:Label="Command Handler ID" taurus:SeqNo="2" Type="String" uiCategory="" ID="INPARM_c0cf1b62-dc00-4b98-a446-3535cf4e8dff" Static_Value="com.microfocus.eclipse.project">
+        <TargetID_Parm>#OFFL_PROP_PARM_HandlerId</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.commandHandler.resourceID" taurus:Label="Eclipse Resource ID" taurus:SeqNo="3" Type="String" ID="INPARM_4aa34d03-8014-4fed-87d2-072359b4ed9b" Static_Value="">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.CopyResourceToClipBoard" taurus:ID="OFFL_TOOL_ECLIPSE_CopyResourceToClipboard" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.CopyResourceToClipBoard">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.CopyResourceToClipBoard.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_83652a6c-cffc-4271-a8c4-138de710a7ad">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.CopyResource" taurus:ID="OFFL_TOOL_ECLIPSE_CopyResourceUI" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.CopyResource" com.microfocus.awm.functionpackage.eclipse.CopyResource.withUI="true">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.CopyResource.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_8282c173-48dc-4692-8b48-9a0910b3242f">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.DeleteResource" taurus:ID="OFFL_TOOL_ECLIPSE_DeleteResourceUI" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.DeleteResource" com.microfocus.awm.functionpackage.eclipse.DeleteResource.withUI="true">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.DeleteResource.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_0107d47f-873b-433b-8134-9172a73cc7aa">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.edit" taurus:ID="OFFL_TOOL_ECLIPSE_EditOpener" modelEditorGroup="Eclipse Tools" Help_Text="" InParmSeparator="&quot; &quot;" IntegratedTool="NONE" OutParmSeparator="&quot; &quot;" Refresh_Resource="false" ResourceProcessing="READ" Run_As_Job="NO" ToolType="com.microfocus.awm.functionpackage.eclipse.edit">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.edit.workspaceFile" taurus:Label="Workspace File" taurus:SeqNo="1" Type="File" ID="INPARM_8cd62b66-f6d6-484a-9380-9e5534bf33c2">
+        <TargetID_File>#OFFL_FD_WorkspaceFile</TargetID_File>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.commandHandler" taurus:ID="OFFL_TOOL_ECLIPSE_ExecuteCommand" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.commandHandler" com.microfocus.awm.functionpackage.eclipse.commandHandler.executionMode="Synchronous">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.commandHandler.commandID" taurus:Label="Command ID" taurus:SeqNo="1" Type="String" ID="INPARM_ea6f0f57-8a4b-4484-ad55-23aa7d7c82cf" Static_Value="com.microfocus.eclipse.project.transformProgramToCopybook">
+        <TargetID_Parm>#OFFL_PROP_PARM_CommandId</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.commandHandler.handlerID" taurus:Label="Command Handler ID" taurus:SeqNo="2" Type="String" ID="INPARM_6e9fb47f-255e-43b3-9801-8396da720392" Static_Value="com.microfocus.eclipse.project">
+        <TargetID_Parm>#OFFL_PROP_PARM_HandlerId</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.commandHandler.resourceID" taurus:Label="Eclipse Resource ID" taurus:SeqNo="3" Type="String" ID="INPARM_6cc72cfe-93c5-4b6d-8ab6-4ef6838a539a">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.GetResourceChildren" taurus:ID="OFFL_TOOL_ECLIPSE_GetChildren" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.GetResourceChildren">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.GetResourceChildren.resourceID" taurus:Label="Eclipse Resource ID" taurus:SeqNo="1" Type="String" ID="INPARM_07fb2ecb-0b88-4b05-9943-72bf427c233e">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.GetResourceChildren.resourceFilter" taurus:Label="Eclipse Resource Filter" taurus:SeqNo="2" Type="String" Default_Value="" ID="INPARM_e4a05b6a-dca2-4c2f-a583-45447fde6300">
+        <TargetID_Parm>#OFFL_PROP_PARM_Filter</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.GetResourceChildren.childrenOut" taurus:Label="FD_Eclipse_ResourceChildren" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_LST_ResourceChildren</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects" taurus:ID="OFFL_TOOL_ECLIPSE_GetProjects" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects.projectNature" taurus:Label="Eclipse Project Nature ID" taurus:SeqNo="1" Type="String" Default_Value=".*" ID="INPARM_7a6c0a67-99e1-485b-b9cc-87505ef1354e" Static_Value=".*com.microfocus.eclipse.*">
+        <TargetID_Parm>#OFFL_PROP_PARM_ProjectNaturesSearchCriteria</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects.workspaceProjectsOut" taurus:Label="FD_Eclipse_WorkspaceProjects" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_LST_WorkspaceProjects</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects" taurus:ID="OFFL_TOOL_ECLIPSE_GetProjectsFiltered" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects.projectNature" taurus:Label="Eclipse Project Nature ID" taurus:SeqNo="1" Type="String" Default_Value=".*com.microfocus.eclipse.*" ID="INPARM_cc2e1ab2-f97d-4971-94ab-97545d9cf662">
+        <TargetID_Parm>#OFFL_PROP_DIA_MF_ProjectTypes</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.GetEclipseProjects.workspaceProjectsOut" taurus:Label="FD_Eclipse_WorkspaceProjects" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_LST_WorkspaceProjects</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.MoveResource" taurus:ID="OFFL_TOOL_ECLIPSE_MoveResourceUI" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.MoveResource" com.microfocus.awm.functionpackage.eclipse.MoveResource.withUI="true">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.MoveResource.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_19909e91-58b4-4aa8-9439-89b18b64a15d">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.openerWizard" taurus:ID="OFFL_TOOL_ECLIPSE_NewExample" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.openerWizard" com.microfocus.awm.functionpackage.eclipse.openerWizard.wizardType="New Example"/>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.openerWizard" taurus:ID="OFFL_TOOL_ECLIPSE_NewOther" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.openerWizard" com.microfocus.awm.functionpackage.eclipse.openerWizard.wizardType="New Other"/>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.openerWizard" taurus:ID="OFFL_TOOL_ECLIPSE_OpenExportWizard" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.openerWizard" com.microfocus.awm.functionpackage.eclipse.openerWizard.wizardType="Export Resource"/>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.openerWizard" taurus:ID="OFFL_TOOL_ECLIPSE_OpenImportWizard" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.openerWizard" com.microfocus.awm.functionpackage.eclipse.openerWizard.wizardType="Import Resource"/>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.openProject" taurus:ID="OFFL_TOOL_ECLIPSE_OpenProject" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.openProject">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.openProject.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_e08261f0-c395-4d09-9be5-bb6005e28751">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.openerWizard" taurus:ID="OFFL_TOOL_ECLIPSE_OpenWizard_FromID" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.openerWizard">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.openerWizard.wizardID" taurus:Label="Wizard Id" taurus:SeqNo="1" Type="String" ID="INPARM_8af3818f-9102-4dca-9d92-ab572497997b" Static_Value="com.microfocus.eclipse.project.wizards.new_project" uiForm="">
+        <TargetID_Parm>#OFFL_PROP_PARM_WizardId</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.PasteResourceFromClipBoard" taurus:ID="OFFL_TOOL_ECLIPSE_PasteResourceFromClipboard" modelEditorGroup="Eclipse Tools" Help_Text="" ToolType="com.microfocus.awm.functionpackage.eclipse.PasteResourceFromClipBoard">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.PasteResourceFromClipBoard.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="String" ID="INPARM_eee15abb-88a8-47fc-86df-3aa15710f063">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.RefreshResource" taurus:ID="OFFL_TOOL_ECLIPSE_RefreshResource" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.RefreshResource">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.RefreshResource.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="MassProcessing" ID="INPARM_1c2e187b-5541-45e8-906e-4a8619dfb7b5">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <OutputParm taurus:SeqNo="1" Type="MassProcessing">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.RenameResource" taurus:ID="OFFL_TOOL_ECLIPSE_RenameResourceUI" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.RenameResource" com.microfocus.awm.functionpackage.eclipse.RenameResource.withUI="true">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.RenameResource.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="String" ID="INPARM_a1b8839e-87f7-43ed-8318-1a3192d870cd">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.SelectResource" taurus:ID="OFFL_TOOL_ECLIPSE_SelectResource" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.SelectResource" com.microfocus.awm.functionpackage.eclipse.SelectResource.selectionResourceType="Folder">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.SelectResource.initialSelection" taurus:Label="Initial Selection" taurus:SeqNo="1" Type="String" ID="INPARM_0ea74f6b-dab7-4bfa-8f67-22a84a223089" Static_Value="" uiMandatory="false">
+        <TargetID_Parm>#OFFL_PROP_PARM_WorkspaceFolder</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.SelectResource.promptText" taurus:Label="Prompt Text" taurus:SeqNo="2" Type="String" ID="INPARM_33162479-7e1a-47cd-8546-e702331c138c" Static_Value="">
+        <TargetID_Parm>#OFFL_PROP_PARM_WorkspaceFolderLabel</TargetID_Parm>
+      </InputParm>
+      <InputParm taurus:Label="Project Natures (Regex)" taurus:SeqNo="3" ID="INPARM_0432746f-0bd7-44b0-9d9d-421790a02d94" Static_Value=".*com\.microfocus.*">
+        <TargetID_Parm>#OFFL_PROP_PARM_ProjectNaturesSearchCriteria</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.SelectResource.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_LST_ResourceIds</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.ShowLocalHistory" taurus:ID="OFFL_TOOL_ECLIPSE_ShowLocalHistory" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.ShowLocalHistory">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.ShowLocalHistory.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="String" ID="INPARM_121427d0-2e57-493f-b51c-69bd1cb5efa6">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.eclipse.showPropertiesDialog" taurus:ID="OFFL_TOOL_ECLIPSE_ShowProperties" modelEditorGroup="Eclipse Tools" ToolType="com.microfocus.awm.functionpackage.eclipse.showPropertiesDialog">
+      <InputParm ExtensionID="com.microfocus.awm.functionpackage.eclipse.showPropertiesDialog.resourceID" taurus:Label="Eclipse Resource ID" taurus:SeqNo="1" Type="String" ID="INPARM_f5547c2b-50c8-4abb-8298-17df5bcc2a86">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.WorkspaceResourceCompile" taurus:ID="OFFL_TOOL_ED_CompileFile" modelEditorGroup="ED Tools" Help_Text="" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.WorkspaceResourceCompile">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.WorkspaceResourceCompile.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="String" ID="INPARM_9ebfe092-4620-455c-a4bc-464db00da208">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher" taurus:ID="OFFL_TOOL_ED_Dependent_GetDependentFiles" modelEditorGroup="ED Tools" Help_Text="" IntegratedTool="NONE" Run_As_Job="NO" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="String" ID="INPARM_67f6f463-ab6a-48e6-81a6-61544aa3cb16">
+        <TargetID_Parm>#OFFL_PROP_ELE_MainProgram_ResourceId</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher.parentId" taurus:Label="Dependent File ID (0 for main source files)" taurus:SeqNo="2" Type="String" Default_Value="" ID="INPARM_2c321bf7-d4b0-4bcc-81ce-4c9ba4741675">
+        <TargetID_Parm>#OFFL_PROP_ELE_CopybookId</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher.getDependentElementsOutput" taurus:Label="File output parameter" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_LST_Copybooks</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkCategoriesResearcher" taurus:ID="OFFL_TOOL_ED_Get_IMTK_Categories" modelEditorGroup="ED Tools" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkCategoriesResearcher">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkCategoriesResearcher.projectPath" taurus:Label="Project Path" taurus:SeqNo="1" Type="String" ID="INPARM_0e2503fb-edb4-434e-808a-4115e585ef71">
+        <TargetID_Parm>#OFFL_PROP_ECLIPSE_Path</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkCategoriesResearcher.getDependentElementsOutput" taurus:Label="File output parameter" taurus:SeqNo="0" Type="File">
+        <TargetID_File>#OFFL_FD_IMTK_Categories</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkFilesResearcher" taurus:ID="OFFL_TOOL_ED_Get_IMTK_Files" modelEditorGroup="ED Tools" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkFilesResearcher">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkFilesResearcher.projectPath" taurus:Label="Project Path" taurus:SeqNo="1" Type="String" ID="INPARM_6c62a2f6-7c62-412e-ad3e-d0a79b83c3b0">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkFilesResearcher.categoryId" taurus:Label="Category ID output parameter" taurus:SeqNo="2" Type="String" ID="INPARM_0413606d-e144-42d4-a980-b450b941250f">
+        <TargetID_Parm>#OFFL_PROP_ELE_Category_ID</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkFilesResearcher.imtkFilesOutput" taurus:Label="File output parameter" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_IMTK_Files</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkOperationCommandHandler" taurus:ID="OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_OPERATION" modelEditorGroup="ED Tools" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkOperationCommandHandler">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkOperationCommandHandler.com.microfocus.eclipse.edt.taurus.commandId" taurus:Label="Command Id" taurus:SeqNo="1" Type="String" ID="INPARM_7c11d515-3a45-4357-a9ff-aea6cd4d7478">
+        <TargetID_Parm>#OFFL_PROP_PARM_IMTK_CommandID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkOperationCommandHandler.projectPath" taurus:Label="Project Path" taurus:SeqNo="2" Type="String" ID="INPARM_6d8c6a2b-80f3-48e0-a0aa-ff0bd43ab3a8">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkOperationCommandHandler.serviceId" taurus:Label="Service Name" taurus:SeqNo="3" Type="String" ID="INPARM_031f54dd-8e74-417e-98c9-e1b5f7def94f" Static_Value="">
+        <TargetID_Parm>#OFFL_PROP_ELE_IMTK_ServiceId</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkOperationCommandHandler.operationName" taurus:Label="Operation Name" taurus:SeqNo="4" Type="String" ID="INPARM_940672a5-c8b1-4d2c-834d-24627b26274c">
+        <TargetID_Parm>#OFFL_PROP_ELE_IMTK_OperationName</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkServiceCommandHandler" taurus:ID="OFFL_TOOL_ED_IMTK_INVOKE_COMMAND_SERVICE" modelEditorGroup="ED Tools" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkServiceCommandHandler">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkServiceCommandHandler.com.microfocus.eclipse.edt.taurus.commandId" taurus:Label="Command Id" taurus:SeqNo="1" Type="String" ID="INPARM_691a6e21-ecc2-40f4-9799-af8f14bff23f">
+        <TargetID_Parm>#OFFL_PROP_PARM_IMTK_CommandID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkServiceCommandHandler.projectPath" taurus:Label="Project Path" taurus:SeqNo="2" Type="String" ID="INPARM_7159afec-6521-4c42-8a65-54fa0ad528e4">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.com.microfocus.eclipse.edt.taurus.toolTypeImtkServiceCommandHandler.serviceId" taurus:Label="Service name parameter" taurus:SeqNo="3" Type="String" ID="INPARM_1a3373d6-2282-42eb-9940-6c8c2d899bde">
+        <TargetID_Parm>#OFFL_PROP_ELE_IMTK_ServiceId</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkOperationsResearcher" taurus:ID="OFFL_TOOL_ED_IMTK_Operations" modelEditorGroup="ED Tools" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkOperationsResearcher">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkOperationsResearcher.projectPath" taurus:Label="Project Path" taurus:SeqNo="1" Type="String" ID="INPARM_80ab9df0-91f8-4589-8591-dfd33673e0d3">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkOperationsResearcher.serviceId" taurus:Label="Service ID input parameter" taurus:SeqNo="2" Type="String" ID="INPARM_0690dc27-7be3-42b1-b9aa-6f06782c678e">
+        <TargetID_Parm>#OFFL_PROP_ELE_IMTK_ServiceId</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.ImtkOperationsResearcher.imtkOperationsOutput" taurus:Label="File output parameter" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_IMTK_Operations</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher" taurus:ID="OFFL_TOOL_ED_Main_GetDependentFiles" modelEditorGroup="ED Tools" OutParmSeparator="&quot;&lt;|>&quot;" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="String" Default_Value="" ID="INPARM_839eaef0-e809-48af-bc0b-243b57171bbd">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher.parentId" taurus:Label="Dependent File ID (0 for main source files)" taurus:SeqNo="2" Type="String" Default_Value="" ID="INPARM_d8aa33b6-3896-4cbc-a862-65807e8cbbaa" Static_Value="0" uiForm="">
+        <TargetID_Parm>#OFFL_PROP_ELE_DependentFileId</TargetID_Parm>
+      </InputParm>
+      <OutputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.DependentElementsResearcher.getDependentElementsOutput" taurus:Label="File output parameter" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_LST_Copybooks</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.NewProjectFromTemplate" taurus:ID="OFFL_TOOL_ED_NewProjectFromTemplate" modelEditorGroup="ED Tools" Help_Text="" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.NewProjectFromTemplate">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.NewProjectFromTemplate.templatePath" taurus:Label="" taurus:SeqNo="1" Type="String" Default_Value="" ID="INPARM_f2c4072f-22f0-4a2e-802c-b2f5014479a8" Parameter_from="Previous_Tool">
+        <TargetID_Parm>#OFFL_PROP_DIA_TemplatePath</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.NewProjectFromTemplate.projectName" taurus:Label="Project Name" taurus:SeqNo="2" Type="String" ID="INPARM_49cf52e8-2b47-4ca3-af90-d71e2d254a8b" Parameter_from="Previous_Tool">
+        <TargetID_Parm>#OFFL_PROP_PARM_NewName</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.NewProjectFromTemplate.projectPath" taurus:Label="" taurus:SeqNo="3" Type="String" uiCategory="" ID="INPARM_b352af62-d964-4eb0-b801-f6cff1133749" Parameter_from="Previous_Tool" Static_Value="&amp;WSPATH.">
+        <TargetID_Parm>#OFFL_PROP_PARM_WorkspacePath</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.eclipse.edt.functionpackage.mfprj.OpenInContext" taurus:ID="OFFL_TOOL_ED_OpenInContext" modelEditorGroup="ED Tools" ToolType="com.microfocus.eclipse.edt.functionpackage.mfprj.OpenInContext">
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.OpenInContext.eclipsePath" taurus:Label="Eclipse Path" taurus:SeqNo="1" Type="String" ID="INPARM_bec0b2c9-f6a0-4a2e-9552-fceb68749fcc">
+        <TargetID_Parm>#OFFL_PROP_ELE_EclipseResourceID</TargetID_Parm>
+      </InputParm>
+      <InputParm ExtensionID="com.microfocus.eclipse.edt.functionpackage.mfprj.OpenInContext.parentId" taurus:Label="Dependent File ID (0 for main source files)" taurus:SeqNo="2" Type="String" ID="INPARM_c262c186-db5e-4dda-8c23-20bf48aa34a9">
+        <TargetID_Parm>#OFFL_PROP_ELE_MainProgram_ResourceId</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.awm.modelDialog" taurus:ID="OFFL_TOOL_ED_UI_NewProjectFromTemplate" modelEditorGroup="ED Tools" Help_Text="" InParmSeparator="&quot; &quot;" IntegratedTool="NONE" OutParmSeparator="&quot; &quot;" Refresh_Resource="true" ResourceProcessing="READ" Run_As_Job="NO" ToolType="com.microfocus.awm.functionpackage.awm.modelDialog" com.microfocus.awm.functionpackage.awm.modelDialog.title="Enter Template Parameters" com.microfocus.awm.functionpackage.awm.modelDialog.description="Please enter the template information">
+      <InputParm taurus:Label="Template Path" taurus:SeqNo="1" uiCategory="From Template" ID="INPARM_40ab8043-b36f-46ed-93de-7922d8d24286" Parameter_from="User_Input" Static_Value="">
+        <TargetID_Parm>#OFFL_PROP_DIA_TemplatePath</TargetID_Parm>
+      </InputParm>
+      <InputParm taurus:Label="Project Name" taurus:SeqNo="2" uiCategory="To Project" ID="INPARM_bfa130dc-f7b2-4c57-8625-730da4c0f702" Parameter_from="User_Input">
+        <TargetID_Parm>#OFFL_PROP_PARM_NewName</TargetID_Parm>
+      </InputParm>
+      <InputParm taurus:Label="Workspace Path" taurus:SeqNo="3" uiCategory="To Project" ID="INPARM_e9427a5a-c5c6-4485-bb20-5108f5dbab0e" Parameter_from="User_Input" uiEditable="false" uiForm="">
+        <TargetID_Parm>#OFFL_PROP_PARM_WorkspacePath</TargetID_Parm>
+      </InputParm>
+    </ToolDescriptor>
+    <ToolDescriptor xsi:type="dynamicAWM:com.microfocus.awm.functionpackage.localoscommands.selectOsResource" taurus:ID="OFFL_TOOL_OS_SelectFolder" modelEditorGroup="OS Tools" ToolType="com.microfocus.awm.functionpackage.localoscommands.selectOsResource" com.microfocus.awm.functionpackage.localoscommands.selectOsResource.getResourceType="Local OS Folder">
+      <OutputParm ExtensionID="com.microfocus.awm.functionpackage.localoscommands.selectOsResource.returnFileNames" taurus:Label="File Names" taurus:SeqNo="1" Type="File">
+        <TargetID_File>#OFFL_FD_LST_Folder</TargetID_File>
+      </OutputParm>
+    </ToolDescriptor>
+  </ToolDescriptors>
+  <Icons>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.browse" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.browse" IconName="Browse"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.build" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.build" IconName="Build"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.copy" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.copy" IconName="Copy"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.edit" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.edit" IconName="Edit"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.export" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.export" IconName="Export"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.import" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.import" IconName="Import"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.refresh" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.refresh" IconName="Refresh"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.remove" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.remove" IconName="Remove"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.rename" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.rename" IconName="Rename"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.awm.icon.showhistory" FunctionPackageIconID="com.microfocus.awm.functionpackage.awm.icon.showhistory" IconName="Show History"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.createRecordLayoutFile" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.createRecordLayoutFile" IconName="Create Record Layout File"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.createSegmentLayoutFile" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.createSegmentLayoutFile" IconName="Create Segment Layout File"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.importLocalAsRemote" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.importLocalAsRemote" IconName="Convert Local Micro Focus Projects to Remote Projects"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.importNetExpressProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.importNetExpressProject" IconName="Convert NetExpress Projects"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.importRemoteProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.importRemoteProject" IconName="Import Remote Projects"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolCopybook" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolCopybook" IconName="New COBOL Copybook"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolCopybookProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolCopybookProject" IconName="New COBOL Copybook Project"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMClass" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMClass" IconName="New COBOL JVM Class"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMInterface" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMInterface" IconName="New COBOL JVM Interface"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" ExtensionID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMMFUnitProject" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMMFUnitProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMMFUnitProject" IconName="New COBOL JVM Unit Test Project"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMPackage" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMPackage" IconName="New COBOL JVM Package"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMProject" IconName="New COBOL JVM Project"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMSourceFolder" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolJVMSourceFolder" IconName="New COBOL JVM Source Folder"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" ExtensionID="com.microfocus.awm.functionpackage.edicons.new_cobolMFUnitProject" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolMFUnitProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolMFUnitProject" IconName="New COBOL Unit Test Project"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolProgram" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolProgram" IconName="New COBOL Program"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_cobolProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_cobolProject" IconName="New COBOL Project"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_file" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_file" IconName="New File"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_folder" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_folder" IconName="New Folder"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_remoteCOBOLCopybookProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_remoteCOBOLCopybookProject" IconName="New Remote COBOL Copybook Project"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_remoteCobolProject" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_remoteCobolProject" IconName="New Remote COBOL Project"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_remoteLinkedFolder" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_remoteLinkedFolder" IconName="New Remote Linked Folder"/>
+    <Icon xsi:type="taurus:FunctionPackageIcon" taurus:ID="com.microfocus.awm.functionpackage.edicons.new_sqlfile" FunctionPackageIconID="com.microfocus.awm.functionpackage.edicons.new_sqlfile" IconName="New SQL File"/>
+  </Icons>
+</taurus:TaurusConfiguration>

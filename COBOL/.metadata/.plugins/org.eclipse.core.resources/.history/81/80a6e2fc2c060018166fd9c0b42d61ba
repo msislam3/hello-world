@@ -1,0 +1,21 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. lab3 as "lab3".
+       AUTHOR. RIFAT SHAMS.
+       DATE-WRITTEN. 30 January 2017
+       
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT RENTAL-IN
+               ASSIGN TO "C:\RENTAL.DAT"
+               ORGANIZATION IS LINE SEQUENTIAL.
+       DATA DIVISION.
+       working-storage section.
+
+       procedure division.
+
+
+           goback.
+
+       end program lab3.

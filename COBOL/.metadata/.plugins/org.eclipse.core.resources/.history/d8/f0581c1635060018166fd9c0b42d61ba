@@ -1,0 +1,42 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. lab3 as "lab3".
+       AUTHOR. RIFAT SHAMS.
+       DATE-WRITTEN. 30 January 2017
+       
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT RENTAL-FILE-IN
+               ASSIGN TO "C:\RENTAL.DAT"
+               ORGANIZATION IS LINE SEQUENTIAL.
+       DATA DIVISION.
+       FILE SECTION.
+       FD  RENTAL-FILE-IN
+           RECORD CONTAINS 44 CHARACTERS.
+       01  RENTAL-RECORD.
+           05  REGISTRATION-NUMBER PIC 9(8).
+           05  CAR-TYPE    PIC X(10).        
+           05  MODEL-TYPE  PIC X(5).
+           05  MODEL-YEAR.
+               10  MODEL-YEAR    PIC 9(4).
+               10  MODEL-MONTH   PIC 9(2).
+               10  MODEL-DAY     PIC 9(2).
+           05  RENTER.
+               10  RENTER-NAME.
+                   20  RENTER-FIRST-NAME  PIC X(15).
+                   20  RENTER-INITIAL  PIC X(2).
+                   20  RENTER-LAST-NAME   PIC  X(28).
+               10  RENTER-ADDRESS PIC X(61).
+               10  RETURN-DATE.
+                   20  MODEL-YEAR    PIC 9(4).
+                   20  MODEL-MONTH   PIC 9(2).
+                   20  MODEL-DAY     PIC 9(2).
+       working-storage section.
+
+       procedure division.
+
+
+           goback.
+
+       end program lab3.
