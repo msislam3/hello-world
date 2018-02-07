@@ -31,10 +31,11 @@ public class Simulator {
 			
 			try {
 				Elevator elevator = system.callUp( 0);
-				elevator.addPersons( 1);			
-				elevator.requestStop( 10);
+				elevator.addPersons( 1);	
+				elevator.requestStop( 4);
+				//elevator.requestStop( 10);
 				Thread.sleep(1000);
-				elevator.requestStop( 2);
+				/*elevator.requestStop( 2);
 				Thread.sleep(1000);
 				elevator.requestStop( 5);
 				Thread.sleep(1000);
@@ -42,7 +43,7 @@ public class Simulator {
 				Thread.sleep(1000);
 				elevator.requestStop( 20);
 				Thread.sleep(1000);
-				elevator.requestStop( 0);
+				elevator.requestStop( 0);*/
 			} catch (InterruptedException e1) {				
 				e1.printStackTrace();
 			}

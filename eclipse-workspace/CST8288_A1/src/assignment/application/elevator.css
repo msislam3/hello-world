@@ -9,6 +9,14 @@
 }
 
 #info{
+	-fx-min-width: 100;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+	-fx-border-style: solid;
+}
+
+#infotext{
+	-fx-min-width: 50;
 	-fx-border-color: black;
 	-fx-border-width: 1;
 	-fx-border-style: solid;

@@ -26,6 +26,7 @@ public class ElevatorImp extends Observable implements Elevator{
 		this.capacity = CAPACITY_PERSONS;
 		this.panel = panel;
 		this.currentFloor = 0;
+		this.state = MovingState.Idle;
 	}
 
 	/**
@@ -36,14 +37,29 @@ public class ElevatorImp extends Observable implements Elevator{
 	public void moveTo(int targetFloor) {
 		if(targetFloor < 0 ) throw new IllegalArgumentException("Floor cannot be negative");
 		
-		//move from current floor to requested floor. Calculate power consumed		
+		//Going up or down? 
 		int step = targetFloor - currentFloor < 0 ? -1: 1;
-		state = targetFloor - currentFloor < 0 ? MovingState.SlowDown: MovingState.SlowUp;
+		
+		MovingState newState;
+		
+		//Change state based on direction. Elevator transition from Idle -> SlowDown or Idle -> SlowUp
+		newState = targetFloor - currentFloor < 0 ? MovingState.SlowDown: MovingState.SlowUp;
+		System.out.println("Old State "+state+" New State "+newState + " Current Floor "+currentFloor+" Target Floor "+targetFloor);
+		state = newState;
 		
 		while(currentFloor != targetFloor) {			
 			currentFloor+= step;
+			
+			//Got into new floor should calculate power
 			calculatePowerUsed();
 			
+			//Change state based on position. If the target floor is just one floor away we should go to slow state or else we will go to normal state  
+			int diff = Math.abs(currentFloor-targetFloor);
+			newState = diff <= 1 ? state.slow() : state.normal();		
+			System.out.println("Old State "+state+" New State "+newState + " Current Floor "+currentFloor+" Target Floor "+targetFloor);
+			state = newState;
+			
+			//notify changes to observer about the data changes
 			setChanged();
 			List<Integer> data = new ArrayList<>();
 			data.add(currentFloor);
@@ -51,6 +67,9 @@ public class ElevatorImp extends Observable implements Elevator{
 			data.add((int)powerUsed);
 			notifyObservers(data);
 		}
+		
+		//Reached destination so go to idle state
+		state = MovingState.Idle;
 	}
 
 	/**
@@ -133,6 +152,6 @@ public class ElevatorImp extends Observable implements Elevator{
 	}
 	
 	private void calculatePowerUsed() {
-		powerUsed += 2*POWER_START_STOP;
+		powerUsed += state.isGoingSlow() ? POWER_START_STOP : POWER_CONTINUOUS;
 	}
 }

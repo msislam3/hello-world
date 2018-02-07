@@ -38,6 +38,13 @@ public class ElevatorApplication extends Application implements Observer {
 		infoPane.setHgap(2);
 		infoPane.setMinWidth(150);
 		
+		powerUsageLabel.setId("info");
+		targetFloorLabel.setId("info");
+		currentFloorLabel.setId("info");
+		
+		//does not have any effect
+		powerUsageText.setId("info");
+		
 		infoPane.add(powerUsageLabel, 0, 0);
 		infoPane.add(targetFloorLabel, 0, 1);
 		infoPane.add(currentFloorLabel, 0, 2);

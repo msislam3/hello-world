@@ -25,7 +25,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(floor < MIN_FLOOR ) throw new IllegalArgumentException("Cannot go below the minimum floor");
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
 		
-			
+		//TODO: Check what to do?
 	}
 
 	/**
@@ -38,6 +38,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(floor < MIN_FLOOR ) throw new IllegalArgumentException("Cannot go below the minimum floor");
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
 		
+		//move the elevator to the requested floor
 		elevator.moveTo(floor);
 		return elevator;
 	}
@@ -52,6 +53,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(floor < MIN_FLOOR ) throw new IllegalArgumentException("Cannot go below the minimum floor");
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
 		
+		//move the elevator to the requested floor
 		elevator.moveTo(floor);
 		return elevator;
 	}
