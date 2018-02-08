@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sham0061.androidlabs.StartActivity">
+    tools:context="com.example.rifat.androidlabs.StartActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_message"
+        android:text="@string/hello_messege"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ButtonText"
-        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="283dp" />
 
 </android.support.constraint.ConstraintLayout>

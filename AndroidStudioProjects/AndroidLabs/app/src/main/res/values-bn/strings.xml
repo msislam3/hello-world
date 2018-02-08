@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidLabs</string>
+    <string name="hello_messege">হ্যালো বিশ্ব!</string>
+    <string name="ButtonText">আমি একটি বাটন</string>
+    <string name="LoginText">লগইন</string>
+    <string name="HintNameText">নাম</string>
+    <string name="PasswordText">পাসওয়ার্ড</string>
+    <string name="RadiobuttonText">রেডিওবাটন</string>
+    <string name="CheckboxText">চেকবাক্স</string>
+    <string name="SwitchText">এটা কি করে?</string>
+    <string name="dialog_message">আপনি কি প্রস্থান করতে চান?</string>
+    <string name="dialog_title">প্রস্থান</string>
+    <string name="ok">হাঁ</string>
+    <string name="cancel">না</string>
+</resources>
