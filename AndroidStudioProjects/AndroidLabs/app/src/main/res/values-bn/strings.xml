@@ -13,4 +13,6 @@
     <string name="dialog_title">প্রস্থান</string>
     <string name="ok">হাঁ</string>
     <string name="cancel">না</string>
+    <string name="StartChat">চ্যাট শুরু করুন</string>
+    <string name="Send">পাঠান</string>
 </resources>

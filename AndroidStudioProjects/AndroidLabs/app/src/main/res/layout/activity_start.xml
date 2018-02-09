@@ -7,6 +7,7 @@
     tools:context="com.example.rifat.androidlabs.StartActivity">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_messege"
@@ -19,8 +20,17 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text"
         android:text="@string/ButtonText"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="283dp" />
+
+    <Button
+        android:id="@+id/buttonChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        app:layout_constraintLeft_toRightOf="@id/button"
+        android:text="@string/StartChat" />
 
 </android.support.constraint.ConstraintLayout>
