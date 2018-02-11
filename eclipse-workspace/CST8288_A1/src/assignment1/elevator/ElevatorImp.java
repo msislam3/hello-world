@@ -1,6 +1,7 @@
 package assignment1.elevator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
@@ -37,39 +38,45 @@ public class ElevatorImp extends Observable implements Elevator{
 	public void moveTo(int targetFloor) {
 		if(targetFloor < 0 ) throw new IllegalArgumentException("Floor cannot be negative");
 		
-		//Going up or down? 
-		int step = targetFloor - currentFloor < 0 ? -1: 1;
-		
-		MovingState newState;
-		
-		//Change state based on direction. Elevator transition from Idle -> SlowDown or Idle -> SlowUp
-		newState = targetFloor - currentFloor < 0 ? MovingState.SlowDown: MovingState.SlowUp;
-		System.out.println("Old State "+state+" New State "+newState + " Current Floor "+currentFloor+" Target Floor "+targetFloor);
-		state = newState;
-		
-		while(currentFloor != targetFloor) {			
-			currentFloor+= step;
-			
-			//Got into new floor should calculate power
-			calculatePowerUsed();
-			
-			//Change state based on position. If the target floor is just one floor away we should go to slow state or else we will go to normal state  
-			int diff = Math.abs(currentFloor-targetFloor);
-			newState = diff <= 1 ? state.slow() : state.normal();		
-			System.out.println("Old State "+state+" New State "+newState + " Current Floor "+currentFloor+" Target Floor "+targetFloor);
-			state = newState;
+		while(currentFloor != targetFloor) {
+			if(state == MovingState.Idle) {
+				//Change state based on direction. Elevator transition from Idle -> SlowDown or Idle -> SlowUp
+				MovingState newState = targetFloor - currentFloor < 0 ? MovingState.SlowDown: MovingState.SlowUp;
+				System.out.println("Old State: "+state+" New State: "+newState + " Current Floor: "+currentFloor+" Target Floor: "+targetFloor);
+				setState(newState);
+			}else if(state == MovingState.SlowUp || state == MovingState.SlowDown || state == MovingState.Up || state == MovingState.Down) {
+				processMovingState(targetFloor);
+			}else {
+				throw new UnsupportedOperationException("Elevator in an invalid state: "+state.toString());
+			}
 			
 			//notify changes to observer about the data changes
 			setChanged();
-			List<Integer> data = new ArrayList<>();
-			data.add(currentFloor);
-			data.add(targetFloor);
-			data.add((int)powerUsed);
+			List<Number> data = Arrays.asList(currentFloor, targetFloor, powerUsed);
 			notifyObservers(data);
 		}
 		
 		//Reached destination so go to idle state
-		state = MovingState.Idle;
+		setState(MovingState.Idle);
+	}
+	
+	private void processMovingState(int targetFloor) {
+		//Going up or down? 
+		int step = targetFloor - currentFloor < 0 ? -1: 1;		
+		currentFloor+= step;
+		
+		//Got into new floor should calculate power
+		calculatePowerUsed();
+		
+		//Change state based on position. If the target floor is just one floor away we should go to slow state or else we will go to normal state  
+		int diff = Math.abs(currentFloor-targetFloor);
+		MovingState newState = diff <= 1 ? state.slow() : state.normal();	
+		System.out.println("Old State: "+state+" New State: "+newState + " Current Floor: "+currentFloor+" Target Floor: "+targetFloor);
+		setState(newState);
+	}
+
+	private void setState(MovingState state) {
+		this.state = state;
 	}
 
 	/**
@@ -79,6 +86,7 @@ public class ElevatorImp extends Observable implements Elevator{
 	@Override
 	public void addPersons(int persons) {
 		if(persons < 1 ) throw new IllegalArgumentException("Persons cannot be less than one");
+		if(capacity < persons) throw new IllegalArgumentException("Elevator does not have enough capacity to add these persons");
 		
 		//decrease the capacity
 		capacity = capacity - persons;
@@ -152,6 +160,10 @@ public class ElevatorImp extends Observable implements Elevator{
 	}
 	
 	private void calculatePowerUsed() {
-		powerUsed += state.isGoingSlow() ? POWER_START_STOP : POWER_CONTINUOUS;
+		if(state.isGoingSlow()) {
+			powerUsed += POWER_START_STOP;
+		}else if(state.isGoingNormal()) {
+			powerUsed += POWER_CONTINUOUS;
+		}
 	}
 }

@@ -116,4 +116,12 @@ public enum MovingState {
 	public boolean isGoingSlow() {
 		return this == MovingState.SlowDown || this == MovingState.SlowUp;
 	}
+	
+	/**
+	 * return true if state is {@link MovingState#Up} or {@link MovingState#Down}
+	 * @return true if state is {@link MovingState#Up} or {@link MovingState#Down}
+	 */
+	public boolean isGoingNormal() {
+		return this == MovingState.Down || this == MovingState.Up;
+	}
 }

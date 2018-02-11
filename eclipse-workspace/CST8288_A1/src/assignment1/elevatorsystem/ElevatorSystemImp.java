@@ -24,6 +24,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	public void requestStop(int floor, Elevator elevator) {
 		if(floor < MIN_FLOOR ) throw new IllegalArgumentException("Cannot go below the minimum floor");
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
+		if(elevator == null) throw new IllegalArgumentException("elevator cannot be null");
 		
 		//TODO: Check what to do?
 	}
