@@ -2,7 +2,7 @@ package assignment1.elevator;
 
 /**
  * 
- * @author MSI
+ * @author Rifat Shams
  */
 public interface Elevator {
 	/**

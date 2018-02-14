@@ -3,13 +3,37 @@ package assignment1.elevatorsystem;
 import assignment1.elevator.Elevator;
 import assignment1.elevator.MovingState;
 
+/**
+ * Class to represent the Elevator System. 
+ * <p>
+ * Implements {@link ElevatorSystem} {@link ElevatorPanel}
+ * 
+ * @author Rifat Shams
+ * @version 1.0.0.0
+ * @since February 15, 2018
+ */
 public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 
+	/**
+	 * maximum floor for the elevator system
+	 */
 	private final int MAX_FLOOR;
+	
+	/**
+	 * minimum floor for the elevator system
+	 */
 	private final int MIN_FLOOR;
 	
+	/**
+	 * elevator included in the elevator system
+	 */
 	private Elevator elevator;
 	
+	/**
+	 * Construct an ElevatorSystemImp with minimum and maximum floor
+	 * @param MIN_FLOOR - The minimum floor for the elevator system
+	 * @param MAX_FLOOR - The maximum floor for the elevator system
+	 */
 	public ElevatorSystemImp(int MIN_FLOOR, int MAX_FLOOR) {
 		this.MAX_FLOOR = MAX_FLOOR;
 		this.MIN_FLOOR = MIN_FLOOR;
@@ -19,6 +43,9 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 * called from {@link Elevator} to inform {@link ElevatorSystem} of new floor.
 	 * @param floor - new floor to which {@link Elevator} is moving.
 	 * @param elevator - reference to the calling elevator.
+	 * @throws IllegalArgumentException when floor is less than MIN_FLOOR
+	 * @throws IllegalArgumentException when floor is higher than MAX_FLOOR
+	 * @throws IllegalArgumentException when elevator is null
 	 */
 	@Override
 	public void requestStop(int floor, Elevator elevator) {
@@ -33,6 +60,8 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 * when calling up it means the passenger intends to travel to a higher floor.
 	 * @param floor - passengers current floor when calling for an {@link Elevator}
 	 * @return an {@link ElevatorSystem} that has reach the requested floor
+	 * @throws IllegalArgumentException when floor is less than MIN_FLOOR
+	 * @throws IllegalArgumentException when floor is higher than MAX_FLOOR
 	 */
 	@Override
 	public Elevator callUp(int floor) {
@@ -48,6 +77,8 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 * when calling down it means the passenger intends to travel to a lower floor.
 	 * @param floor - passengers current floor when calling for an {@link Elevator}
 	 * @return an {@link ElevatorSystem} that has reach the requested floor
+	 * @throws IllegalArgumentException when floor is less than MIN_FLOOR
+	 * @throws IllegalArgumentException when floor is higher than MAX_FLOOR
 	 */
 	@Override
 	public Elevator callDown(int floor) {
@@ -62,9 +93,11 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	/**
 	 * add an {@link Elevator} to {@link ElevatorSystem}, if implemented multiple {@link Elevator} can be added
 	 * @param elevator - {@link Elevator} object to be added to {@link ElevatorSystem}
+	 * @throws IllegalArgumentException when elevator is null
 	 */
 	@Override
 	public void addElevator(Elevator elevator) {
+		if(elevator == null) throw new IllegalArgumentException();
 		this.elevator = elevator;
 	}
 

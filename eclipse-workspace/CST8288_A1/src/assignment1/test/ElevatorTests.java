@@ -71,4 +71,31 @@ class ElevatorTests {
 		
 		assertEquals(10, elevator.getFloor(), "requestStop did not  move the elevator to correct floor");
 	}
+	
+	@Test
+	void testMoveTo() {
+		system = new ElevatorSystemImp(MIN_FLOOR, MAX_FLOOR);
+		elevator = new ElevatorImp(CAPACITY, system);
+		
+		try {
+			elevator.moveTo(-1);
+			fail("moveTo cannot take negative number");
+		}catch(IllegalArgumentException e) {}
+		
+		elevator.moveTo(1);	
+		assertEquals(1, elevator.getFloor(), "moveTo did not  move the elevator to correct floor");
+		assertEquals(2, elevator.getPowerConsumed(), "moveTo did not calculate power consumed correctly");
+		
+		elevator.moveTo(1+2);	
+		assertEquals(3, elevator.getFloor(), "moveTo did not  move the elevator to correct floor");
+		assertEquals(2+4, elevator.getPowerConsumed(), "moveTo did not calculate power consumed correctly");
+		
+		elevator.moveTo(1+2+3);	
+		assertEquals(6, elevator.getFloor(), "moveTo did not  move the elevator to correct floor");
+		assertEquals(2+4+5, elevator.getPowerConsumed(), "moveTo did not calculate power consumed correctly");
+		
+		elevator.moveTo(1+2+3+4);	
+		assertEquals(10, elevator.getFloor(), "moveTo did not  move the elevator to correct floor");
+		assertEquals(2+4+5+6, elevator.getPowerConsumed(), "moveTo did not calculate power consumed correctly");
+	}
 }

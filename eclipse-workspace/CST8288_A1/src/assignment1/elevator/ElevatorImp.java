@@ -1,27 +1,70 @@
 package assignment1.elevator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
 import assignment1.elevatorsystem.ElevatorPanel;
 
+/**
+ * Class to represent the Elevator. 
+ * <p>
+ * Extends {@link Observable}, Implements {@link Elevator}
+ * 
+ * @author Rifat Shams
+ * @version 1.0.0.0
+ * @since February 15, 2018
+ */
 public class ElevatorImp extends Observable implements Elevator{
 
+	/**
+	 * Power consumed during start and stop 
+	 */
 	private static final int POWER_START_STOP = 2;
+	
+	/**
+	 * Power consumed during continuous traveling
+	 */
 	private static final int POWER_CONTINUOUS = 1;
+	
 	private static final long SLEEP_START_STOP = 50;
 	private static final long SLEEP_CONTINUOUS = 25;
 	
+	/**
+	 * Maximum capacity of the Elevator
+	 */
 	private final double MAX_CAPACITY_PERSONS;
 	
+	/**
+	 * Total power used by the Elevator
+	 */
 	private double powerUsed;
+	
+	/**
+	 * Current floor of the Elevator
+	 */
 	private int currentFloor;
+	
+	/**
+	 * Current capacity of the Elevator
+	 */
 	private double capacity;
+	
+	/**
+	 * The panel of the Elevator System
+	 */
 	private ElevatorPanel panel;
+	
+	/**
+	 * Current state of the Elevator
+	 */
 	private MovingState state;
 	
+	/**
+	 * Construct an ElevatorImp with specified capacity which uses a specific {@link ElevatorPanel}
+	 * @param CAPACITY_PERSONS - The capacity of the elevator
+	 * @param panel - The {@link ElevatorPanel} used by the elevator
+	 */
 	public ElevatorImp(double CAPACITY_PERSONS, ElevatorPanel panel) {
 		MAX_CAPACITY_PERSONS = CAPACITY_PERSONS;
 		this.capacity = CAPACITY_PERSONS;
@@ -31,7 +74,7 @@ public class ElevatorImp extends Observable implements Elevator{
 	}
 
 	/**
-	 * move {@link Elevator} to a specific floor
+	 * Move {@link Elevator} to a specific floor
 	 * @param floor - target floor
 	 */
 	@Override
@@ -60,6 +103,10 @@ public class ElevatorImp extends Observable implements Elevator{
 		setState(MovingState.Idle);
 	}
 	
+	/**
+	 * Method to update current floor, power used and state of a moving elevator
+	 * @param targetFloor
+	 */
 	private void processMovingState(int targetFloor) {
 		//Going up or down? 
 		int step = targetFloor - currentFloor < 0 ? -1: 1;		
@@ -75,6 +122,10 @@ public class ElevatorImp extends Observable implements Elevator{
 		setState(newState);
 	}
 
+	/**
+	 * Set state of {@link Elevator}
+	 * @param state - new state
+	 */
 	private void setState(MovingState state) {
 		this.state = state;
 	}
@@ -159,6 +210,9 @@ public class ElevatorImp extends Observable implements Elevator{
 		return capacity == MAX_CAPACITY_PERSONS;
 	}
 	
+	/**
+	 * calculate the power used by the Elevator during movement
+	 */
 	private void calculatePowerUsed() {
 		if(state.isGoingSlow()) {
 			powerUsed += POWER_START_STOP;
