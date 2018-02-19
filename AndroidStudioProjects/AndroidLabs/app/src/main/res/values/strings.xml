@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidLabs</string>
+    <string name="app_name">Lab5</string>
     <string name="hello_messege">Hello World!</string>
     <string name="ButtonText">I\'m a button</string>
     <string name="LoginText">Login</string>
