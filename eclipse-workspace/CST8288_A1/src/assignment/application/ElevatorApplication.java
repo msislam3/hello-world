@@ -236,8 +236,8 @@ public class ElevatorApplication extends Application implements Observer {
 		 */
 		@Override
 		public void handle(long now) {
-			//If enough time has not passed yet since last update return
-			if(now - prevFrame < timeCheck) {
+			//If queue is empty or enough time has not passed yet since last update return
+			if(queue.isEmpty() || now - prevFrame < timeCheck) {
 				return;
 			}		
 			prevFrame = now;
@@ -246,7 +246,6 @@ public class ElevatorApplication extends Application implements Observer {
 			floors[currentFloor].setId(EMPTY);
 			
 			List<Number> data = queue.poll();
-			if(data == null) return;
 			
 			currentFloor = data.get(0).intValue();
 			targetFloor = data.get(1).intValue();

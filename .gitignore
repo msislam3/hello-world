@@ -87,3 +87,10 @@ ipch/
 *.vsp
 *.vspx
 *.pdf
+
+# Gradle files
+.gradle/
+build/
+
+# COBOL
+.metadata/

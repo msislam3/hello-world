@@ -153,7 +153,6 @@ public class ElevatorImp extends Observable implements Elevator{
 		
 		//move from current floor to requested floor. Calculate power consumed
 		panel.requestStop(floor, this);
-		moveTo(floor);
 	}
 
 	/**

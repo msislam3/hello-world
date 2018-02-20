@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="assignment.application.Simulator" x="1046" y="94">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="assignment1.elevatorsystem.ElevatorSystem"
+            endpointName="system" kind="Simple"/>
+        <Communication destinationClassName="assignment1.elevatorsystem.ElevatorSystem"/>
+    </Class>
+    <Class name="assignment1.elevator.Elevator" x="133" y="55">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="assignment.application.ElevatorApplication" x="981" y="454">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="assignment.application.Simulator"
+            endpointName="simulator" kind="Simple"/>
+        <Communication destinationClassName="assignment.application.Simulator"/>
+    </Class>
+    <Class name="assignment1.elevator.ElevatorImp" x="38" y="283">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="true"
+            default-accepted="false" static-accepted="true"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="assignment1.elevator.Elevator"/>
+        <Association
+            destinationClassName="assignment1.elevator.MovingState"
+            endpointName="state" kind="Simple"/>
+        <Association
+            destinationClassName="assignment1.elevatorsystem.ElevatorPanel"
+            endpointName="panel" kind="Simple"/>
+        <Communication destinationClassName="assignment1.elevator.MovingState"/>
+        <Communication destinationClassName="assignment1.elevatorsystem.ElevatorPanel"/>
+    </Class>
+    <Class name="assignment1.elevatorsystem.ElevatorSystem" x="731" y="79">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="assignment1.elevator.MovingState" x="61" y="575">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="assignment1.elevatorsystem.ElevatorSystemImp" x="378" y="27">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="assignment1.elevatorsystem.ElevatorSystem"/>
+        <Extension destinationClassName="assignment1.elevatorsystem.ElevatorPanel"/>
+        <Association
+            destinationClassName="assignment1.elevator.Elevator"
+            endpointName="elevator" kind="Simple"/>
+        <Communication destinationClassName="assignment1.elevator.Elevator"/>
+    </Class>
+    <Class name="assignment1.elevatorsystem.ElevatorPanel" x="464" y="341">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+</ClassDiagram>

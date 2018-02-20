@@ -53,7 +53,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
 		if(elevator == null) throw new IllegalArgumentException("elevator cannot be null");
 		
-		//TODO: Check what to do?
+		elevator.moveTo(floor);
 	}
 
 	/**

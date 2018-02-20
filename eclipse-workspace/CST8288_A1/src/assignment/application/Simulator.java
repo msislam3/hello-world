@@ -29,23 +29,14 @@ public class Simulator {
 				e1.printStackTrace();
 			}
 			
-			try {
-				Elevator elevator = system.callUp( 0);
-				elevator.addPersons( 1);	
-				elevator.requestStop( 10);
-				Thread.sleep(1000);
-				elevator.requestStop( 2);
-				Thread.sleep(1000);
-				elevator.requestStop( 5);
-				Thread.sleep(1000);
-				elevator.requestStop( 9);
-				Thread.sleep(1000);
-				elevator.requestStop( 20);
-				Thread.sleep(1000);
-				elevator.requestStop( 0);
-			} catch (InterruptedException e1) {				
-				e1.printStackTrace();
-			}
+			Elevator elevator = system.callUp( 0);
+			elevator.addPersons( 1);	
+			elevator.requestStop( 10);
+			elevator.requestStop( 2);
+			elevator.requestStop( 5);
+			elevator.requestStop( 9);
+			elevator.requestStop( 20);
+			elevator.requestStop( 0);	
 		});
 		e.shutdown();
 	}
