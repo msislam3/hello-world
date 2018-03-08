@@ -1,20 +1,19 @@
 package elevatorsystem;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observer;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import elevator.Elevator;
-import elevator.ElevatorImp;
 import elevator.MovingState;
 
 /**
@@ -49,17 +48,16 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	private Map<Elevator, List<Integer>> stops;
 	
 	
-	private Map<Elevator, AtomicBoolean> elevatorUsed;
-	
-	private ExecutorService service;
-	
-	private boolean shutdown;
+	private AtomicBoolean[] elevatorUsed;
+	private AtomicBoolean alive = new AtomicBoolean(true);
 	
 	private Runnable run;
 	
 	private MovingState callDirecton;
 	
-	private ScheduledExecutorService executorService;
+	private ExecutorService executorService;
+	
+	private QuickSort sorter = new QuickSort();
 	
 	/**
 	 * Construct an ElevatorSystemImp with minimum and maximum floor
@@ -71,9 +69,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		this.MIN_FLOOR = MIN_FLOOR;
 		
 		stops = new HashMap<Elevator, List<Integer>>();
-		elevatorUsed = new HashMap<Elevator, AtomicBoolean>();
-		
-		executorService = Executors.newScheduledThreadPool( 4);
+		elevatorUsed = new AtomicBoolean[stops.size()];
 	}
 	
 	/**
@@ -90,7 +86,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
 		if(elevator == null) throw new IllegalArgumentException("Elevator cannot be null");
 		
-		requestStops(elevator, new int[] {floor});
+		requestStops(elevator, floor);
 	}
 	
 	/**
@@ -101,23 +97,39 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 */
 	@Override
 	public void requestStops(Elevator elevator, int... floors) {
+		//Q - why are we using optional argument rather than array. It makes clear code in the calling function
+		
 		if(elevator == null) throw new IllegalArgumentException("Elevator cannot be null");
 		
-		synchronized (REQUEST_LOCK) {
-			if (!stops.containsKey(elevator)) {
-				throw new IllegalArgumentException("Elevator is not present in the system");
-			} else {
-				ArrayList<Integer> stopList = (ArrayList<Integer>) stops.get(elevator);
-
+		if (!stops.containsKey(elevator)) {
+			throw new IllegalArgumentException("Elevator is not present in the system");
+		} else {
+			LinkedList<Integer> stopList = (LinkedList<Integer>) stops.get(elevator);
+		
+			synchronized (REQUEST_LOCK) {	
+				//When callUp is called, sort in ascending order, when callDown is called sort in descending order
+				// in callUp method set movingDirection to MovingState.Up, in callDown set to MovingState.Down
+				// here sort based on movingDirection
+				
+				//Because callUp/Down and requestStops are called sequentially from the same thread we can use this way
+				//Because different threads calling callUp/callDown calls after a break, multiple threads don't collide
+				//each other for the direction 
+				
+				//What is the advantage of sorting before adding and after adding - 46 min
+				
+				if(callDirecton == MovingState.Up) {
+					sorter.sort(floors,true);
+				}
+				else if(callDirecton == MovingState.Down)
+				{
+					sorter.sort(floors,false);
+				}
+				
 				for (int floor : floors) {
 					if (floor >= MIN_FLOOR && floor <= MAX_FLOOR && !stopList.contains(floor)) {
 						stopList.add(floor);
 					}
 				}
-
-				// TODO Use quicksort
-				// TODO How to get direction
-				Collections.sort(stopList);
 			}
 		}
 	}
@@ -134,8 +146,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(floor < MIN_FLOOR ) throw new IllegalArgumentException("Cannot go below the minimum floor");
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
 		
-		//TODO How to select elevator, should I move the elevator or add to stop
-		Elevator result = null;
+		Elevator result = call(floor, MovingState.Up);
 		return result;
 	}
 
@@ -151,10 +162,41 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(floor < MIN_FLOOR ) throw new IllegalArgumentException("Cannot go below the minimum floor");
 		if(floor > MAX_FLOOR ) throw new IllegalArgumentException("Cannot go higher than maximum floor");
 		
-		//move the elevator to the requested floor
-		//TODO How to select elevator, should I move the elevator or add to stop
-		Elevator result = null;
+		Elevator result = call(floor, MovingState.Down);
 		return result;
+	}
+	
+	private Elevator call(int floor, MovingState direction) {
+		callDirecton = direction;
+
+		Future<Elevator> f = executorService.submit(() ->{
+			Elevator elevator = getAvailableElevatorIndex(floor);
+			elevator.moveTo(floor);
+			return elevator;
+		});
+			
+		Elevator selectedElevator = null;
+		try {
+			selectedElevator = f.get();
+		} catch (InterruptedException | ExecutionException e) {} 
+		
+		return selectedElevator;
+	}
+	
+	private Elevator getAvailableElevatorIndex(int floor) {
+		Elevator selectedElevator = null;
+		int distance = Integer.MAX_VALUE;
+		
+		//Select an elevator which is idle, whose list of stops is empty and closest to the destination floor
+		//inUse for elevator id is false - ??
+		for (Elevator elevator : stops.keySet()) {
+			if(elevator.isIdle()  && stops.get(elevator).size() == 0 && Math.abs(elevator.getFloor() - floor) < distance) {
+				selectedElevator = elevator; 
+				distance = Math.abs(elevator.getFloor() - floor) + 1;
+			}
+		}
+		
+		return selectedElevator;
 	}
 
 	/**
@@ -167,10 +209,23 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 		if(elevator == null) throw new IllegalArgumentException();
 		if(stops.containsKey(elevator)) throw new IllegalArgumentException();
 		
-		synchronized (REQUEST_LOCK) {
-			stops.put(elevator, new ArrayList<Integer>());
-			elevatorUsed.put(elevator, new AtomicBoolean(false));
+		// Use LinkedList - we will remove a lot of data, each time we remove a data in a Array it will have
+		// to move all the data after it so operation is expensive O(n). In linked list this operation is O(1)
+		stops.put(elevator, new LinkedList<Integer>());
+		
+		//It would be much more efficient if map is used
+		elevatorUsed = new AtomicBoolean[stops.size()];
+		for (int i=0; i<elevatorUsed.length; i++) {
+			elevatorUsed[i] = new AtomicBoolean(false);
 		}
+		
+		executorService = Executors.newFixedThreadPool(stops.size()+1); 
+		//Fixed thread pool. Fixed number of threads created. If all the threads are running, new work will wait.
+		//Q - How many threads running stops.size()+1
+		//Q - Why fixed thread pool better - we know how many threads we need so we can create exactly that number of 
+		//threads. We don't need to kill any thread
+		
+		//Creating a new thread is expensive. Executor service creates a pool of threads and reuses it
 	}
 
 	/**
@@ -179,7 +234,6 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 */
 	@Override
 	public int getCurrentFloor() {
-		// TODO What to return?
 		return 0;
 	}
 
@@ -218,26 +272,15 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	public double getPowerConsumed() {
 		double totalPowerConsumed = 0.0;
 		
-		synchronized (REQUEST_LOCK) {
-			for (Elevator elevator : stops.keySet()) {
-				totalPowerConsumed += elevator.getPowerConsumed();
-			}
+		for (Elevator elevator : stops.keySet()) {
+			totalPowerConsumed += elevator.getPowerConsumed();
 		}
-		
+			
 		return totalPowerConsumed;
 	}
 	
 	private void floorCheck(int floor) {
 		
-	}
-	
-	private Elevator call(int floor, MovingState direction) {
-		return null;
-	}
-	
-	private Elevator getAvailableElevatorIndex(int floor) {
-		// TODO 
-		return null;
 	}
 	
 	private boolean checkForElevator() {
@@ -250,9 +293,7 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 */
 	@Override
 	public int getElevatorCount() {
-		synchronized (REQUEST_LOCK) {
-			return stops.keySet().size();
-		}
+		return stops.keySet().size();
 	}
 
 	/**
@@ -264,11 +305,9 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	public void addObserver(Observer observer) {
 		if(observer == null) throw new IllegalArgumentException();
 		
-		synchronized (REQUEST_LOCK) {
-			for (Elevator elevator : stops.keySet()) {
-				elevator.addObserver(observer);
-			}
-		}
+		for (Elevator elevator : stops.keySet()) {
+			elevator.addObserver(observer);
+		}	
 	}
 
 	/**
@@ -276,10 +315,14 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 */
 	@Override
 	public void shutdown() {
-		shutdown = true;
+		System.out.println( "System Stopping");
+		
+		alive.set(false);
 		
 		//http://www.baeldung.com/java-executor-service-tutorial
 		executorService.shutdown();
+		//this kills only inactive thread not inactive threads
+		
 		try {
 			if(!executorService.awaitTermination(800, TimeUnit.MILLISECONDS)) {
 				executorService.shutdownNow();
@@ -294,38 +337,32 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 */
 	@Override
 	public void start() {
-		Runnable elevatorSystemTask = () ->{
-			//Continue to run until shutdown method is called
-			while(!shutdown) {
-				// TODO Check if its a big lock or not
-				synchronized (REQUEST_LOCK) {
-					//for each elevator in the system, if the elevator is currently idle and it has stops stored 
-					//then move the elevator to the next stop
-					for (Elevator elevator : stops.keySet()) {
-						if(elevator.isIdle()) {
-							ArrayList<Integer> stopList = (ArrayList<Integer>) stops.get(elevator);
-							if(!stopList.isEmpty()) {
-								
-								Runnable task = () ->{
-									//check if the elevator's move to is already called by another thread
-									//if not move the elevator and remove the stop from the list
-									AtomicBoolean value = elevatorUsed.get(elevator);
-									Integer nextStop = stopList.get(0);
-									if(value.compareAndSet(false, true)) {
+
+		run = () ->{	
+			System.out.println( "System Starting");
+			while(alive.get()) {
+				for (Elevator elevator : stops.keySet()) {
+					if(elevator.isIdle()) {
+						LinkedList<Integer> stopList = (LinkedList<Integer>) stops.get(elevator);
+						//use atomic integer and arrays as prof
+						AtomicBoolean value = elevatorUsed[elevator.id()];
+						if(!stopList.isEmpty() && !value.get()) {
+							synchronized (REQUEST_LOCK) {
+								if(value.compareAndSet(false, true)) {
+									Integer nextStop = stopList.remove(0);
+									executorService.submit(() ->{
 										elevator.moveTo(nextStop);
-										stopList.remove(0);
-										value.set(false);
-									}
-								};
-								
-								Future<?> result = executorService.submit(task);
+										value.compareAndSet(true, false);
+									});
+								}
 							}
 						}
 					}
-				}			
+				}
 			}
 		};
 		
-		executorService.execute(elevatorSystemTask);
+		executorService.execute(run);
+		//why use submit instead of execute. Check networking sample
 	}
 }

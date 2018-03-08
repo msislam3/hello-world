@@ -81,7 +81,7 @@ public class ElevatorImp extends Observable implements Elevator{
 	 * @param panel - The {@link ElevatorPanel} used by the elevator
 	 */
 	public ElevatorImp(double CAPACITY_PERSONS, ElevatorPanel panel, int ID) {
-		this(CAPACITY_PERSONS, panel, ID, false);
+		this(CAPACITY_PERSONS, panel, ID, true);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class ElevatorImp extends Observable implements Elevator{
 		//Change state based on position. If the target floor is just one floor away we should go to slow state or else we will go to normal state  
 		int diff = Math.abs(currentFloor-targetFloor);
 		MovingState newState = diff <= 1 ? state.slow() : state.normal();	
-		System.out.println("Old State: "+state+" New State: "+newState + " Current Floor: "+currentFloor+" Target Floor: "+targetFloor);
+		//System.out.println("Old State: "+state+" New State: "+newState + " Current Floor: "+currentFloor+" Target Floor: "+targetFloor);
 		setState(newState);
 	}
 

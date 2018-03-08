@@ -1,27 +1,30 @@
 package elevatorsystem;
 
-import java.util.ArrayList;
 
 //https://www.geeksforgeeks.org/quick-sort/
 public class QuickSort {
-	private Integer[] numbers;
-	private Integer number;
+	private int[] numbers;
+	private int number;
+	private boolean ascending;
 
-	public void sort(ArrayList<Integer> values) {
+	/*public void sort(ArrayList<Integer> values, boolean ascending) {
 		if (values == null || values.size() == 0)
 			return;
 
 		numbers = (Integer[]) values.toArray();
 		number = values.size();
+		this.ascending = ascending;
 		sort(0, number - 1);
-	}
+	}*/
 
-	public void sort(Integer[] values) {
+	public void sort(int[] values, boolean ascending) {
 		if (values == null || values.length == 0)
 			return;
 
 		numbers = values;
 		number = values.length;
+		this.ascending = ascending;
+		
 		sort(0, number - 1);
 	}
 
@@ -51,10 +54,18 @@ public class QuickSort {
 	private int partition(int low, int high) {
 		int pivot = numbers[high];
 		int i = (low - 1); // index of smaller element
+		
 		for (int j = low; j < high; j++) {
-			// If current element is smaller than or
-			// equal to pivot
-			if (numbers[j] <= pivot) {
+			
+			if (ascending && numbers[j] <= pivot) {
+				// If current element is smaller than or
+				// equal to pivot
+				i++;
+				// swap arr[i] and arr[j]
+				swap(i, j);
+			}else if(!ascending && numbers[j] >= pivot) {
+				// If current element is larger than or
+				// equal to pivot
 				i++;
 				// swap arr[i] and arr[j]
 				swap(i, j);

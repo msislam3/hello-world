@@ -125,9 +125,9 @@ public class ElevatorApplication extends Application implements Observer {
 		primaryStage.setTitle("Elevator Simulation");
 		primaryStage.setScene(scene);
 		
-		//animator.start();
+		animator.start();
 		primaryStage.show();
-		//simulator.start();
+		simulator.start();
 	}
 	
 	/**
@@ -239,14 +239,12 @@ public class ElevatorApplication extends Application implements Observer {
 		public void addData(List<Number> data) {
 			if(data == null) throw new IllegalArgumentException("Data cannot be null");
 			
-			System.out.println(data.get(0) +" "+ data.get(1) +" "+data.get(2));
+			//System.out.println(data.get(0) +" "+ data.get(1) +" "+data.get(2));
 			queue.add(data);
 		}
 		
 		/**
 		 * Updates the GUI using data received from the {@link Elevator} periodically
-		 * <p>
-		 * The speed of the update is controlled by timeCheck
 		 */
 		@Override
 		public void handle(long now) {
@@ -255,25 +253,27 @@ public class ElevatorApplication extends Application implements Observer {
 				return;
 			}		
 		
-			//Get the data from the queue for the next update and update the GUI
-			
+			//Get the data from the queue for the next update and update the GUI		
 			List<Number> data = queue.poll();
-			
-			int id = data.get(0).intValue();
-			
-			floors[id][currentFloors[id]].setId(EMPTY);
-			
-			int targetFloor = data.get(2).intValue();
-			double powerUsage = data.get(3).doubleValue();
-			currentFloors[id] = data.get(1).intValue();
-			
-			
-			floors[id][targetFloor].setId(TARGET);
-			floors[id][currentFloors[id]].setId(ELEVATOR);
-			
-			currentFloorText[id].setText(Integer.toString(currentFloors[id]));
-			targetFloorText[id].setText(Integer.toString(targetFloor));
-			powerUsageText[id].setText(Double.toString(powerUsage));	
+			//a thread getting queue.isEmpty() false in line 254 can stil get null data if another thread have already polled the last data
+			//from the queue before it grabing the data
+			if(data != null) {
+				int id = data.get(0).intValue();
+				
+				floors[id][currentFloors[id]].setId(EMPTY);
+				
+				int targetFloor = data.get(2).intValue();
+				double powerUsage = data.get(3).doubleValue();
+				currentFloors[id] = data.get(1).intValue();
+				
+				
+				floors[id][targetFloor].setId(TARGET);
+				floors[id][currentFloors[id]].setId(ELEVATOR);
+				
+				currentFloorText[id].setText(Integer.toString(currentFloors[id]));
+				targetFloorText[id].setText(Integer.toString(targetFloor));
+				powerUsageText[id].setText(Double.toString(powerUsage));	
+			}	
 		}		
 	}
 }
