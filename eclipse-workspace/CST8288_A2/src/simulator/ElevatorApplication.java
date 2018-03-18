@@ -238,8 +238,6 @@ public class ElevatorApplication extends Application implements Observer {
 		 */
 		public void addData(List<Number> data) {
 			if(data == null) throw new IllegalArgumentException("Data cannot be null");
-			
-			//System.out.println(data.get(0) +" "+ data.get(1) +" "+data.get(2));
 			queue.add(data);
 		}
 		
@@ -255,8 +253,8 @@ public class ElevatorApplication extends Application implements Observer {
 		
 			//Get the data from the queue for the next update and update the GUI		
 			List<Number> data = queue.poll();
-			//a thread getting queue.isEmpty() false in line 254 can stil get null data if another thread have already polled the last data
-			//from the queue before it grabing the data
+			//a thread getting queue.isEmpty() false in line 254 can still get null data if another thread have already polled the last data
+			//from the queue before it grabbing the data
 			if(data != null) {
 				int id = data.get(0).intValue();
 				

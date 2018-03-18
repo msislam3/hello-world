@@ -57,8 +57,6 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	
 	private ExecutorService executorService;
 	
-	private QuickSort sorter = new QuickSort();
-	
 	/**
 	 * Construct an ElevatorSystemImp with minimum and maximum floor
 	 * @param MIN_FLOOR - The minimum floor for the elevator system
@@ -94,12 +92,14 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 	 * @param elevator - reference to the calling elevator.
 	 * @param floors - new stops to which {@link Elevator} will travel.
 	 * @throws IllegalArgumentException when elevator is null
+	 * @throws IllegalArgumentException when floors is null
 	 */
 	@Override
 	public void requestStops(Elevator elevator, int... floors) {
 		//Q - why are we using optional argument rather than array. It makes clear code in the calling function
 		
 		if(elevator == null) throw new IllegalArgumentException("Elevator cannot be null");
+		if(floors == null) throw new IllegalArgumentException("Floors cannot be null");
 		
 		if (!stops.containsKey(elevator)) {
 			throw new IllegalArgumentException("Elevator is not present in the system");
@@ -118,11 +118,11 @@ public class ElevatorSystemImp implements ElevatorSystem, ElevatorPanel{
 				//What is the advantage of sorting before adding and after adding - 46 min
 				
 				if(callDirecton == MovingState.Up) {
-					sorter.sort(floors,true);
+					Quick.sort(floors, floors.length, true); 					
 				}
 				else if(callDirecton == MovingState.Down)
 				{
-					sorter.sort(floors,false);
+					Quick.sort(floors, floors.length, false); 				
 				}
 				
 				for (int floor : floors) {
