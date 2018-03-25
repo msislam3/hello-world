@@ -5,9 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by IslamMS1 on 2018-02-19.
- */
 
 public class ChatDatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_ID = "ID";

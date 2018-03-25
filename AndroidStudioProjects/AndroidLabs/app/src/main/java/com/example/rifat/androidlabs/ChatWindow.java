@@ -45,10 +45,6 @@ public class ChatWindow extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_window);
 
-        if (findViewById(R.id.frameChat) == null) {
-            frameExists = true;
-        }
-
         listView = findViewById(R.id.listViewChat);
         editText = findViewById(R.id.editTextChat);
         sendButton = findViewById(R.id.buttonSend);
