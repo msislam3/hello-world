@@ -41,4 +41,10 @@
         app:layout_constraintBottom_toTopOf="@id/button"
         android:text="Weather" />
 
+    <Button
+        android:id="@+id/buttonToolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toolbar" />
+
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_one"
+        android:title="One"
+        android:icon="@drawable/icons8_car_50"
+        android:orderInCategory="101"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_two"
+        android:title="Two"
+        android:icon="@drawable/icons8_happy_50"
+        android:orderInCategory="102"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_three"
+        android:title="Three"
+        android:icon="@drawable/icons8_time_50"
+        android:orderInCategory="103"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_four"
+        android:title="About"
+        android:orderInCategory="104"
+        app:showAsAction="never" />
+
+</menu>

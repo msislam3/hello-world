@@ -14,4 +14,7 @@
     <string name="cancel">No</string>
     <string name="StartChat">Start Chat</string>
     <string name="Send">Send</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="title_dialog">Do you want to go back?</string>
+    <string name="new_message">New Message</string>
 </resources>

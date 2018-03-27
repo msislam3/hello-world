@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class StartActivity extends Activity {
 
@@ -14,6 +15,7 @@ public class StartActivity extends Activity {
     private Button button;
     private Button buttonChat;
     private Button buttonWeather;
+    private Button buttonToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,15 @@ public class StartActivity extends Activity {
             }
         });
 
+
+        buttonToolbar = findViewById(R.id.buttonToolbar);
+        buttonToolbar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartActivity.this, TestToolbar.class);
+                startActivity(intent);
+            }
+        });
 
         Log.i(ACTIVITY_NAME, "In onCreate()");
     }
