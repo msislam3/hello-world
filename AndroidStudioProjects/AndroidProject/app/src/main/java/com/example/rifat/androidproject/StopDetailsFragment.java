@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -32,8 +33,13 @@ public class StopDetailsFragment extends Fragment {
     private int stopNumber = 0;
     private boolean isTablet;
 
+    private String stopNo;
+    private String stopDescription;
+    private String error;
+
     private TextView textViewStopNumber;
     private Button buttonRemoveStop;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +75,9 @@ public class StopDetailsFragment extends Fragment {
                 }
             }
         });
+
+        progressBar = view.findViewById(R.id.stopDetailsProgressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         StopQuery task = new StopQuery();
         task.execute();
@@ -122,7 +131,6 @@ public class StopDetailsFragment extends Fragment {
         }
 
         private void parseStopData(XmlPullParser parser) throws XmlPullParserException, IOException{
-            parser.require(XmlPullParser.START_TAG, ns, "current");
             while (parser.next() != XmlPullParser.END_TAG)
             {
                 if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -131,17 +139,95 @@ public class StopDetailsFragment extends Fragment {
 
                 String name = parser.getName();
                 Log.i(ACTIVITY_NAME, "tag: "+name);
-                skip(parser);
-                /*if (name.equals("temperature")) {
-                    readTemperature(parser);
-                } else if (name.equals("weather")) {
-                    readWeather(parser);
-                } else if (name.equals("wind")) {
-                    readWind(parser);
+                if (name.equalsIgnoreCase("soap:Body")) {
+
+                } else if (name.equalsIgnoreCase("GetRouteSummaryForStopResponse")){
+
+                } else if (name.equalsIgnoreCase("GetRouteSummaryForStopResult")){
+
+                } else if (name.equalsIgnoreCase("StopNo")) {
+                    readStopNo(parser);
+                } else if (name.equalsIgnoreCase("StopDescription")) {
+                    readStopDescription(parser);
+                } else if (name.equalsIgnoreCase("Error")) {
+                    readError(parser);
+                } else if (name.equalsIgnoreCase("Routes")) {
+                    readRoutes(parser);
                 } else {
                     skip(parser);
-                }*/
+                }
             }
+        }
+
+        private void readRoutes(XmlPullParser parser) throws XmlPullParserException, IOException{
+            while (parser.next() != XmlPullParser.END_TAG)
+            {
+                if (parser.getEventType() != XmlPullParser.START_TAG) {
+                    continue;
+                }
+
+                String name = parser.getName();
+                Log.i(ACTIVITY_NAME, "tag: "+name);
+                if (name.equalsIgnoreCase("Route")) {
+                    readRoute(parser);
+                } else {
+                    skip(parser);
+                }
+            }
+        }
+
+        private void readRoute(XmlPullParser parser) throws XmlPullParserException, IOException{
+            while (parser.next() != XmlPullParser.END_TAG)
+            {
+                if (parser.getEventType() != XmlPullParser.START_TAG) {
+                    continue;
+                }
+
+                String name = parser.getName();
+                Log.i(ACTIVITY_NAME, "tag: "+name);
+                if (name.equalsIgnoreCase("RouteNo")) {
+                    String routeNo = readText(parser);
+                    Log.i(ACTIVITY_NAME, "routeNo: "+routeNo);
+                } else if (name.equalsIgnoreCase("DirectionID")) {
+                    String directionId = readText(parser);
+                    Log.i(ACTIVITY_NAME, "directionId: "+directionId);
+                } else if (name.equalsIgnoreCase("Direction")) {
+                    String direction = readText(parser);
+                    Log.i(ACTIVITY_NAME, "direction: "+direction);
+                } else if (name.equalsIgnoreCase("RouteHeading")) {
+                    String routeHeading = readText(parser);
+                    Log.i(ACTIVITY_NAME, "routeHeading: "+routeHeading);
+                } else {
+                    skip(parser);
+                }
+            }
+        }
+
+        private void readError(XmlPullParser parser) throws XmlPullParserException, IOException{
+            parser.require(XmlPullParser.START_TAG, ns, "Error");
+            error = readText(parser);
+            parser.require(XmlPullParser.END_TAG, ns, "Error");
+        }
+
+        private void readStopDescription(XmlPullParser parser) throws XmlPullParserException, IOException{
+            parser.require(XmlPullParser.START_TAG, ns, "StopDescription");
+            stopDescription = readText(parser);
+            parser.require(XmlPullParser.END_TAG, ns, "StopDescription");
+        }
+
+        private void readStopNo(XmlPullParser parser) throws XmlPullParserException, IOException{
+            parser.require(XmlPullParser.START_TAG, ns, "StopNo");
+            stopNo = readText(parser);
+            parser.require(XmlPullParser.END_TAG, ns, "StopNo");
+        }
+
+        private String readText(XmlPullParser parser) throws XmlPullParserException, IOException{
+            String result = "";
+            if (parser.next() == XmlPullParser.TEXT) {
+                result = parser.getText();
+                parser.nextTag();
+            }
+            return result;
         }
 
         private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -159,6 +245,15 @@ public class StopDetailsFragment extends Fragment {
                         break;
                 }
             }
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            progressBar.setVisibility(View.INVISIBLE);
+
+            Log.i(ACTIVITY_NAME, "stopNo: "+stopNo);
+            Log.i(ACTIVITY_NAME, "stopDescription: "+stopDescription);
+            Log.i(ACTIVITY_NAME, "error: "+error);
         }
     }
 

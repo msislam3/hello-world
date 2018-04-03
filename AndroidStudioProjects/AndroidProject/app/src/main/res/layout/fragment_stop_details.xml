@@ -23,6 +23,12 @@
         android:layout_below="@id/stopNumberText"
         android:gravity="center"/>
 
+    <ProgressBar
+        android:id="@+id/stopDetailsProgressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/stopRemoveButton"
         android:layout_width="match_parent"
