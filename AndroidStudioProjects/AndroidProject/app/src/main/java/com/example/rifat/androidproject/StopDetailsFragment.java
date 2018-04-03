@@ -2,6 +2,7 @@ package com.example.rifat.androidproject;
 
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,6 +27,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class StopDetailsFragment extends Fragment {
@@ -38,8 +43,13 @@ public class StopDetailsFragment extends Fragment {
     private String error;
 
     private TextView textViewStopNumber;
+    private TextView textVIewStopDescription;
     private Button buttonRemoveStop;
     private ProgressBar progressBar;
+    private ListView listViewRoutes;
+
+    private ArrayList<Route> routes = new ArrayList();
+    private RoutesAdapter routesAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +64,9 @@ public class StopDetailsFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_stop_details, container, false);
+
+        textVIewStopDescription = view.findViewById(R.id.stopDescriptionText);
+        listViewRoutes = view.findViewById(R.id.listViewRoutes);
 
         textViewStopNumber = view.findViewById(R.id.stopNumberText);
         textViewStopNumber.setText(Integer.toString(stopNumber));
@@ -79,6 +92,9 @@ public class StopDetailsFragment extends Fragment {
         progressBar = view.findViewById(R.id.stopDetailsProgressBar);
         progressBar.setVisibility(View.VISIBLE);
 
+        routesAdapter = new RoutesAdapter(getActivity());
+        listViewRoutes.setAdapter(routesAdapter);
+
         StopQuery task = new StopQuery();
         task.execute();
 
@@ -91,6 +107,7 @@ public class StopDetailsFragment extends Fragment {
 
     private class StopQuery extends AsyncTask<Integer, Integer, Integer>{
         private final String ns = null;
+        private ArrayList<Route> dlRoutes = new ArrayList<>();
 
         @Override
         protected Integer doInBackground(Integer... integers) {
@@ -177,6 +194,7 @@ public class StopDetailsFragment extends Fragment {
         }
 
         private void readRoute(XmlPullParser parser) throws XmlPullParserException, IOException{
+            Route route = new Route();
             while (parser.next() != XmlPullParser.END_TAG)
             {
                 if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -187,20 +205,25 @@ public class StopDetailsFragment extends Fragment {
                 Log.i(ACTIVITY_NAME, "tag: "+name);
                 if (name.equalsIgnoreCase("RouteNo")) {
                     String routeNo = readText(parser);
-                    Log.i(ACTIVITY_NAME, "routeNo: "+routeNo);
+                    route.RouteNo = routeNo;
+                    //Log.i(ACTIVITY_NAME, "routeNo: "+routeNo);
                 } else if (name.equalsIgnoreCase("DirectionID")) {
                     String directionId = readText(parser);
-                    Log.i(ACTIVITY_NAME, "directionId: "+directionId);
+                    route.RouteDirectionID = directionId;
+                    //Log.i(ACTIVITY_NAME, "directionId: "+directionId);
                 } else if (name.equalsIgnoreCase("Direction")) {
                     String direction = readText(parser);
-                    Log.i(ACTIVITY_NAME, "direction: "+direction);
+                    route.RouteDirection = direction;
+                    //Log.i(ACTIVITY_NAME, "direction: "+direction);
                 } else if (name.equalsIgnoreCase("RouteHeading")) {
                     String routeHeading = readText(parser);
-                    Log.i(ACTIVITY_NAME, "routeHeading: "+routeHeading);
+                    route.RouteHeading = routeHeading;
+                    //Log.i(ACTIVITY_NAME, "routeHeading: "+routeHeading);
                 } else {
                     skip(parser);
                 }
             }
+            dlRoutes.add(route);
         }
 
         private void readError(XmlPullParser parser) throws XmlPullParserException, IOException{
@@ -249,12 +272,45 @@ public class StopDetailsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Integer integer) {
-            progressBar.setVisibility(View.INVISIBLE);
 
-            Log.i(ACTIVITY_NAME, "stopNo: "+stopNo);
-            Log.i(ACTIVITY_NAME, "stopDescription: "+stopDescription);
-            Log.i(ACTIVITY_NAME, "error: "+error);
+            textVIewStopDescription.setText(stopDescription);
+            routes.addAll(dlRoutes);
+            routesAdapter.notifyDataSetChanged();
+
+            //Log.i(ACTIVITY_NAME, "stopNo: "+stopNo);
+            //Log.i(ACTIVITY_NAME, "stopDescription: "+stopDescription);
+            //Log.i(ACTIVITY_NAME, "error: "+error);
+
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
+    private class RoutesAdapter extends ArrayAdapter<Route> {
+
+        public RoutesAdapter(Context context){
+            super(context, 0);
+        }
+
+        @Override
+        public int getCount(){
+            return routes.size();
+        }
+
+        @Override
+        public Route getItem(int position) {
+            return routes.get(position);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View result = inflater.inflate(R.layout.route_row, null);
+
+            TextView routeNo = result.findViewById(R.id.textViewRouteNo);
+            routeNo.setText(getItem(position).RouteNo);
+            TextView routeDirection = result.findViewById(R.id.textVIewRouteDirection);
+            routeDirection.setText(getItem(position).RouteDirection);
+            return result;
+        }
+    }
 }
