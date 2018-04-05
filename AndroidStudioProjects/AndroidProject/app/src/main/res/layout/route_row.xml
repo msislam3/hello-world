@@ -3,15 +3,25 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewRouteNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textVIewRouteDirection"
+        android:id="@+id/ocTextViewRouteNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_toRightOf="@id/textViewRouteNo"/>
+        android:textSize="20dp"
+        android:paddingRight="5dp"/>
+
+    <TextView
+        android:id="@+id/ocTextViewRouteHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_toRightOf="@id/ocTextViewRouteNo"
+        android:paddingRight="5dp"/>
+
+    <TextView
+        android:id="@+id/ocTextVIewRouteDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_toRightOf="@id/ocTextViewRouteHeading"/>
 </RelativeLayout>

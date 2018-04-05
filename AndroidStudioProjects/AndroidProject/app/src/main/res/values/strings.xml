@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AndroidProject</string>
+    <string name="welcome">Welcome to OCTranspo App</string>
+    <string name="ocStops">Stops</string>
+    <string name="ocAddStop">Add Stop</string>
+    <string name="ocFavoriteStops">Favorite Stops</string>
+    <string name="ocStopDetails">Stop Details</string>
+    <string name="ocRemoveStop">Remove Stop</string>
+    <string name="ocStopRemoved">Stop Removed</string>
+    <string name="ocStopAdded">Stop Added to Favorites</string>
+    <string name="ocStopAlreadyAdded">Stop already added to Favorites</string>
+    <string name="ocNotValidStopNumber">Not a valid stop number</string>
+</resources>

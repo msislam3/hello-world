@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -28,26 +29,22 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class StopDetailsFragment extends Fragment {
     private static final String ACTIVITY_NAME = "StopDetailsFragment";
+
     private long id=0;
     private int position = 0;
     private int stopNumber = 0;
     private boolean isTablet;
-
     private String stopNo;
     private String stopDescription;
     private String error;
-
     private TextView textViewStopNumber;
     private TextView textVIewStopDescription;
     private Button buttonRemoveStop;
     private ProgressBar progressBar;
     private ListView listViewRoutes;
-
     private ArrayList<Route> routes = new ArrayList();
     private RoutesAdapter routesAdapter;
 
@@ -65,20 +62,21 @@ public class StopDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_stop_details, container, false);
 
-        textVIewStopDescription = view.findViewById(R.id.stopDescriptionText);
-        listViewRoutes = view.findViewById(R.id.listViewRoutes);
+        textVIewStopDescription = view.findViewById(R.id.ocStopDescriptionText);
+        listViewRoutes = view.findViewById(R.id.ocListViewRoutes);
+        textViewStopNumber = view.findViewById(R.id.ocStopNumberText);
+        buttonRemoveStop = view.findViewById(R.id.ocStopRemoveButton);
+        progressBar = view.findViewById(R.id.ocStopDetailsProgressBar);
 
-        textViewStopNumber = view.findViewById(R.id.stopNumberText);
         textViewStopNumber.setText(Integer.toString(stopNumber));
 
-        buttonRemoveStop = view.findViewById(R.id.stopRemoveButton);
         buttonRemoveStop.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 if(isTablet){
                     StopsActivity stopsActivity = (StopsActivity) getActivity();
-                    stopsActivity.removeStop(id, position);
+                    stopsActivity.removeStopFromFragment(id, position);
                 }else{
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra(OCTranspoDatabaseHelper.KEY_ID, id);
@@ -89,7 +87,6 @@ public class StopDetailsFragment extends Fragment {
             }
         });
 
-        progressBar = view.findViewById(R.id.stopDetailsProgressBar);
         progressBar.setVisibility(View.VISIBLE);
 
         routesAdapter = new RoutesAdapter(getActivity());
@@ -107,7 +104,22 @@ public class StopDetailsFragment extends Fragment {
 
     private class StopQuery extends AsyncTask<Integer, Integer, Integer>{
         private final String ns = null;
-        private ArrayList<Route> dlRoutes = new ArrayList<>();
+        private final String REQUEST_GET = "GET";
+
+        private final String ROUTE_NO = "RouteNo";
+        private final String DIRECTION_ID = "DirectionID";
+        private final String DIRECTION = "Direction";
+        private final String ROUTE_HEADING = "RouteHeading";
+        private final String STOP_NO = "StopNo";
+        private final String STOP_DESCRIPTION = "StopDescription";
+        private final String ERROR = "Error";
+        private final String ROUTES = "Routes";
+        private final String ROUTE = "Route";
+        private final String GET_ROUTE_SUMMARY_FOR_STOP_RESULT = "GetRouteSummaryForStopResult";
+        private final String GET_ROUTE_SUMMARY_FOR_STOP_RESPONSE = "GetRouteSummaryForStopResponse";
+        private final String SOAP_BODY = "soap:Body";
+
+        private ArrayList<Route> downloadedRoutes = new ArrayList<>();
 
         @Override
         protected Integer doInBackground(Integer... integers) {
@@ -120,7 +132,7 @@ public class StopDetailsFragment extends Fragment {
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000);
                 conn.setConnectTimeout(15000);
-                conn.setRequestMethod("GET");
+                conn.setRequestMethod(REQUEST_GET);
                 conn.setDoInput(true);
                 conn.connect();
                 InputStream in = conn.getInputStream();
@@ -156,19 +168,19 @@ public class StopDetailsFragment extends Fragment {
 
                 String name = parser.getName();
                 Log.i(ACTIVITY_NAME, "tag: "+name);
-                if (name.equalsIgnoreCase("soap:Body")) {
+                if (name.equalsIgnoreCase(SOAP_BODY)) {
 
-                } else if (name.equalsIgnoreCase("GetRouteSummaryForStopResponse")){
+                } else if (name.equalsIgnoreCase(GET_ROUTE_SUMMARY_FOR_STOP_RESPONSE)){
 
-                } else if (name.equalsIgnoreCase("GetRouteSummaryForStopResult")){
+                } else if (name.equalsIgnoreCase(GET_ROUTE_SUMMARY_FOR_STOP_RESULT)){
 
-                } else if (name.equalsIgnoreCase("StopNo")) {
+                } else if (name.equalsIgnoreCase(STOP_NO)) {
                     readStopNo(parser);
-                } else if (name.equalsIgnoreCase("StopDescription")) {
+                } else if (name.equalsIgnoreCase(STOP_DESCRIPTION)) {
                     readStopDescription(parser);
-                } else if (name.equalsIgnoreCase("Error")) {
+                } else if (name.equalsIgnoreCase(ERROR)) {
                     readError(parser);
-                } else if (name.equalsIgnoreCase("Routes")) {
+                } else if (name.equalsIgnoreCase(ROUTES)) {
                     readRoutes(parser);
                 } else {
                     skip(parser);
@@ -185,7 +197,7 @@ public class StopDetailsFragment extends Fragment {
 
                 String name = parser.getName();
                 Log.i(ACTIVITY_NAME, "tag: "+name);
-                if (name.equalsIgnoreCase("Route")) {
+                if (name.equalsIgnoreCase(ROUTE)) {
                     readRoute(parser);
                 } else {
                     skip(parser);
@@ -203,45 +215,41 @@ public class StopDetailsFragment extends Fragment {
 
                 String name = parser.getName();
                 Log.i(ACTIVITY_NAME, "tag: "+name);
-                if (name.equalsIgnoreCase("RouteNo")) {
+                if (name.equalsIgnoreCase(ROUTE_NO)) {
                     String routeNo = readText(parser);
-                    route.RouteNo = routeNo;
-                    //Log.i(ACTIVITY_NAME, "routeNo: "+routeNo);
-                } else if (name.equalsIgnoreCase("DirectionID")) {
+                    route.setRouteNo(routeNo);
+                } else if (name.equalsIgnoreCase(DIRECTION_ID)) {
                     String directionId = readText(parser);
-                    route.RouteDirectionID = directionId;
-                    //Log.i(ACTIVITY_NAME, "directionId: "+directionId);
-                } else if (name.equalsIgnoreCase("Direction")) {
+                    route.setRouteDirectionID(directionId);
+                } else if (name.equalsIgnoreCase(DIRECTION)) {
                     String direction = readText(parser);
-                    route.RouteDirection = direction;
-                    //Log.i(ACTIVITY_NAME, "direction: "+direction);
-                } else if (name.equalsIgnoreCase("RouteHeading")) {
+                    route.setRouteDirection(direction);
+                } else if (name.equalsIgnoreCase(ROUTE_HEADING)) {
                     String routeHeading = readText(parser);
-                    route.RouteHeading = routeHeading;
-                    //Log.i(ACTIVITY_NAME, "routeHeading: "+routeHeading);
+                    route.setRouteHeading(routeHeading);
                 } else {
                     skip(parser);
                 }
             }
-            dlRoutes.add(route);
+            downloadedRoutes.add(route);
         }
 
         private void readError(XmlPullParser parser) throws XmlPullParserException, IOException{
-            parser.require(XmlPullParser.START_TAG, ns, "Error");
+            parser.require(XmlPullParser.START_TAG, ns, ERROR);
             error = readText(parser);
-            parser.require(XmlPullParser.END_TAG, ns, "Error");
+            parser.require(XmlPullParser.END_TAG, ns, ERROR);
         }
 
         private void readStopDescription(XmlPullParser parser) throws XmlPullParserException, IOException{
-            parser.require(XmlPullParser.START_TAG, ns, "StopDescription");
+            parser.require(XmlPullParser.START_TAG, ns, STOP_DESCRIPTION);
             stopDescription = readText(parser);
-            parser.require(XmlPullParser.END_TAG, ns, "StopDescription");
+            parser.require(XmlPullParser.END_TAG, ns, STOP_DESCRIPTION);
         }
 
         private void readStopNo(XmlPullParser parser) throws XmlPullParserException, IOException{
-            parser.require(XmlPullParser.START_TAG, ns, "StopNo");
+            parser.require(XmlPullParser.START_TAG, ns, STOP_NO);
             stopNo = readText(parser);
-            parser.require(XmlPullParser.END_TAG, ns, "StopNo");
+            parser.require(XmlPullParser.END_TAG, ns, STOP_NO);
         }
 
         private String readText(XmlPullParser parser) throws XmlPullParserException, IOException{
@@ -272,14 +280,15 @@ public class StopDetailsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Integer integer) {
-
             textVIewStopDescription.setText(stopDescription);
-            routes.addAll(dlRoutes);
+            routes.addAll(downloadedRoutes);
             routesAdapter.notifyDataSetChanged();
 
-            //Log.i(ACTIVITY_NAME, "stopNo: "+stopNo);
-            //Log.i(ACTIVITY_NAME, "stopDescription: "+stopDescription);
-            //Log.i(ACTIVITY_NAME, "error: "+error);
+            if(error!= null && error.equals("10")){
+                Toast.makeText(getActivity(), "The Stop Number is Invalid", Toast.LENGTH_LONG).show();
+            }else if(error!= null && !error.isEmpty()){
+                Toast.makeText(getActivity(), "Unable to fetch Stop Data. Please try again "+error, Toast.LENGTH_LONG).show();
+            }
 
             progressBar.setVisibility(View.INVISIBLE);
         }
@@ -306,10 +315,14 @@ public class StopDetailsFragment extends Fragment {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View result = inflater.inflate(R.layout.route_row, null);
 
-            TextView routeNo = result.findViewById(R.id.textViewRouteNo);
-            routeNo.setText(getItem(position).RouteNo);
-            TextView routeDirection = result.findViewById(R.id.textVIewRouteDirection);
-            routeDirection.setText(getItem(position).RouteDirection);
+            TextView routeNo = result.findViewById(R.id.ocTextViewRouteNo);
+            TextView routeDirection = result.findViewById(R.id.ocTextVIewRouteDirection);
+            TextView routeHeading = result.findViewById(R.id.ocTextViewRouteHeading);
+
+            routeDirection.setText(getItem(position).getRouteDirection());
+            routeNo.setText(getItem(position).getRouteNo());
+            routeHeading.setText(getItem(position).getRouteHeading());
+
             return result;
         }
     }

@@ -3,45 +3,47 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/stopDetailsHeader"
+        android:id="@+id/ocStopDetailsHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/stopDetails" />
+        android:text="@string/ocStopDetails" />
 
     <TextView
-        android:id="@+id/stopNumberText"
+        android:id="@+id/ocStopNumberText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/stopDetailsHeader"
+        android:layout_below="@id/ocStopDetailsHeader"
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/stopDescriptionText"
+        android:id="@+id/ocStopDescriptionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/stopNumberText"
+        android:layout_below="@id/ocStopNumberText"
         android:gravity="center"/>
 
     <ListView
-        android:id="@+id/listViewRoutes"
+        android:id="@+id/ocListViewRoutes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/stopRemoveButton"
-        android:layout_below="@id/stopDescriptionText" />
+        android:layout_above="@id/ocStopRemoveButton"
+        android:layout_below="@id/ocStopDescriptionText"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
 
     <ProgressBar
-        android:id="@+id/stopDetailsProgressBar"
+        android:id="@+id/ocStopDetailsProgressBar"
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/stopRemoveButton"
+        android:id="@+id/ocStopRemoveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="@string/removeStop" />
+        android:text="@string/ocRemoveStop" />
 
 </RelativeLayout>
