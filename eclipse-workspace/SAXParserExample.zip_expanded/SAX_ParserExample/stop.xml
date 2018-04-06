@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetRouteSummaryForStopResponse xmlns="http://octranspo.com">
+            <GetRouteSummaryForStopResult>
+                <StopNo xmlns="http://tempuri.org/">3050</StopNo>
+                <StopDescription xmlns="http://tempuri.org/">BAYSHORE STATION</StopDescription>
+                <Error xmlns="http://tempuri.org/" />
+                <Routes xmlns="http://tempuri.org/">
+                    <Route>
+                        <RouteNo>11</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Rideau</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>11</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>61</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>St-Laurent</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>61</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Terry Fox</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>62</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>St-Laurent</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>62</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Stittsville</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>63</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Briarbrook via Innovation</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>63</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Mackenzie King via Briarbrook</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>64</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Morgan's Grant via Innovation</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>64</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Mackenzie King via Morgan's Grant</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>66</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Kanata</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>66</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Tunney's Pasture</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>82</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Lincoln Fields</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>82</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>85</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Lees</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>85</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>97</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Airport / Aéroport</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>97</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Bells Corners</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>101</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>St-Laurent</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>101</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>103</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Place d'Orléans</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>103</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Moodie</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>152</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Moodie</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>152</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Lincoln Fields</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>155</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Queensway Terrace</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>155</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>158</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>158</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Haanel</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>173</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Southbound</Direction>
+                        <RouteHeading>Barrhaven Centre</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>173</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Northbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>252</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>252</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Fernbank</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>256</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Bridlewood</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>261</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>261</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Stittsville Main</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>262</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>262</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>West Ridge</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>263</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>263</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Stanley Corners</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>264</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>264</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Terry Fox</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>265</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>265</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Beaverbrook</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>267</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>267</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Glen Cairn</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>268</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>268</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Kanata Lakes</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>269</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>269</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Bridlewood</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>283</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Mackenzie King</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>402</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction />
+                        <RouteHeading>Canadian Tire Centre</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>404</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction />
+                        <RouteHeading>Canadian Tire Centre</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>406</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction />
+                        <RouteHeading>Canadian Tire Centre</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>660</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Inbound</Direction>
+                        <RouteHeading>Bell H.S</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>660</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Outbound</Direction>
+                        <RouteHeading>Innovation</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>669</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Southbound</Direction>
+                        <RouteHeading>Bell H.S</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>669</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Northbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>691</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading>Deslauriers</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>691</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading>Bayshore</RouteHeading>
+                    </Route>
+                    <Route>
+                        <RouteNo>899</RouteNo>
+                        <DirectionID>0</DirectionID>
+                        <Direction>Westbound</Direction>
+                        <RouteHeading />
+                    </Route>
+                    <Route>
+                        <RouteNo>899</RouteNo>
+                        <DirectionID>1</DirectionID>
+                        <Direction>Eastbound</Direction>
+                        <RouteHeading />
+                    </Route>
+                </Routes>
+            </GetRouteSummaryForStopResult>
+        </GetRouteSummaryForStopResponse>
+    </soap:Body>
+</soap:Envelope>
