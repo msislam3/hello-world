@@ -1,8 +1,12 @@
 package com.example.rifat.androidproject;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +16,7 @@ import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -32,6 +37,9 @@ import java.util.ArrayList;
 
 public class StopDetailsFragment extends Fragment {
     private static final String ACTIVITY_NAME = "StopDetailsFragment";
+    public static final String ROUTE_NO = "Route_No";
+    public static final String ROUTE_DIRECTION = "Route_Direction";
+    public static final String ROUTE_HEADING = "Route_Heading";
 
     private long id=0;
     private int position = 0;
@@ -87,6 +95,34 @@ public class StopDetailsFragment extends Fragment {
             }
         });
 
+        listViewRoutes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putString(OCTranspoDatabaseHelper.KEY_STOPNUMBER, stopNo);
+                bundle.putString(ROUTE_NO, routes.get(position).getRouteNo());
+                bundle.putString(ROUTE_DIRECTION, routes.get(position).getRouteDirection());
+                bundle.putString(ROUTE_HEADING, routes.get(position).getRouteHeading());
+
+                //TODO: Check if the second view is visible
+                //if (frameExists) {
+                if(false){
+                    StopRouteFragment fragment = new StopRouteFragment();
+                    fragment.setIsTablet(true);
+                    fragment.setArguments(bundle);
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                    //TODO: Create Framelayout for the frame
+                    fragmentTransaction.replace(R.id.ocFrameStopDetails, fragment);
+                    fragmentTransaction.commit();
+                }else {
+                    Intent intent = new Intent(getActivity(), StopRoute.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            }
+        });
+
         progressBar.setVisibility(View.VISIBLE);
 
         routesAdapter = new RoutesAdapter(getActivity());
@@ -105,7 +141,6 @@ public class StopDetailsFragment extends Fragment {
     private class StopQuery extends AsyncTask<Integer, Integer, Integer>{
         private final String ns = null;
         private final String REQUEST_GET = "GET";
-
         private final String ROUTE_NO = "RouteNo";
         private final String DIRECTION_ID = "DirectionID";
         private final String DIRECTION = "Direction";
@@ -120,6 +155,8 @@ public class StopDetailsFragment extends Fragment {
         private final String SOAP_BODY = "soap:Body";
 
         private ArrayList<Route> downloadedRoutes = new ArrayList<>();
+        private AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        private boolean errorExist = false;
 
         @Override
         protected Integer doInBackground(Integer... integers) {
@@ -147,7 +184,9 @@ public class StopDetailsFragment extends Fragment {
             }catch (ProtocolException e){
                 e.printStackTrace();
             } catch (IOException e){
-                e.printStackTrace();
+                CreateDialog(R.string.ocStopDetailsQueryError);
+                errorExist = true;
+                //e.printStackTrace();
             } catch (XmlPullParserException e) {
                 e.printStackTrace();
             } finally {
@@ -278,16 +317,33 @@ public class StopDetailsFragment extends Fragment {
             }
         }
 
+        private void CreateDialog(int messageId){
+
+            builder.setMessage(messageId)
+                    .setNeutralButton(R.string.ocOK, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+        }
+
         @Override
         protected void onPostExecute(Integer integer) {
-            textVIewStopDescription.setText(stopDescription);
-            routes.addAll(downloadedRoutes);
-            routesAdapter.notifyDataSetChanged();
 
-            if(error!= null && error.equals("10")){
-                Toast.makeText(getActivity(), "The Stop Number is Invalid", Toast.LENGTH_LONG).show();
-            }else if(error!= null && !error.isEmpty()){
-                Toast.makeText(getActivity(), "Unable to fetch Stop Data. Please try again "+error, Toast.LENGTH_LONG).show();
+            if(errorExist){
+                builder.create().show();
+            }else {
+                textVIewStopDescription.setText(stopDescription);
+                routes.addAll(downloadedRoutes);
+                routesAdapter.notifyDataSetChanged();
+
+                if (error != null && error.equals("10")) {
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.ocNotValidStopNumber), Toast.LENGTH_LONG).show();
+                } else if (error != null && error.equals("2")){
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.ocStopQueryError), Toast.LENGTH_LONG).show();
+                } else if (error != null && !error.isEmpty()) {
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.ocStopQueryError), Toast.LENGTH_LONG).show();
+                }
             }
 
             progressBar.setVisibility(View.INVISIBLE);

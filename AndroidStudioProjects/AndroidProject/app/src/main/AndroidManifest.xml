@@ -20,8 +20,9 @@
         </activity>
         <activity
             android:name=".StopsActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".StopsDetails"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".StopsDetails" />
+        <activity android:name=".StopRoute"></activity>
     </application>
 
 </manifest>

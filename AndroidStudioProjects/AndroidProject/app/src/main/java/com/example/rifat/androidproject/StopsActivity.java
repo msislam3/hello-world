@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class StopsActivity extends Activity {
+    //TODO: help menu
     private static final String ACTIVITY_NAME = "Stops";
     private static  final int STOP_DETAILS_REQUEST = 20;
 
@@ -36,7 +37,6 @@ public class StopsActivity extends Activity {
     private Button buttonAddStop;
     private EditText editTextAddStop;
     private RelativeLayout stopsLayout;
-
     private ArrayList<Integer> stops = new ArrayList<>();
     private StopsAdapter stopsAdapter;
     private SQLiteDatabase database;

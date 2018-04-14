@@ -10,4 +10,15 @@
     <string name="ocStopAdded">Stop Added to Favorites</string>
     <string name="ocStopAlreadyAdded">Stop already added to Favorites</string>
     <string name="ocNotValidStopNumber">Not a valid stop number</string>
+    <string name="ocOK">OK</string>
+    <string name="ocNoTrip">Sorry, No trips currently available for this route</string>
+    <string name="ocStopDetailsQueryError">Sorry, could not get stops details</string>
+    <string name="ocTripDestination">Trip Destination</string>
+    <string name="ocTripStartTime">Trip Start Time</string>
+    <string name="ocTripLatitude">Latitude</string>
+    <string name="ocTripLongitude">Longitude</string>
+    <string name="ocTripAdjustedScheduleTime">Adjusted Schedule Time</string>
+    <string name="ocTripGPSSpeed">GPS Speed</string>
+    <string name="ocTripQueryError">Unable to fetch Trip Data from the Server. Please try again</string>
+    <string name="ocStopQueryError">Unable to fetch Stops Data from the Server. Please try again</string>
 </resources>

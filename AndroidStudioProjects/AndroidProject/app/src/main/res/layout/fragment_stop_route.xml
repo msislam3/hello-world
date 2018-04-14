@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/ocStopRouteTextViewRouteNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/ocStopRouteTextViewRouteHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ocStopRouteTextViewRouteNo"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/ocStopRouteTextViewRouteDirection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ocStopRouteTextViewRouteHeading"
+        android:gravity="center"/>
+
+    <ListView
+        android:id="@+id/ocStopRouteListViewRouteDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ocStopRouteTextViewRouteDirection"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
+
+    <ProgressBar
+        android:id="@+id/ocStopRouteProgressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

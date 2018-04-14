@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:rowCount="6" android:columnCount="2">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/ocTextViewTripDestinationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ocTripDestination"
+        android:textSize="20sp"
+        android:paddingEnd="5sp"/>
+
+    <TextView
+        android:id="@+id/ocTextViewTripDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ocTextViewTripLatitudeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ocTripLatitude"
+        android:textSize="20sp"
+        android:paddingEnd="5sp"/>
+
+    <TextView
+        android:id="@+id/ocTextViewTripLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ocTextViewTripLongitudeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ocTripLongitude"
+        android:textSize="20sp"
+        android:paddingEnd="5sp"/>
+
+    <TextView
+        android:id="@+id/ocTextViewTripLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ocTextViewTripGPSSpeedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ocTripGPSSpeed"
+        android:textSize="20sp"
+        android:paddingEnd="5sp"/>
+
+
+    <TextView
+        android:id="@+id/ocTextViewTripGPSSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ocTextViewTripStartTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ocTripStartTime"
+        android:textSize="20sp"
+        android:paddingEnd="5sp"/>
+
+    <TextView
+        android:id="@+id/ocTextViewTripStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ocTextViewTripAdjustedTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ocTripAdjustedScheduleTime"
+        android:textSize="20sp"
+        android:paddingEnd="5sp"/>
+
+    <TextView
+        android:id="@+id/ocTextViewTripAdjustedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</GridLayout>
