@@ -1,16 +1,21 @@
 package com.example.rifat.androidproject;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,8 +30,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class StopsActivity extends Activity {
-    //TODO: help menu
+public class StopsActivity extends AppCompatActivity {
     private static final String ACTIVITY_NAME = "Stops";
     private static  final int STOP_DETAILS_REQUEST = 20;
 
@@ -47,9 +51,44 @@ public class StopsActivity extends Activity {
     private boolean frameStopDetailsExists = false;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.octranspo_menu , menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.ocActionAbout:
+                LayoutInflater inflater = getLayoutInflater();
+                final View inflatedView = inflater.inflate(R.layout.oc_about_dialog, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("About")
+                        .setView(inflatedView)
+                        .setNeutralButton(R.string.ocOK, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
+
+        }
+
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stops);
+
+        Toolbar myToolbar = findViewById(R.id.ocToolbar);
+        setSupportActionBar(myToolbar);
 
         listViewStops = findViewById(R.id.ocListViewStops);
         buttonAddStop = findViewById(R.id.ocButtonAddStop);

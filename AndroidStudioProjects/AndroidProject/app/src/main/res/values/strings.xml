@@ -22,4 +22,15 @@
     <string name="ocTripQueryError">Unable to fetch Trip Data from the Server. Please try again</string>
     <string name="ocStopQueryError">Unable to fetch Stops Data from the Server. Please try again</string>
     <string name="ocAverageAdjustedScheduleTime">Average adjusted schedule time</string>
+    <string name="ocCancel">Cancel</string>
+    <string name="ocAppName">OCTranspo Application</string>
+    <string name="ocAuthor">Author: Rifat Shams</string>
+    <string name="ocVersion">Activity Version: 1.0.0</string>
+    <string name="ocInstruction">Instruction: App to track OCTranspo Stops and Trips information
+                                \n * On the main screen enter a Bus Stop number and click Add Stop to add the stop in the list
+                                \n * Click on one of the stops in the list to get Bus Route information for that stop
+                                \n ** A list will show Route Number, Direction and Destination for all the routes through that stop
+                                \n * Click on one of the Bus Route to get the next three Trip information for that route on that stop
+                                \n ** A list will show next three Trips with Bus Start Time, Bus Position(Latitude and Longitude), Bus speed, Average Delay
+                                \n ** App will also show the average delay for the trips</string>
 </resources>
