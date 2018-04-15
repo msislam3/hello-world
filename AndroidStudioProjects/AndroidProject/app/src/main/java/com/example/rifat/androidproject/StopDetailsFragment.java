@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -104,21 +105,12 @@ public class StopDetailsFragment extends Fragment {
                 bundle.putString(ROUTE_DIRECTION, routes.get(position).getRouteDirection());
                 bundle.putString(ROUTE_HEADING, routes.get(position).getRouteHeading());
 
-                //TODO: Check if the second view is visible
-                //if (frameExists) {
-                if(false){
-                    StopRouteFragment fragment = new StopRouteFragment();
-                    fragment.setIsTablet(true);
-                    fragment.setArguments(bundle);
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                    //TODO: Create Framelayout for the frame
-                    fragmentTransaction.replace(R.id.ocFrameStopDetails, fragment);
-                    fragmentTransaction.commit();
-                }else {
-                    Intent intent = new Intent(getActivity(), StopRoute.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                if(isTablet) {
+                    StopsActivity stopsActivity = (StopsActivity) getActivity();
+                    stopsActivity.showRouteTrips(bundle);
+                }else{
+                    StopsDetails stopsDetailsActivity = (StopsDetails) getActivity();
+                    stopsDetailsActivity.showRouteTrips(bundle);
                 }
             }
         });

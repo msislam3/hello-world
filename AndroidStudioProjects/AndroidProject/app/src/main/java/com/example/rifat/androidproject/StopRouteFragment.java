@@ -45,6 +45,7 @@ public class StopRouteFragment extends Fragment {
     TextView textViewRouteNo;
     TextView textViewRouteDirection;
     TextView textViewRouteHeading;
+    TextView textViewAverageAdjustedScheduleTime;
     private ProgressBar progressBar;
 
     @Override
@@ -64,6 +65,7 @@ public class StopRouteFragment extends Fragment {
         textViewRouteNo = view.findViewById(R.id.ocStopRouteTextViewRouteNo);
         textViewRouteDirection = view.findViewById(R.id.ocStopRouteTextViewRouteDirection);
         textViewRouteHeading = view.findViewById(R.id.ocStopRouteTextViewRouteHeading);
+        textViewAverageAdjustedScheduleTime = view.findViewById(R.id.ocStopRouteTextViewRouteAdjustedSchedule);
         progressBar = view.findViewById(R.id.ocStopRouteProgressBar);
         listViewTrips = view.findViewById(R.id.ocStopRouteListViewRouteDetails);
 
@@ -109,6 +111,7 @@ public class StopRouteFragment extends Fragment {
         private String direction;
         private boolean errorExist = false;
         private AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        private double totalAdjustedTime = 0;
 
         @Override
         protected Integer doInBackground(Integer... integers) {
@@ -266,6 +269,15 @@ public class StopRouteFragment extends Fragment {
                 }else if (name.equalsIgnoreCase(TRIP_ADJUSTED_TIME)) {
                     String tripAdjustedTime = readText(parser);
                     trip.setAdjustedScheduleTime(tripAdjustedTime);
+                    if(tripAdjustedTime != null && !tripAdjustedTime.isEmpty()) {
+                        double adjustedTime;
+                        try{
+                            adjustedTime = Double.parseDouble(tripAdjustedTime);
+                        }catch(NumberFormatException ex){
+                            adjustedTime = 0;
+                        }
+                        totalAdjustedTime += adjustedTime;
+                    }
                 }else if (name.equalsIgnoreCase(TRIP_DESTINATION)) {
                     String tripDestination = readText(parser);
                     trip.setDestination(tripDestination);
@@ -324,6 +336,7 @@ public class StopRouteFragment extends Fragment {
             if(errorExist){
                 builder.create().show();
             } else if(downloadedTrips.size() > 0) {
+                textViewAverageAdjustedScheduleTime.setText(String.format("%s %.2f",getString(R.string.ocAverageAdjustedScheduleTime),totalAdjustedTime/downloadedTrips.size()));
                 trips.addAll(downloadedTrips);
                 tripsAdapter.notifyDataSetChanged();
             }else{

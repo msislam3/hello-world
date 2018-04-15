@@ -41,8 +41,10 @@ public class StopsActivity extends Activity {
     private StopsAdapter stopsAdapter;
     private SQLiteDatabase database;
     private Cursor cursor;
-    private FrameLayout frame;
-    private boolean frameExists = false;
+    private FrameLayout frameStopDetails;
+    private FrameLayout frameRouteTrips;
+    private boolean frameRouteTripsExists = false;
+    private boolean frameStopDetailsExists = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,11 @@ public class StopsActivity extends Activity {
         listViewStops = findViewById(R.id.ocListViewStops);
         buttonAddStop = findViewById(R.id.ocButtonAddStop);
         editTextAddStop = findViewById(R.id.ocEditTextAddStop);
-        stopsLayout = findViewById(R.id.stopsLayout);  frame = findViewById(R.id.ocFrameStopDetails);
-        frameExists = frame != null;
+        stopsLayout = findViewById(R.id.stopsLayout);
+        frameStopDetails = findViewById(R.id.ocFrameStopDetails);
+        frameStopDetailsExists = frameStopDetails != null;
+        frameRouteTrips = findViewById(R.id.ocFrameRouteTrips);
+        frameRouteTripsExists = frameRouteTrips != null;
 
         buttonAddStop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,13 +92,20 @@ public class StopsActivity extends Activity {
                 bundle.putInt(OCTranspoDatabaseHelper.KEY_STOPNUMBER, stops.get(position));
                 bundle.putInt(STOP_POSITION, position);
 
-                if (frameExists) {
+                if (frameStopDetailsExists) {
                     StopDetailsFragment fragment = new StopDetailsFragment();
                     fragment.setIsTablet(true);
                     fragment.setArguments(bundle);
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
                     fragmentTransaction.replace(R.id.ocFrameStopDetails, fragment);
+
+                    StopRouteFragment stopRouteFragment = (StopRouteFragment) fm.findFragmentById(R.id.ocFrameRouteTrips);
+                    if(stopRouteFragment != null){
+                        fragmentTransaction.remove(stopRouteFragment);
+                    }
+
                     fragmentTransaction.commit();
                 }else {
                     Intent intent = new Intent(StopsActivity.this, StopsDetails.class);
@@ -151,6 +163,22 @@ public class StopsActivity extends Activity {
         fragmentTransaction.remove(fm.findFragmentById(R.id.ocFrameStopDetails));
         fragmentTransaction.commit();
         removeStop(id,position);
+    }
+
+    public void showRouteTrips(Bundle bundle){
+        if (frameRouteTripsExists) {
+            StopRouteFragment fragment = new StopRouteFragment();
+            fragment.setIsTablet(true);
+            fragment.setArguments(bundle);
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.ocFrameRouteTrips, fragment);
+            fragmentTransaction.commit();
+        }else {
+            Intent intent = new Intent(this, StopRoute.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     private void removeStop(long id, int position) {

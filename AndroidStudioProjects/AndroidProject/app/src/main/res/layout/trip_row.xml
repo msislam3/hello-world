@@ -2,7 +2,7 @@
 <GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:rowCount="6" android:columnCount="2">
+    android:layout_height="match_parent" android:rowCount="12" android:columnCount="1">
 
     <TextView
         android:id="@+id/ocTextViewTripDestinationLabel"
@@ -15,7 +15,8 @@
     <TextView
         android:id="@+id/ocTextViewTripDestination"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="right"/>
 
     <TextView
         android:id="@+id/ocTextViewTripLatitudeLabel"
@@ -28,7 +29,8 @@
     <TextView
         android:id="@+id/ocTextViewTripLatitude"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="right"/>
 
     <TextView
         android:id="@+id/ocTextViewTripLongitudeLabel"
@@ -41,7 +43,8 @@
     <TextView
         android:id="@+id/ocTextViewTripLongitude"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="right"/>
 
     <TextView
         android:id="@+id/ocTextViewTripGPSSpeedLabel"
@@ -55,7 +58,8 @@
     <TextView
         android:id="@+id/ocTextViewTripGPSSpeed"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="right"/>
 
     <TextView
         android:id="@+id/ocTextViewTripStartTimeLabel"
@@ -68,7 +72,8 @@
     <TextView
         android:id="@+id/ocTextViewTripStartTime"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="right"/>
 
     <TextView
         android:id="@+id/ocTextViewTripAdjustedTimeLabel"
@@ -81,6 +86,7 @@
     <TextView
         android:id="@+id/ocTextViewTripAdjustedTime"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="right"/>
 
 </GridLayout>
